@@ -1,0 +1,66 @@
+#formularioProfesor{
+	margin: 0;
+	margin-left: 20%
+}
+form {
+	background:#fff;
+	padding:1em;
+	border:1px solid #0B179F;
+	font-family:"Century Gothic";
+	margin:1em;
+	width:70%;
+}
+.login {
+	background:url(../img/user.gif) no-repeat 95% 1em;
+}
+.contact {
+	background:url(../img/email.gif) no-repeat 95% 1em;
+}
+fieldset div {
+	margin:0.3em 0;
+	clear:both;
+}
+label {
+	float:left;
+	width:10em;
+	text-align:right;
+	margin-right:1em;
+}
+legend {
+	color:#0B179F;
+	font-weight: 700;
+	font-size:1.2em;
+	border-bottom: 1px solid #0B179F;
+}
+legend span {
+	width:10em;
+	text-align:right;
+}
+input {
+	padding:0.15em;
+	width:10em;
+	width: 50%;
+	border:1px solid #ddd;
+	background:#fafafa;
+	-moz-border-radius:0.4em;
+	-khtml-border-radius:0.4em;
+}
+input:hover, input:focus {
+	border-color:#c5c5c5;
+	background:#f6f6f6;
+} 
+fieldset {
+	border:1px solid #0B179F;
+	padding:0 0.5em 0.5em;
+}
+input.default {
+	color:#bbb;
+}
+#aceptar{
+	margin-top: 5%;
+	margin-left: 43%;
+}
+
+.archivo{
+	margin-left: 25%;
+}
