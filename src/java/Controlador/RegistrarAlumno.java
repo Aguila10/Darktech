@@ -14,7 +14,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import Modelo.ConexionBD;
-import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -34,7 +33,6 @@ public class RegistrarAlumno extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        HttpSession sesion = request.getSession(true);
         
         try (PrintWriter out = response.getWriter()) {
             
@@ -46,7 +44,7 @@ public class RegistrarAlumno extends HttpServlet {
             out.println("mail " + sesion.getAttribute("mail"));
             */
             
-            out.println(sesion.getAttribute("validacion"));
+            out.println(validar(request,response));
             
         }
     }
@@ -63,7 +61,6 @@ public class RegistrarAlumno extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        validar(request,response);
         processRequest(request, response);
     }
     
@@ -78,7 +75,6 @@ public class RegistrarAlumno extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        validar(request,response);
         processRequest(request, response);
     }
     
@@ -92,7 +88,7 @@ public class RegistrarAlumno extends HttpServlet {
         return "Short description";
     }// </editor-fold>
     
-    public void validar(HttpServletRequest request,HttpServletResponse response){
+    public String validar(HttpServletRequest request,HttpServletResponse response){
         
         boolean continua = true;
         String login = request.getParameter("login");
@@ -101,12 +97,9 @@ public class RegistrarAlumno extends HttpServlet {
         String nombre  = request.getParameter("nombre");
         String telefono  = request.getParameter("telefono");
         String mail  = request.getParameter("mail");
-        
+            
         ConexionBD conexion = new ConexionBD();
         Boolean disponible = conexion.buscaLogin(login).equals("");
-        HttpSession sesion = request.getSession(true);
-        
-        sesion.removeAttribute("telefono");
         
         // Validacion del lado del servidor.
           
@@ -119,9 +112,9 @@ public class RegistrarAlumno extends HttpServlet {
         
         if(continua){    
             conexion.insertaAlumno(nombre, telefono, mail, login, contraseniaUno);
-            sesion.setAttribute("validacion", "El registro fue exitoso");
+            return "El registro fue exitoso";
         }else{
-            sesion.setAttribute("validacion","error");
+            return "error";
         }
 
     }
