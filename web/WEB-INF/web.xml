@@ -4,9 +4,25 @@
         <servlet-name>RegistrarAlumno</servlet-name>
         <servlet-class>Controlador.RegistrarAlumno</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>RegistroProfesor</servlet-name>
+        <servlet-class>Controlador.RegistrarProfesor</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RegistrarProfesor</servlet-name>
+        <servlet-class>Controlador.RegistrarProfesor</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>RegistrarAlumno</servlet-name>
         <url-pattern>/RegistrarAlumno</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RegistroProfesor</servlet-name>
+        <url-pattern>/RegistroProfesor</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RegistrarProfesor</servlet-name>
+        <url-pattern>/RegistrarProfesor</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

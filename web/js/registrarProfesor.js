@@ -5,11 +5,11 @@ function quitaLogin(){
 
 function quitaContrasenia(){
     document.getElementById("respuestaContraseniaUno").innerHTML = "";
-    document.getElementById("contrasenia").classList.remove("incorrecto");
+    document.getElementById("contraseniaUno").classList.remove("incorrecto");
 }
 
 function confirmaContrasenia(){
-    document.getElementById("respuestaContrasenia").innerHTML = "";
+    document.getElementById("respuestaContraseniaDos").innerHTML = "";
     document.getElementById("contraseniaDos").classList.remove("incorrecto");
 }
 
@@ -36,13 +36,13 @@ function quitaVideo(){
     document.getElementById("respuestaVideo").innerHTML = "";
 }
 
-function revisa_login(){
+function revisaLogin(){
     
     var login = document.getElementById("login").value;
-    var login_pat = "[A-Za-z1-9]+";
+    var login_pat = /^[A-Za-z0-9_]+$/;
     
     if(login.match(login_pat)){
-        if(login.length > 0 && login.length <= 15){
+        if(login.length >= 4 && login.length <= 15){ //  tamaño [4,15]
             return true;
         }else{
             document.getElementById("respuestaLogin").innerHTML = "Login de tamaño inválido";
@@ -50,110 +50,215 @@ function revisa_login(){
             return false;
         }
     }else{
-        document.getElementById("respuestaLogin").innerHTML = "Login con estructura inválida";
-        document.getElementById("login").classList.add("incorrecto");
+        if(login === ""){
+            document.getElementById("respuestaLogin").innerHTML = "El campo no puede quedar vacio";
+            document.getElementById("login").classList.add("incorrecto");
+        }else{
+            document.getElementById("respuestaLogin").innerHTML = "Login con estructura inválida";
+            document.getElementById("login").classList.add("incorrecto");    
+        }
         return false;
     }
+}
+
+function revisaContrasenia(){
+    
+    var contraseniaUno = document.getElementById("contraseniaUno").value;
+    var contraseniaDos = document.getElementById("contraseniaDos").value;
+    
+    if(contraseniaUno === ""){
+        document.getElementById("respuestaContraseniaUno").innerHTML ="El campo no puede quedar vacio";
+        document.getElementById("contraseniaDos").classList.add("incorrecto");
+        return false;   
+    }   
+    if(contraseniaUno.length < 5 || contraseniaUno.length > 15){
+        document.getElementById("respuestaContraseniaUno").innerHTML ="Contraseña de tamaño inválido";
+        document.getElementById("contraseniaDos").classList.add("incorrecto");
+        return false;
+    } 
+    if(contraseniaUno !== contraseniaDos){
+        document.getElementById("respuestaContraseniaDos").innerHTML ="Las contraseñas no coinciden";
+        document.getElementById("contraseniaDos").classList.add("incorrecto");
+        return false;
+    }
+    return true;
     
 }
 
-function revisa_nombre(){
+function revisaNombre(){
     
     var nombre = document.getElementById("nombre").value;
-    var nombre_pat = "([A-Za-z])([\s]{1}[A-Za-z]+)?([\s]{1}[A-Za-z]+)?";
+    var nombre_pat = /^([A-Za-z])+([\s]{1}[A-Za-z]+)?([\s]{1}[A-Za-z]+)?$/;
     
     if(nombre.match(nombre_pat)){
-        if(nombre.length > 0 && nombre.length <= 70){
+        if(nombre.length >= 2 && nombre.length <= 70){ //Tamaño [2,70]
             return true;
         }else{
             document.getElementById("respuestaNombre").innerHTML = "Nombre de tamaño inválido";
             document.getElementById("nombre").classList.add("incorrecto");
             return false;
         }
-    }else{
-        document.getElementById("respuestaNombre").innerHTML = "Nombre con estructura inválida";
-        document.getElementById("nombre").classList.add("incorrecto");  
+    }else{        
+        if(nombre === ""){
+            document.getElementById("respuestaNombre").innerHTML = "Este campo no pude quedar vacio";
+            document.getElementById("nombre").classList.add("incorrecto");      
+        }else{
+            document.getElementById("respuestaNombre").innerHTML = "Nombre con estructura inválida";
+            document.getElementById("nombre").classList.add("incorrecto");      
+        }
+        return false;
     }
     
 }
 
-
-
-
-
-function revisa(){
-    var continua= true;
-    /*Revisar que el login no sea vacio*/
-    if(document.getElementById("login").value ==""){
-        document.getElementById("respuestaLogin").innerHTML = "Login inválido";
-        document.getElementById("login").classList.add("incorrecto");
-        continua = false;
-    }
+function revisaTelefono(){
     
-    /*Revisar que la contrasenia no sea vacia*/
-    if(document.getElementById("contrasenia").value == ""){
-        document.getElementById("respuestaContraseniaUno").innerHTML = "Contraseña inválida";
-        document.getElementById("contrasenia").classList.add("incorrecto");
-        continua = false;
-    }
+    var telefono = document.getElementById("telefono").value;
+    var telefono_pat = /^[0-9]+$/;
     
-    /*Revisar que ambas contrasenias coincidan*/
-    if(document.getElementById("contrasenia").value != document.getElementById("contraseniaDos").value){
-        document.getElementById("respuestaContrasenia").innerHTML ="Confirmación contraseña incorrecta";
-        document.getElementById("contraseniaDos").classList.add("incorrecto");
-        continua = false;
-    }
-    
-    /*Revisar que el nombre solo conste del alfabeto*/
-    var patronNombre = /^[a-z | A-Z]+[a-z | ' ' | A-Z]*[a-z A-Z]$/;
-    if(!document.getElementById("nombre").value.match(patronNombre)){
-        document.getElementById("respuestaNombre").innerHTML = "Nombre inválido";
-        document.getElementById("nombre").classList.add("incorrecto");
-        continua = false;
-    }
-    
-    /*Revisar que el telefono solo conste de numero*/
-    var patronTelefono = /^[0-9]+[0-9]*[0-9]+$/;
-    if(!document.getElementById("telefono").value.match(patronTelefono)){
-        document.getElementById("respuestaTelefono").innerHTML = "Telefono inválido";
-        document.getElementById("telefono").classList.add("incorrecto");
-        continua = false;
-    }
-    
-    /*Revisar mail*/
-    var patronMail = /[\w-\.]{3,}@([\w-]{2,}\.)*([\w-]{2,}\.)[\w-]{2,4}/;
-    if(!document.getElementById("mail").value.match(patronMail)){
-        document.getElementById("respuestaMail").innerHTML = "Mail inválido";
-        document.getElementById("mail").classList.add("incorrecto");
-        continua = false;
-    }
-    
-    /*Revisar que la constancia no sea vacia*/
-    if(document.getElementById("constancia").value == ""){
-        document.getElementById("respuestaArchivo").innerHTML = "Agregar constancia";
-        continua = false;
-    }
-    
-    /*Revisar que el video no sea vacio*/
-    if(document.getElementById("video").value == ""){
-        document.getElementById("respuestaVideo").innerHTML = "Agregar video";
-        continua = false;
-    }
-    
-    
-    /*Si pasa las validaciones, se envian los datos*/
-    if(continua){
-        jQuery.post("RegistrarProfesor",{
-            login: document.getElementById("login").value,
-            contrasenia: document.getElementById("contrasenia").value,
-            contraseniaDos : document.getElementById("contraseniaDos").value,
-            nombre: document.getElementById("nombre").value,
-            telefono: document.getElementById("telefono").value
-        }, function(data){
-            
-            //Mensaje a regresar.
-            
+    if(telefono.match(telefono_pat)){
+        if(telefono.length >= 8 && telefono.length <= 15){  // Tamaño [8,15]
+            return true;
+        }else{
+            document.getElementById("respuestaTelefono").innerHTML = "Telefono de tamaño inválido";
+            document.getElementById("telefono").classList.add("incorrecto");
+            return false;
         }
-                );
+    }else{
+        if(telefono === ""){
+            document.getElementById("respuestaTelefono").innerHTML = "Este campo no puede quedar vacio";
+            document.getElementById("telefono").classList.add("incorrecto");
+        }else{
+            document.getElementById("respuestaTelefono").innerHTML = "Telefono de estructura inválida";
+            document.getElementById("telefono").classList.add("incorrecto");
+            
+        }   
+        return false;
+    }
+}
+
+function revisaMail(){
+    
+    var mail = document.getElementById("mail").value;
+    var mail_pat = /^[A-Za-z](\.?[\w-]+)*@[a-zA-Z]+(\.[a-zA-z]+){1,2}$/;
+    
+    if(mail.match(mail_pat)){
+        if(mail.length <= 70){  // Si cumple la estructura y su tamaño es menor a 70 
+            return true;
+        }else{
+            document.getElementById("respuestaMail").innerHTML = "Mail de tamaño inválido";
+            document.getElementById("mail").classList.add("incorrecto");
+            return false;
+        }     
+    }else{        
+        if(mail === ""){
+            document.getElementById("respuestaMail").innerHTML = "Este campo no puede quedar vacio";
+            document.getElementById("mail").classList.add("incorrecto");  
+        }else{
+            document.getElementById("respuestaMail").innerHTML = "Mail de estructura inválida";
+            document.getElementById("mail").classList.add("incorrecto");    
+        }
+        return false;
+    }
+    
+}
+
+function revisaDisponibilidad(){
+    
+    $.post("DisponibilidadLogin",{
+        login: document.getElementById("login").value   
+    },function(data){
+        var respuesta = data.valueOf().toString();  
+        if(respuesta.match("ocupado")){    
+            document.getElementById("respuestaLogin").innerHTML = "Login no disponible";
+            document.getElementById("login").classList.add("incorrecto");    
+        }         
+    });
+    
+}
+
+function completeMarca(callback){
+    $.post("DisponibilidadLogin",{
+        login: document.getElementById("login").value   
+    },function(data){
+        var respuesta = data.valueOf().toString();  
+        if(respuesta.match("ocupado")){    
+            callback(false);
+        }else{
+            callback(true);
+        }         
+    });
+    
+}
+
+function callbackMarca(valor){
+    
+    if(revisaLogin() === true && valor === false ){
+        document.getElementById("respuestaLogin").innerHTML = "Login no disponible";
+        document.getElementById("login").classList.add("incorrecto");       
+    }   
+    revisaContrasenia();
+    revisaNombre();
+    revisaTelefono();
+    revisaMail();
+    
+}
+
+function completeRevisa(callback){
+    
+    $.post("DisponibilidadLogin",{
+        login: document.getElementById("login").value   
+    },function(data){
+        var respuesta = data.valueOf().toString();  
+        if(respuesta.match("ocupado")){    
+            callback(false);
+        }else{
+            callback(true);
+        }         
+    });
+    
+}
+
+function callbackRevisa(valor){
+    
+    var continua = true;
+    
+    continua = revisaLogin() && continua; 
+    if(continua === true && valor === false){
+        document.getElementById("respuestaLogin").innerHTML = "Login no disponible";
+        document.getElementById("login").classList.add("incorrecto");    
+    }
+    continua = valor && continua;
+    continua = revisaContrasenia() && continua;
+    continua = revisaNombre() && continua;
+    continua = revisaTelefono() && continua;
+    continua = revisaMail() && continua; 
+    
+    if(continua){    
+    
+        $.post("RegistrarProfesor",{
+            login: document.getElementById("login").value,
+            contraseniaUno: document.getElementById("contraseniaUno").value,
+            contraseniaDos: document.getElementById("contraseniaDos").value,
+            nombre: document.getElementById("nombre").value,
+            telefono: document.getElementById("telefono").value,
+            mail: document.getElementById("mail").value,
+            nivel : document.getElementById("nivel").value,
+            horario : document.getElementById("horario").value
+        }, function(data){
+         
+        //---Checar lo de los commit;
+         
+            var respuesta = data.valueOf().toString();
+            if(respuesta.match("error")){ // Si el servidor detecta un error marca
+                completeMarca(callbackMarca);
+            }else{
+                alert(respuesta);  // Si no manda un mensaje de que el registro ha sido exitoso
+                // Si las pop up dan lata podermos redireccionar  a una pagina
+                // que diga que ha sido exitoso el registro y le ponemos una =)
+            }    
+        });
+        
+        
     }
 }

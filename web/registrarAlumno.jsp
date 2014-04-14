@@ -57,15 +57,15 @@
                     <fieldset class="contact">
                         <legend>Detalles Usuario</legend>
                         <div>
-                            <label>Nombre</label> <input id="nombre" type="text" onclick="quitaNombre()" max="70">
+                            <label>Nombre</label> <input id="nombre" type="text" onclick="quitaNombre()" maxlength="70">
                             <div id="respuestaNombre" class="respuesta"></div>
                         </div>
                         <div>
-                            <label>Telefono</label> <input id="telefono" type="text" onclick="quitaTelefono()" max="15">
+                            <label>Telefono</label> <input id="telefono" type="text" onclick="quitaTelefono()" maxlength="15">
                             <div id="respuestaTelefono" class="respuesta"></div>
                         </div>
                         <div>
-                            <label>E-mail</label> <input id="mail" type="text" onclick="quitaMail()" max="70">
+                            <label>E-mail</label> <input id="mail" type="text" onclick="quitaMail()" maxlength="70">
                             <div id="respuestaMail" class="respuesta"></div>
                         </div>
                     </fieldset>
