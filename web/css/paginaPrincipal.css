@@ -172,7 +172,7 @@ input{
     border: 1px solid red;
 }
 
-#errorLogin , #errorContrasenia{
+#contestaSesion{
     color: red;
 }
 

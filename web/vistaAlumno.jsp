@@ -12,7 +12,8 @@
 	<link rel="stylesheet" type="text/css" href="css/jquery.fancybox.css?v=2.1.5" media="screen" />
 	<script type="text/javascript" src="js/jquery-1.10.1.min.js"></script>
 	<script type="text/javascript" src="js/jquery.fancybox.js?v=2.1.5"></script>
-	<title>Escuela de InglÃ©s: Alumno</title>
+        <script src="js/cerrarSesion.js"></script>
+	<title>Escuela de Inglés: Alumno</title>
 
 	<script type="text/javascript">
         /*Para ventana popUp*/
@@ -45,7 +46,7 @@
 		<div class="row">
 			<ul class="ca-menu">
 				<li>
-					<a href="#popup" class="fancyBox">
+                                    <a href="#" onclick="cerrarSesion()">
 						<span><img src="img/iniciarSesion.png" height="200" width="200"></span>
 						<div class="ca-content">
 							<h2 class="ca-main">Cerrar Sesión</h2>
@@ -104,17 +105,5 @@
 		</div>
 	</div>
 	<!--fin contenido de la pagina-->
-	<!--inicio cerrar sesion-->
-	<div id="popup">
-            <input type="text" placeholder ="login" id="login" name="login">
-		<br>
-		<p id="errorLogin"></p>
-		<input type="password" placeholder = "contraseÃ±a" id ="contrasenia">
-		<br>
-		<p id="errorContrasenia"></p>
-		<button type="button" id="iniciar" onclick="logea()">Aceptar</button>
-		<div id="contestaSesion"></div>
-	</div>
-	<!--fin cerrar sesion-->
 </body>
 </html>

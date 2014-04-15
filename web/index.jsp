@@ -3,16 +3,16 @@
     Created on : 9/04/2014, 07:55:01 PM
     Author     : rae
 --%>
-    
+
 <% 
     if(request.getSession(true).getAttribute("identidad") != null){
         if(request.getSession(true).getAttribute("identidad").equals("alumno")){%>
-        <script language="javascript"> window.location.href = "vistaAlumno.jsp";</script>;
-     <% }else{%>
-        <script language="javascript"> window.location.href = "vistaProfesor.jsp";</script>;
-      <%}
+<script language="javascript"> window.location.href = "vistaAlumno.jsp";</script>;
+<% }else{%>
+<script language="javascript"> window.location.href = "vistaProfesor.jsp";</script>;
+<%}
     }%>
-        
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!doctype html>
 <html lang="es">
@@ -24,8 +24,9 @@
         <link rel="stylesheet" type="text/css" href="css/jquery.fancybox.css?v=2.1.5" media="screen" />
         <script type="text/javascript" src="js/jquery-1.10.1.min.js"></script>
         <script type="text/javascript" src="js/jquery.fancybox.js?v=2.1.5"></script>
+        <script src="js/iniciarSesion.js"></script>
         <title>Escuela de Inglés</title>
-            
+        
         <script type="text/javascript">
             $(document).ready(function(){
                 $(".fancyBox").fancybox({
@@ -34,7 +35,7 @@
             });
             
         </script>
-            
+        
     </head>
     <body>
         <header>
@@ -49,7 +50,7 @@
             <div class="row">
                 <ul class="ca-menu">
                     <li>
-                        <a href="#popupDos" class="fancyBox">
+                        <a href="#popupDos" class="fancyBox" onclick="limpia()">
                             <span><img src="img/iniciarSesion.png" height="200" width="200"></span>
                             <div class="ca-content">
                                 <h2 class="ca-main">Iniciar Sesión</h2>
@@ -108,7 +109,7 @@
             </div>
         </div>
         <!--fin contenido de la pagina-->
-            
+        
         <!--inicio registrar-->
         <div id="popup">
             <a href="registrarProfesor.jsp"><img src="img/profesor.png" height="128" width="128" class="seleccionImagen"></a>
@@ -120,13 +121,14 @@
         <!--fin registrar-->
         <!--inicio iniciar sesion-->
         <div id="popupDos">
-            <input type="text" placeholder =" Login" id="login">
+            <input type="text" placeholder =" Login" id="login" value="">
             <br>
-            <p id="errorLogin"></p>
-            <input type="text" placeholder = " Contraseña" id ="contrasenia">
+            <p id="espacio"></p>
+            <input type="password" placeholder = " Contraseña" id ="contrasenia" value="">
             <br>
-            <p id="errorContrasenia"></p>
-            <button type="button" id="aceptar" onclick="">Aceptar</button>
+            <p id="espacio2"></p>
+            <button type="button" id="aceptar" onclick="iniciarSesion()">Aceptar</button>
+            <p id="espacio3"></p>
             <div id="contestaSesion"></div>
         </div>
         <!--fin iniciar sesion-->
