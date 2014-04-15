@@ -235,7 +235,7 @@ function callbackRevisa(valor){
     continua = revisaMail() && continua; 
     
     if(continua){    
-    
+        
         $.post("RegistrarProfesor",{
             login: document.getElementById("login").value,
             contraseniaUno: document.getElementById("contraseniaUno").value,
@@ -246,19 +246,24 @@ function callbackRevisa(valor){
             nivel : document.getElementById("nivel").value,
             horario : document.getElementById("horario").value
         }, function(data){
-         
-        //---Checar lo de los commit;
-         
+            
             var respuesta = data.valueOf().toString();
-            if(respuesta.match("error")){ // Si el servidor detecta un error marca
+            if(respuesta.match("error")){ 
                 completeMarca(callbackMarca);
             }else{
-                alert(respuesta);  // Si no manda un mensaje de que el registro ha sido exitoso
-                // Si las pop up dan lata podermos redireccionar  a una pagina
-                // que diga que ha sido exitoso el registro y le ponemos una =)
+                alert("El registro fue un exito");
+                location.href="vistaProfesor.jsp";
             }    
+            
         });
         
         
     }
+}
+
+/*Reset a todos los elementos*/
+function limpia(){
+    document.getElementById("imagenPop").src = "";
+    document.getElementById("aceptarPop").href = "";
+    document.getElementById("respuesta").innerHTML = "";
 }

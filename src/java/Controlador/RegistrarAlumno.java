@@ -112,6 +112,8 @@ public class RegistrarAlumno extends HttpServlet {
         
         if(continua){    
             conexion.insertaAlumno(nombre, telefono, mail, login, contraseniaUno);
+            request.getSession(true).setAttribute("identidad","alumno");
+            request.getSession(true).setAttribute("login",login);
             return "El registro fue exitoso";
         }else{
             return "error";

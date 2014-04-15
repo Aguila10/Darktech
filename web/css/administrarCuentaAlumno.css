@@ -200,17 +200,17 @@ h4{
 
 
 /*Eliminar cuenta (popup)*/
-#popup {
+#popupElimina {
   display: none;  
   font-family:"Century Gothic";
   color:black;
 }
 
-#popup img{
+#popupElimina img{
     margin-left: 170px;
 }
 
-#popup button{
+#popupElimina button{
     margin-top: 30px;
     margin-left: 200px;
 }

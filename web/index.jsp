@@ -4,6 +4,15 @@
     Author     : rae
 --%>
     
+<% 
+    if(request.getSession(true).getAttribute("identidad") != null){
+        if(request.getSession(true).getAttribute("identidad").equals("alumno")){%>
+        <script language="javascript"> window.location.href = "vistaAlumno.jsp";</script>;
+     <% }else{%>
+        <script language="javascript"> window.location.href = "vistaProfesor.jsp";</script>;
+      <%}
+    }%>
+        
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!doctype html>
 <html lang="es">
@@ -66,7 +75,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="">
+                        <a href="elegirCurso.jsp">
                             <span>
                                 <img src="img/cursos.png" height="200" width="200">
                             </span>
@@ -102,21 +111,23 @@
             
         <!--inicio registrar-->
         <div id="popup">
-            <img src="img/profesor.png" height="128" width="128">
-            <img src="img/alumno.png" height="128" width="128">
+            <a href="registrarProfesor.jsp"><img src="img/profesor.png" height="128" width="128" class="seleccionImagen"></a>
+            <a href="registrarAlumno.jsp"><img src="img/alumno.png" height="128" width="128" class="seleccionImagen"></a>
             <br>
             <a href="registrarProfesor.jsp" id="prof">Profesor</a>
             <a href="registrarAlumno.jsp" id="al">Alumno</a>
         </div>
         <!--fin registrar-->
-            
         <!--inicio iniciar sesion-->
         <div id="popupDos">
-            <input type="text" placeholder ="login">
+            <input type="text" placeholder =" Login" id="login">
             <br>
-            <input type="text" placeholder = "contraseña" id ="contrasenia">
+            <p id="errorLogin"></p>
+            <input type="text" placeholder = " Contraseña" id ="contrasenia">
             <br>
+            <p id="errorContrasenia"></p>
             <button type="button" id="aceptar">Aceptar</button>
+            <div id="contestaSesion"></div>
         </div>
         <!--fin iniciar sesion-->
     </body>

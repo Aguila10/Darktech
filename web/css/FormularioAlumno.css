@@ -1,62 +1,118 @@
 #formularioAlumno{
-	margin: 0;
-	margin-left: 20%
+    margin: 0;
+    margin-left: 20%
 }
 form {
-	background:#fff;
-	padding:1em;
-	border:1px solid #0B179F;
-	font-family:"Century Gothic";
-	margin:1em;
-	width:70%;
+    background:#fff;
+    padding:1em;
+    border:1px solid #0B179F;
+    font-family:"Century Gothic";
+    margin:1em;
+    width:70%;
 }
 .login {
-	background:url(../img/user.gif) no-repeat 95% 1em;
+    background:url(../img/user.gif) no-repeat 95% 1em;
 }
 .contact {
-	background:url(../img/email.gif) no-repeat 95% 1em;
+    background:url(../img/email.gif) no-repeat 95% 1em;
 }
 fieldset div {
-	margin:0.3em 0;
-	clear:both;
+    margin:0.3em 0;
+    clear:both;
 }
 label {
-	float:left;
-	width:10em;
-	text-align:right;
-	margin-right:1em;
+    float:left;
+    width:10em;
+    text-align:right;
+    margin-right:1em;
 }
 legend {
-	color:#0B179F;
-	font-weight: 700;
-	font-size:1.2em;
-	border-bottom: 1px solid #0B179F;
+    color:#0B179F;
+    font-weight: 700;
+    font-size:1.2em;
+    border-bottom: 1px solid #0B179F;
 }
 legend span {
-	width:10em;
-	text-align:right;
+    width:10em;
+    text-align:right;
 }
 input {
-	padding:0.15em;
-	width:10em;
-	width: 50%;
-	border:1px solid #ddd;
-	background:#fafafa;
-	-moz-border-radius:0.4em;
-	-khtml-border-radius:0.4em;
+    padding:0.15em;
+    width:10em;
+    width: 50%;
+    border:1px solid #ddd;
+    background:#fafafa;
+    -moz-border-radius:0.4em;
+    -khtml-border-radius:0.4em;
 }
 input:hover, input:focus {
-	border-color:#c5c5c5;
-	background:#f6f6f6;
+    border-color:#c5c5c5;
+    background:#f6f6f6;
 } 
 fieldset {
-	border:1px solid #0B179F;
-	padding:0 0.5em 0.5em;
+    border:1px solid #0B179F;
+    padding:0 0.5em 0.5em;
 }
 input.default {
-	color:#bbb;
+    color:#bbb;
 }
 #aceptar{
-	margin-top: 5%;
-	margin-left: 43%;
+    margin-top: 5%;
+    margin-left: 43%;
 }
+
+input{
+    border-radius: 5px 5px 5px 5px;
+}
+
+.respuesta{
+    font-size: 12px;
+    margin-left: 150px;
+    color: red;
+}
+
+.incorrecto{
+	border: 1px solid red;
+}
+
+/*Para ventana popup*/
+#popup{
+	display: none;
+	width: 550px;
+	height: 100px;
+}
+
+#contenidoRespuesta{
+	width: 400px;
+	height: 65px;
+}
+
+#respuesta{
+	margin-top: 10%;
+	margin-left: 13%;
+}
+
+#contenidoPop{
+	width: 550px;
+	height: 100px;
+	font-family:"Century Gothic";
+	font-weight: 900;
+}
+
+#contenedorImagenPop{
+	width: 145px;
+	height: 123px;
+}
+
+#aceptarPop button{
+	margin-top: 5%;
+	margin-left: 25%;
+}
+
+.fancybox-close{
+	background-image: none !important;
+}
+
+
+
+

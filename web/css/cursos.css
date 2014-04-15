@@ -180,40 +180,8 @@ h4{
     width: 80px;
 }
 
-
 /*A partir de aqui el contenido de la pagina*/
 #contenidoPagina{
-    border-style: outset;
     margin-left: 15%;
     margin-top: 1.5%;
-    border-color: #E41414;
-    height: 400px; 
-    width: 960px;
-}
-
-
-/*Modificar datos*/
-#modificarDatos{
-    margin-left: 18%;
-    display :none;
-}
-
-.archivo{
-    margin-left: 32%;
-}
-
-/*Eliminar cuenta (popup)*/
-#popupElimina {
-  display: none;  
-  font-family:"Century Gothic";
-  color:black;
-}
-
-#popupElimina img{
-    margin-left: 170px;
-}
-
-#popupElimina button{
-    margin-top: 30px;
-    margin-left: 200px;
 }

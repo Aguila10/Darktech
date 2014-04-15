@@ -60,12 +60,12 @@ function revisaContrasenia(){
     
     if(contraseniaUno === ""){
         document.getElementById("respuestaContraseniaUno").innerHTML ="El campo no puede quedar vacio";
-        document.getElementById("contraseniaDos").classList.add("incorrecto");
+        document.getElementById("contraseniaUno").classList.add("incorrecto");
         return false;   
     }   
     if(contraseniaUno.length < 5 || contraseniaUno.length > 15){
         document.getElementById("respuestaContraseniaUno").innerHTML ="Contraseña de tamaño inválido";
-        document.getElementById("contraseniaDos").classList.add("incorrecto");
+        document.getElementById("contraseniaUno").classList.add("incorrecto");
         return false;
     } 
     if(contraseniaUno !== contraseniaDos){
@@ -193,7 +193,7 @@ function callbackMarca(valor){
     revisaNombre();
     revisaTelefono();
     revisaMail();
-
+    
 }
 
 function completeRevisa(callback){
@@ -246,13 +246,30 @@ function callbackRevisa(valor){
             if(respuesta.match("error")){ // Si el servidor detecta un error marca
                 completeMarca(callbackMarca);
             }else{
-                alert(respuesta);  // Si no manda un mensaje de que el registro ha sido exitoso
-                // Si las pop up dan lata podermos redireccionar  a una pagina
-                // que diga que ha sido exitoso el registro y le ponemos una =)
+                
+                alert("El registro fue un exito");
+                location.href="vistaAlumno.jsp";        
+                
+                /*
+                document.getElementById("imagenPop").src = "img/ok.png";
+		document.getElementById("aceptarPop").href = "index.jsp";
+		document.getElementById("respuesta").innerHTML = "El registro ha sido exitoso";
+                limpia();
+                 */
+             
+
+             
             }    
         });
         
-    
+        
     }
 }
-    
+
+/*Reset a todos los elementos*/
+function limpia(){
+    document.getElementById("imagenPop").src = "";
+    document.getElementById("aceptarPop").href = "";
+    document.getElementById("respuesta").innerHTML = "";
+}
+

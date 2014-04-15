@@ -13,8 +13,16 @@
         <link rel="stylesheet" href="css/bootstrap.min.css"/>
         <link rel="stylesheet" href="css/RibbonMenu.css"/>
         <link rel="stylesheet" href="css/FormularioProfesor.css"/>
+        <link rel="stylesheet" type="text/css" href="css/jquery.fancybox.css?v=2.1.5" media="screen" />
         <script src="js/jquery-1.10.1.min.js"></script>
+        <script type="text/javascript" src="js/jquery.fancybox.js?v=2.1.5"></script>
         <script src="js/registrarProfesor.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function(){
+                $(".fancyBox").fancybox({		
+                });
+            });
+        </script>
         <title>Registrar Profesor</title>
     </head>
     <body>
@@ -99,11 +107,26 @@
                             <div id="respuestaVideo" class="respuesta"></div>
                         </div>
                     </fieldset>
+                    <%--<a href="#popup" class="fancyBox">--%>
                     <button type="button" id="aceptar" onclick="completeRevisa(callbackRevisa)">Aceptar</button>
                 </form>
             </div>
             <!--fin formulario-->
         </div>
         <img src="img/listonProfesor.png" height="150" width="151" style='position:absolute; top:0; right:0;'/>
+        <!--inicio ventana popUp para indicar que el registro fue exitoso-->
+        <div id="popup">
+            <div class="row" id="contenidoPop">
+                <div class="col-md-6" id="contenedorImagenPop">
+                    <img src="" height="100%" width="100%" id="imagenPop">
+                </div>
+                <div class="col-md-6" id="contenidoRespuesta">
+                    <div id="respuesta"></div>
+                </div>
+                <br>
+                <a href="" id="aceptarPop" onClick="parent.jQuery.fancybox.close();"><button>Aceptar</button></a>
+            </div>
+        </div>
+        <!--fin ventana popUp para indicar que el registro fue exitoso-->
     </body>
 </html>

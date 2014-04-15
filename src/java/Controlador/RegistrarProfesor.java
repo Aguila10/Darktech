@@ -109,6 +109,8 @@ public class RegistrarProfesor extends HttpServlet {
         if(continua){
             conexion.insertaProfesor(nombre,"pruebas","pruebas",mail,login,contraseniaUno);
             conexion.insertaCurso(nivel, horario,"2004-05-07", conexion.regresaIdProfesor(nombre));
+            request.getSession(true).setAttribute("identidad","profesor");
+            request.getSession(true).setAttribute("login",login);
             return "El registro fue exitoso";
         }else{
             return "error";
