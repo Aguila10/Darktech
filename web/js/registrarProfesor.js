@@ -241,7 +241,6 @@ function callbackRevisa(valor){
             contraseniaUno: document.getElementById("contraseniaUno").value,
             contraseniaDos: document.getElementById("contraseniaDos").value,
             nombre: document.getElementById("nombre").value,
-            telefono: document.getElementById("telefono").value,
             mail: document.getElementById("mail").value,
             nivel : document.getElementById("nivel").value,
             horario : document.getElementById("horario").value
@@ -261,9 +260,3 @@ function callbackRevisa(valor){
     }
 }
 
-/*Reset a todos los elementos*/
-function limpia(){
-    document.getElementById("imagenPop").src = "";
-    document.getElementById("aceptarPop").href = "";
-    document.getElementById("respuesta").innerHTML = "";
-}

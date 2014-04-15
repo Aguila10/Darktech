@@ -266,10 +266,5 @@ function callbackRevisa(valor){
     }
 }
 
-/*Reset a todos los elementos*/
-function limpia(){
-    document.getElementById("imagenPop").src = "";
-    document.getElementById("aceptarPop").href = "";
-    document.getElementById("respuesta").innerHTML = "";
-}
+
 

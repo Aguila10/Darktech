@@ -126,7 +126,7 @@
             <input type="text" placeholder = " Contraseña" id ="contrasenia">
             <br>
             <p id="errorContrasenia"></p>
-            <button type="button" id="aceptar">Aceptar</button>
+            <button type="button" id="aceptar" onclick="">Aceptar</button>
             <div id="contestaSesion"></div>
         </div>
         <!--fin iniciar sesion-->

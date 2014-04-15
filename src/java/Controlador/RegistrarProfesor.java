@@ -80,9 +80,8 @@ public class RegistrarProfesor extends HttpServlet {
         String contraseniaUno = request.getParameter("contraseniaUno");
         String contraseniaDos = request.getParameter("contraseniaDos");
         String nombre  = request.getParameter("nombre");
-        String telefono  = request.getParameter("telefono");
         String mail  = request.getParameter("mail");
-        String nivel = request.getParameter("nivel").toLowerCase();
+        String nivel = request.getParameter("nivel");
         String horario = request.getParameter("horario");
         
         ConexionBD conexion = new ConexionBD();
@@ -94,7 +93,6 @@ public class RegistrarProfesor extends HttpServlet {
         continua = continua && disponible;
         continua = continua && Validacion.valida_contrasenia(contraseniaUno,contraseniaDos);
         continua = continua && Validacion.valida_nombre(nombre);
-        continua = continua && Validacion.valida_telefono(telefono);
         continua = continua && Validacion.valida_mail(mail);
         
         //--- No se usa telefono
@@ -103,12 +101,12 @@ public class RegistrarProfesor extends HttpServlet {
         //--- Acento en el conversación conflictos con el domain
         //    de la base de datos.
         //--- regresaIdProfesor() nombres de profesores iguales
-        
+         
         //--- Para pruebas no se introdujeron nombres de profesores iguales.
         
         if(continua){
             conexion.insertaProfesor(nombre,"pruebas","pruebas",mail,login,contraseniaUno);
-            conexion.insertaCurso(nivel, horario,"2004-05-07", conexion.regresaIdProfesor(nombre));
+            conexion.insertaCurso(nivel, horario,"2004-05-07", conexion.regresaIdProfesor(login));
             request.getSession(true).setAttribute("identidad","profesor");
             request.getSession(true).setAttribute("login",login);
             return "El registro fue exitoso";
