@@ -5,17 +5,19 @@
 <!doctype html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <title>Cursos</title>
-    <meta name="viewport" content="width=device-width">
-    <link rel="stylesheet" href="css/bootstrap.min.css"/>
+	<meta charset="UTF-8">
+	<title>Cursos</title>
+	<meta name="viewport" content="width=device-width">
+	<link rel="stylesheet" href="css/bootstrap.min.css"/>
     <link rel="stylesheet" href="css/RibbonMenu.css"/>
     <link rel="stylesheet" href="css/cursos.css">
-    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Londrina Solid">
-    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=McLaren">
+            <link rel="stylesheet" type="text/css" href="css/jquery.fancybox.css?v=2.1.5" media="screen" />
+        <script src="js/jquery-1.10.1.min.js"></script>
+        <script type="text/javascript" src="js/jquery.fancybox.js?v=2.1.5"></script>
+    <script src="js/solicitarCurso.js"></script>
 </head>
 <body>
-	<!--inicio sesion-->
+<!--inicio sesion-->
 	<div class="container">
 		<div class="row">
                     <% 
@@ -42,7 +44,7 @@
 				<a href="#"><span>Iniciar Sesión</span></a>
 				<a href="#"><span>Cuenta</span></a>
 				<a href="#"><span>Cursos</span></a>
-				<a href="contacto.jsp"><span>Contacto</span></a>
+				<a href="#"><span>Contacto</span></a>
 			</div>
 		</div>
 	</header>
@@ -51,8 +53,8 @@
 		<!--inicio submenu-->
 		<div class="col-md-3" id="submenu">
 			<ul class="ca-menu">
-				<li onclick="muestraFormulario();">
-					<a>
+				<li>
+					<a onclick="regresaCursos('Principiante')">
 						<span class="ca-icon">j</span>
 						<div class="ca-content">
 							<h4>Nivel Principiante</h4>
@@ -60,7 +62,7 @@
 					</a>
 				</li>
 				<li>
-					<a href="#popup" class="fancyBox">
+					<a onclick="regresaCursos('Intermedio')">
 						<span class="ca-icon">j</span>
 						<div class="ca-content">
 							<h4>Nivel Intermedio</h4>
@@ -68,7 +70,7 @@
 					</a>
 				</li>
 				<li>
-					<a href="#popup" class="fancyBox">
+					<a onclick="regresaCursos('Avanzado')">
 						<span class="ca-icon">j</span>
 						<div class="ca-content">
 							<h4>Nivel Avanzado</h4>
@@ -76,7 +78,7 @@
 					</a>
 				</li>
 				<li>
-					<a href="#popup" class="fancyBox">
+					<a onclick="regresaCursos('Conversación')">
 						<span class="ca-icon">j</span>
 						<div class="ca-content">
 							<h4>Conversación</h4>
@@ -86,10 +88,9 @@
 			</ul>
 		</div>
 		<!--fin submenu-->
-                <!--inicio contenido cursos-->
 		<div class="col-md-9" id="contenidoPagina">
+			a ver
 		</div>
-                <!--fin contenido cursos-->
 	</div>
 </body>
 </html>
