@@ -38,9 +38,9 @@
             </div>
             <div class="row">
                 <div class="ribbon">
-                    <a href="#"><span>Inicio</span></a>
+                    <a href="vistaProfesor.jsp"><span>Inicio</span></a>
                     <a href="#"><span>Registrar</span></a>
-                    <a href="#"><span>Iniciar Sesión</span></a>
+                    <a href="#"><span>Cerrar Sesión</span></a>
                     <a href="#"><span>Cuenta</span></a>
                     <a href="#"><span>Cursos</span></a>
                     <a href="#"><span>Contacto</span></a>
@@ -61,7 +61,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#popup" class="fancyBox">
+                        <a href="#popupELimina" class="fancyBox">
                             <span class="ca-icon">-</span>
                             <div class="ca-content">
                                 <h4>Eliminar Cuenta</h4>
@@ -133,7 +133,7 @@
         </div>
         
         <!--inicio ventana popup eliminar-->
-        <div id="popup">
+        <div id="popupElimina">
             <img src="img/eliminar.png" height="150" width="150">
             <h1>¿Desea eliminar su cuenta?</h1>
             <button type="button" class="aceptar">Aceptar</button>

@@ -18,10 +18,6 @@ function quitaNombre(){
     document.getElementById("nombre").classList.remove("incorrecto");
 }
 
-function quitaTelefono(){
-    document.getElementById("respuestaTelefono").innerHTML = "";
-    document.getElementById("telefono").classList.remove("incorrecto");
-}
 
 function quitaMail(){
     document.getElementById("respuestaMail").innerHTML = "";
@@ -111,31 +107,6 @@ function revisaNombre(){
     
 }
 
-function revisaTelefono(){
-    
-    var telefono = document.getElementById("telefono").value;
-    var telefono_pat = /^[0-9]+$/;
-    
-    if(telefono.match(telefono_pat)){
-        if(telefono.length >= 8 && telefono.length <= 15){  // Tamaño [8,15]
-            return true;
-        }else{
-            document.getElementById("respuestaTelefono").innerHTML = "Telefono de tamaño inválido";
-            document.getElementById("telefono").classList.add("incorrecto");
-            return false;
-        }
-    }else{
-        if(telefono === ""){
-            document.getElementById("respuestaTelefono").innerHTML = "Este campo no puede quedar vacio";
-            document.getElementById("telefono").classList.add("incorrecto");
-        }else{
-            document.getElementById("respuestaTelefono").innerHTML = "Telefono de estructura inválida";
-            document.getElementById("telefono").classList.add("incorrecto");
-            
-        }   
-        return false;
-    }
-}
 
 function revisaMail(){
     
@@ -231,7 +202,6 @@ function callbackRevisa(valor){
     continua = valor && continua;
     continua = revisaContrasenia() && continua;
     continua = revisaNombre() && continua;
-    continua = revisaTelefono() && continua;
     continua = revisaMail() && continua; 
     
     if(continua){    
@@ -250,8 +220,10 @@ function callbackRevisa(valor){
             if(respuesta.match("error")){ 
                 completeMarca(callbackMarca);
             }else{
-                alert("El registro fue un exito");
-                location.href="vistaProfesor.jsp";
+                var docHeight = $(document).height(); //grab the height of the page
+                var scrollTop = $(window).scrollTop(); //grab the px value from the top of the page to where you're scrolling      
+                $('.overlay-bg').show().css({'height' : docHeight}); //display your popup and set height to the page height
+                $('.overlay-content').css({'top': scrollTop+20+'px'}); //set the content 20px from the window top  
             }    
             
         });
@@ -260,3 +232,16 @@ function callbackRevisa(valor){
     }
 }
 
+// hide popup when user clicks on close button
+    $('.close-btn').click(function(){
+        $('.overlay-bg').hide(); // hide the overlay
+    });
+ 
+    // hides the popup if user clicks anywhere outside the container
+    $('.overlay-bg').click(function(){
+        $('.overlay-bg').hide();
+    })
+    // prevents the overlay from closing if user clicks inside the popup overlay
+    $('.overlay-content').click(function(){
+        return false;
+    });

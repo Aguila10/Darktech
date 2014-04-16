@@ -13,18 +13,12 @@
         <link rel="stylesheet" href="css/bootstrap.min.css"/>
         <link rel="stylesheet" href="css/RibbonMenu.css"/>
         <link rel="stylesheet" href="css/FormularioAlumno.css"/>
-        <link rel="stylesheet" type="text/css" href="css/jquery.fancybox.css?v=2.1.5" media="screen" />
+        <link rel="stylesheet" href="css/alerta.css">
         <script src="js/jquery-1.10.1.min.js"></script>
-        <script type="text/javascript" src="js/jquery.fancybox.js?v=2.1.5"></script>
         <script src="js/registrarAlumno.js"></script>
             
-        <script type="text/javascript">
-            $(document).ready(function(){
-                $(".fancyBox").fancybox({		
-                });
-            });
-        </script>
-        
+            
+            
         <title>Registrar Alumno</title>
     </head>
     <body>
@@ -80,23 +74,23 @@
                         </div>
                     </fieldset>
                     <%--<a href="#popup" class="fancyBox">--%>
-                        <button type="button" id="aceptar" onclick="completeRevisa(callbackRevisa)">Aceptar</button>
+                    <button type="button" id="aceptar" onclick="completeRevisa(callbackRevisa)">Aceptar</button>
                 </form>
             </div>
             <!--fin formulario-->
         </div>
         <img src="img/listonAlumno.PNG" style='position:absolute; top:0; right:0;'/>
         <!--inicio ventana popUp para indicar que el registro fue exitoso-->
-        <div id="popup">
-            <div class="row" id="contenidoPop">
+        <div id="popup" class="overlay-bg">
+            <div class="row overlay-content">
                 <div class="col-md-6" id="contenedorImagenPop">
-                    <img src="" height="100%" width="100%" id="imagenPop">
+                    <img src="img/ok.png" height="100%" width="100%">
                 </div>
-                <div class="col-md-6" id="contenidoRespuesta">
-                    <div id="respuesta"></div>
+                <div class="col-md-6" id="contenedorParrafo">
+                    <p>¡Registro Exitoso!</p>
                 </div>
                 <br>
-                <a href="" id="aceptarPop" onClick="parent.jQuery.fancybox.close();"><button>Aceptar</button></a>
+                <a href="vistaProfesor.jsp"><button id="AceptarPop">Aceptar</button></a>
             </div>
         </div>
         <!--fin ventana popUp para indicar que el registro fue exitoso-->

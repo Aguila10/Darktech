@@ -245,20 +245,12 @@ function callbackRevisa(valor){
             var respuesta = data.valueOf().toString();
             if(respuesta.match("error")){ // Si el servidor detecta un error marca
                 completeMarca(callbackMarca);
-            }else{
-                
-                alert("El registro fue un exito");
-                location.href="vistaAlumno.jsp";        
-                
-                /*
-                document.getElementById("imagenPop").src = "img/ok.png";
-		document.getElementById("aceptarPop").href = "index.jsp";
-		document.getElementById("respuesta").innerHTML = "El registro ha sido exitoso";
-                limpia();
-                 */
-             
+            }else{             
+                var docHeight = $(document).height(); //grab the height of the page
+                var scrollTop = $(window).scrollTop(); //grab the px value from the top of the page to where you're scrolling      
+                $('.overlay-bg').show().css({'height' : docHeight}); //display your popup and set height to the page height
+                $('.overlay-content').css({'top': scrollTop+20+'px'}); //set the content 20px from the window top  
 
-             
             }    
         });
         
@@ -267,4 +259,15 @@ function callbackRevisa(valor){
 }
 
 
-
+// hide popup when user clicks on close button
+$('.close-btn').click(function(){
+    $('.overlay-bg').hide(); // hide the overlay
+});
+// hides the popup if user clicks anywhere outside the container
+$('.overlay-bg').click(function(){
+    $('.overlay-bg').hide();
+})
+// prevents the overlay from closing if user clicks inside the popup overlay
+$('.overlay-content').click(function(){
+    return false;
+});

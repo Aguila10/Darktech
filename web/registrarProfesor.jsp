@@ -13,16 +13,10 @@
         <link rel="stylesheet" href="css/bootstrap.min.css"/>
         <link rel="stylesheet" href="css/RibbonMenu.css"/>
         <link rel="stylesheet" href="css/FormularioProfesor.css"/>
-        <link rel="stylesheet" type="text/css" href="css/jquery.fancybox.css?v=2.1.5" media="screen" />
+        <link rel="stylesheet" href="css/alerta.css">
         <script src="js/jquery-1.10.1.min.js"></script>
-        <script type="text/javascript" src="js/jquery.fancybox.js?v=2.1.5"></script>
         <script src="js/registrarProfesor.js"></script>
-        <script type="text/javascript">
-            $(document).ready(function(){
-                $(".fancyBox").fancybox({		
-                });
-            });
-        </script>
+            
         <title>Registrar Profesor</title>
     </head>
     <body>
@@ -69,12 +63,58 @@
                             <div id="respuestaNombre" class="respuesta"></div>
                         </div>
                         <div>
-                            <label>Telefono</label> <input type="text" id="telefono" onclick="quitaTelefono()" maxlength="15" value="123456789">
-                            <div id="respuestaTelefono" class="respuesta"></div>
-                        </div>
-                        <div>
                             <label>E-mail</label> <input type="text" id="mail" onclick="quitaMail()" maxlength="70" value="soy@profesor.com">
                             <div id="respuestaMail" class="respuesta"></div>
+                        </div>
+                        <div>
+                            <label>Fecha incio</label>
+                            <select id="dia">
+                                <option value="01">1</option>
+                                <option value="02">2</option>
+                                <option value="03">3</option>
+                                <option value="04">4</option>
+                                <option value="05">5</option>
+                                <option value="06">6</option>
+                                <option value="07">7</option>
+                                <option value="08">8</option>
+                                <option value="09">9</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                                <option value="13">13</option>
+                                <option value="14">14</option>
+                                <option value="15">15</option>
+                                <option value="16">16</option>
+                                <option value="17">17</option>
+                                <option value="18">18</option>
+                                <option value="19">19</option>
+                                <option value="20">20</option>
+                                <option value="21">21</option>
+                                <option value="22">22</option>
+                                <option value="23">23</option>
+                                <option value="24">24</option>
+                                <option value="25">25</option>
+                                <option value="26">26</option>
+                                <option value="27">27</option>
+                                <option value="28">28</option>
+                                <option value="29">29</option>
+                                <option value="30">30</option>
+                                <option value="31">31</option>
+                            </select>
+                            <select id="mes">
+                                <option value="01">Enero</option>
+                                <option value="02">Febrero</option>
+                                <option value="03">Marzo</option>
+                                <option value="04">Abril</option>
+                                <option value="05">Mayo</option>
+                                <option value="06">Junio</option>
+                                <option value="07">Julio</option>
+                                <option value="08">Agosto</option>
+                                <option value="09">Septiembre</option>
+                                <option value="10">Octubre</option>
+                                <option value="11">Noviembre</option>
+                                <option value="12">Diciembre</option>
+                            </select>
                         </div>
                         <div>
                             <label>Nivel</label>
@@ -115,16 +155,16 @@
         </div>
         <img src="img/listonProfesor.png" height="150" width="151" style='position:absolute; top:0; right:0;'/>
         <!--inicio ventana popUp para indicar que el registro fue exitoso-->
-        <div id="popup">
-            <div class="row" id="contenidoPop">
+        <div id="popup" class="overlay-bg">
+            <div class="row overlay-content">
                 <div class="col-md-6" id="contenedorImagenPop">
-                    <img src="" height="100%" width="100%" id="imagenPop">
+                    <img src="img/ok.png" height="100%" width="100%">
                 </div>
-                <div class="col-md-6" id="contenidoRespuesta">
-                    <div id="respuesta"></div>
+                <div class="col-md-6" id="contenedorParrafo">
+                    <p>¡Registro Exitoso!</p>
                 </div>
                 <br>
-                <a href="" id="aceptarPop" onClick="parent.jQuery.fancybox.close();"><button>Aceptar</button></a>
+                <a href="vistaProfesor.jsp"><button id="AceptarPop">Aceptar</button></a>
             </div>
         </div>
         <!--fin ventana popUp para indicar que el registro fue exitoso-->

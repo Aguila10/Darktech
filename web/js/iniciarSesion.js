@@ -1,6 +1,5 @@
 function iniciarSesion(){
     
-    
     $.post("IniciarSesion", {
         login : document.getElementById("login").value,
         contrasenia : document.getElementById("contrasenia").value
@@ -9,7 +8,7 @@ function iniciarSesion(){
         document.getElementById("login").value = "";
         document.getElementById("contrasenia").value = "";
         if(respuesta.match("error")){
-            $("#contestaSesion").html("El login o la contraseña son incorrectas");
+            $("#contestaSesion").html("Login o contraseña incorrecta");
         }else{ 
             location.href="index.jsp";
         }
