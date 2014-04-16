@@ -13,6 +13,7 @@
 	<script type="text/javascript" src="js/jquery-1.10.1.min.js"></script>
 	<script type="text/javascript" src="js/jquery.fancybox.js?v=2.1.5"></script>
         <script src="js/cerrarSesion.js"></script>
+        <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Londrina Solid">
 	<title>Escuela de Inglés: Alumno</title>
 
 	<script type="text/javascript">
@@ -26,7 +27,7 @@
 </head>
 <body>
 	<!--inicio sesion-->
-	<div class="container">
+	<div class="container" id="contenedorSesion">
 		<div class="row">
 			<h2>Alumno: <%=sesion.getAttribute("login")%></h2>
 		</div>
@@ -51,7 +52,7 @@
 						<div class="ca-content">
 							<h2 class="ca-main">Cerrar Sesión</h2>
 							<h3 class="ca-sub">
-								Cerrar SesiÃ³n
+								Log Out
 							</h3>
 						</div>
 					</a>
@@ -66,13 +67,13 @@
 								Cuenta
 							</h2>
 							<h3 class="ca-sub">
-								Cuenta
+								Account
 							</h3>
 						</div>
 					</a>
 				</li>
 				<li>
-					<a href="">
+					<a href="elegirCurso.jsp">
 						<span>
 							<img src="img/cursos.png" height="200" width="200">
 						</span>
@@ -81,13 +82,13 @@
 								Cursos
 							</h2>
 							<h3 class="ca-sub">
-								Cursos
+								Courses
 							</h3>
 						</div>
 					</a>
 				</li>
 				<li>
-					<a href="">
+					<a href="contacto.jsp">
 						<span>
 							<img src="img/contacto.jpg" height="200" width="200">
 						</span>
@@ -96,7 +97,7 @@
 								Contacto
 							</h2>
 							<h3 class="ca-sub">
-								Contacto
+								Contact
 							</h3>
 						</div>
 					</a>

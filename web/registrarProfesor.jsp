@@ -16,6 +16,8 @@
         <link rel="stylesheet" href="css/alerta.css">
         <script src="js/jquery-1.10.1.min.js"></script>
         <script src="js/registrarProfesor.js"></script>
+        <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Londrina Solid">
+        <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=McLaren">
             
         <title>Registrar Profesor</title>
     </head>
@@ -31,8 +33,8 @@
                     <a href="#"><span>Registrar</span></a>
                     <a href="#"><span>Iniciar Sesión</span></a>
                     <a href="#"><span>Cuenta</span></a>
-                    <a href="#"><span>Cursos</span></a>
-                    <a href="#"><span>Contacto</span></a>
+                    <a href="elegirCurso.jsp"><span>Cursos</span></a>
+                    <a href="contacto.jsp"><span>Contacto</span></a>
                 </div>
             </div>
         </header>

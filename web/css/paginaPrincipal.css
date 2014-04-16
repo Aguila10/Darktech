@@ -12,7 +12,7 @@
     padding:0;
     margin:20px auto;
     width: 1020px;
-    font-family:"Cooper Black";
+    font-family:"Coda Caption";
 }
 .ca-menu li{
     width: 230px;
@@ -120,7 +120,7 @@
 
 #popup, #popupDos {
     display: none;  
-    font-family:"Century Gothic";
+    font-family:"McLaren", serif !important;
     color:black;
 }
 
@@ -176,12 +176,24 @@ input{
     color: red;
 }
 
+#popupDos{
+    width: 300px;
+}
+
+#popupDos input{
+    width: 300px;
+}
+
 /*Identificador de la sesion*/
-h2{
-    font-family:"Century Gothic" !important;
+h2, h3{
+    font-family:"Londrina Solid", serif !important;
     color:black !important;
 }
 
 #aceptar{
-    margin-left: 38px;
+    margin-left: 35%;
+}
+
+#contestaSesion{
+    margin-left: 10%;
 }

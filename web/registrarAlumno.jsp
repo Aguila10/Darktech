@@ -16,9 +16,8 @@
         <link rel="stylesheet" href="css/alerta.css">
         <script src="js/jquery-1.10.1.min.js"></script>
         <script src="js/registrarAlumno.js"></script>
-            
-            
-            
+        <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Londrina Solid">
+        <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=McLaren">    
         <title>Registrar Alumno</title>
     </head>
     <body>
@@ -32,9 +31,9 @@
                     <a href="index.jsp"><span>Inicio</span></a>
                     <a href="#"><span>Registrar</span></a>
                     <a href="#"><span>Iniciar Sesión</span></a>
-                    <a href="administrarCuentaAlumno.jsp"><span>Cuenta</span></a>
-                    <a href="#"><span>Cursos</span></a>
-                    <a href="#"><span>Contacto</span></a>
+                    <a href="#"><span>Cuenta</span></a>
+                    <a href="elegirCurso.jsp"><span>Cursos</span></a>
+                    <a href="contacto.jsp"><span>Contacto</span></a>
                 </div>
             </div>
         </header>
@@ -90,7 +89,7 @@
                     <p>¡Registro Exitoso!</p>
                 </div>
                 <br>
-                <a href="vistaProfesor.jsp"><button id="AceptarPop">Aceptar</button></a>
+                <a href="vistaAlumno.jsp"><button id="AceptarPop">Aceptar</button></a>
             </div>
         </div>
         <!--fin ventana popUp para indicar que el registro fue exitoso-->

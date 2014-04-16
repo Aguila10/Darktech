@@ -25,6 +25,9 @@
         <script type="text/javascript" src="js/jquery-1.10.1.min.js"></script>
         <script type="text/javascript" src="js/jquery.fancybox.js?v=2.1.5"></script>
         <script src="js/iniciarSesion.js"></script>
+        <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Londrina Solid">
+        <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=McLaren">
+        
         <title>Escuela de Inglés</title>
         
         <script type="text/javascript">
@@ -55,7 +58,7 @@
                             <div class="ca-content">
                                 <h2 class="ca-main">Iniciar Sesión</h2>
                                 <h3 class="ca-sub">
-                                    Iniciar Sesión
+                                    Sing In
                                 </h3>
                             </div>
                         </a>
@@ -70,7 +73,7 @@
                                     Registrar
                                 </h2>
                                 <h3 class="ca-sub">
-                                    Registrar
+                                    Registrer
                                 </h3>
                             </div>
                         </a>
@@ -85,13 +88,13 @@
                                     Cursos
                                 </h2>
                                 <h3 class="ca-sub">
-                                    Cursos
+                                    Courses
                                 </h3>
                             </div>
                         </a>
                     </li>
                     <li>
-                        <a href="">
+                        <a href="contacto.jsp">
                             <span>
                                 <img src="img/contacto.jpg" height="200" width="200">
                             </span>
@@ -100,7 +103,7 @@
                                     Contacto
                                 </h2>
                                 <h3 class="ca-sub">
-                                    Contacto
+                                    Contact
                                 </h3>
                             </div>
                         </a>
@@ -115,8 +118,8 @@
             <a href="registrarProfesor.jsp"><img src="img/profesor.png" height="128" width="128" class="seleccionImagen"></a>
             <a href="registrarAlumno.jsp"><img src="img/alumno.png" height="128" width="128" class="seleccionImagen"></a>
             <br>
-            <a href="registrarProfesor.jsp" id="prof">Profesor</a>
-            <a href="registrarAlumno.jsp" id="al">Alumno</a>
+            <a id="prof">Profesor</a>
+            <a id="al">Alumno</a>
         </div>
         <!--fin registrar-->
         <!--inicio iniciar sesion-->
@@ -127,7 +130,7 @@
             <input type="password" placeholder = " Contraseña" id ="contrasenia" value="">
             <br>
             <p id="espacio2"></p>
-            <button type="button" id="aceptar" onclick="iniciarSesion()">Aceptar</button>
+            <button id="aceptar" onclick="iniciarSesion()">Aceptar</button>
             <p id="espacio3"></p>
             <div id="contestaSesion"></div>
         </div>

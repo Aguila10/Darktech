@@ -3,7 +3,11 @@
     Created on : 9/04/2014, 07:56:40 PM
     Author     : rae
 --%>
-    
+<%
+    /*Obtener la sesion ya iniciada*/
+    HttpSession sesion = request.getSession(true);
+%>    
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!doctype html>
 <html lang="es">
@@ -19,6 +23,8 @@
         <script type="text/javascript" src="js/administrarCuentaAlumno.js"></script>
         <script type="text/javascript" src="js/jquery-1.10.1.min.js"></script>
         <script type="text/javascript" src="js/jquery.fancybox.js?v=2.1.5"></script>
+        <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Londrina Solid">
+        <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=McLaren">
             
         <script type="text/javascript">
             $(document).ready(function(){
@@ -31,6 +37,13 @@
             
     </head>
     <body>
+        <!--incio sesion-->
+        <div class="container">
+		<div class="row">
+			<h2>Alumno: <%=sesion.getAttribute("login")%></h2>
+		</div>
+	</div>
+        <!--div sesion-->
         <!--inicio encabezado-->
         <header>
             <div class="row">
@@ -38,12 +51,12 @@
             </div>
             <div class="row">
                 <div class="ribbon">
-                    <a href="vistaAlumno.jsp"><span>Inicio</span></a>
-                    <a href="#"><span>Registrar</span></a>
+                    <a href="vistaAlumno.jsp"><span>Inicio</span></a>                    
                     <a href="#"><span>Cerrar Sesión</span></a>
                     <a href="#"><span>Cuenta</span></a>
-                    <a href="#"><span>Cursos</span></a>
-                    <a href="#"><span>Contacto</span></a>
+                    <a href="elegirCurso.jsp"><span>Cursos</span></a>
+                    <a href="#"><span>Metodología</span></a>
+                    <a href="contacto.jsp"><span>Contacto</span></a>
                 </div>
             </div>
         </header>
@@ -61,7 +74,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#popupElimina" class="fancyBox">
+                        <a href="#popup" class="fancyBox">
                             <span class="ca-icon">-</span>
                             <div class="ca-content">
                                 <h4>Eliminar Cuenta</h4>
@@ -102,7 +115,7 @@
         </div>
             
         <!--inicio ventana popup eliminar-->
-        <div id="popupElimina">
+        <div id="popup">
             <img src="img/eliminar.png" height="150" width="150">
             <h1>¿Desea eliminar su cuenta?</h1>
             <button type="button" class="aceptar">Aceptar</button>

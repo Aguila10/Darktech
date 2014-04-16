@@ -27,9 +27,9 @@
 
 			.ribbon a:link, .ribbon a:visited { 
 				color:white;
-				font-family:"Century Gothic";
-			    float:left;
-			    height:3.5em;
+				font-family:"McLaren", serif;
+                                float:left;
+                                height:3.5em;
 				overflow:hidden;
 			}
 

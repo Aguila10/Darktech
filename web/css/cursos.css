@@ -1,3 +1,7 @@
+body{
+    font-family:"McLaren", serif !important;
+}
+
 @font-face {
     font-family: 'WebSymbolsRegular';
     src: url('websymbols/websymbols-regular-webfont.eot');
@@ -12,7 +16,6 @@
     padding:0;
     margin:20px auto;
     width: 500px;
-    font-family:"Century Gothic";
     margin-top: 25%;
 }
 .ca-menu li{
@@ -184,4 +187,9 @@ h4{
 #contenidoPagina{
     margin-left: 15%;
     margin-top: 1.5%;
+}
+
+h2{
+    font-family:"Londrina Solid", serif !important;
+    color:black !important;
 }

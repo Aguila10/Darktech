@@ -1,18 +1,32 @@
+<%
+    /*Obtener la sesion ya iniciada*/
+    HttpSession sesion = request.getSession(true);
+%>
 <!doctype html>
 <html lang="es">
 <head>
-	<meta charset="UTF-8">
-	<title>Cursos</title>
-	<meta name="viewport" content="width=device-width">
-	<link rel="stylesheet" href="css/bootstrap.min.css"/>
+    <meta charset="UTF-8">
+    <title>Cursos</title>
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="css/bootstrap.min.css"/>
     <link rel="stylesheet" href="css/RibbonMenu.css"/>
     <link rel="stylesheet" href="css/cursos.css">
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Londrina Solid">
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=McLaren">
 </head>
 <body>
 	<!--inicio sesion-->
 	<div class="container">
 		<div class="row">
-			<h2></h2>
+                    <% 
+    if(request.getSession(true).getAttribute("identidad") != null){
+        if(request.getSession(true).getAttribute("identidad").equals("alumno")){%>
+  <h2>Alumno: <%=sesion.getAttribute("login")%></h2>
+<% }else{%>
+<h2>Profesor: <%=sesion.getAttribute("login")%></h2>
+<%}
+    }%>
+                   
 		</div>
 	</div>
 	<!--fin sesion-->
@@ -28,7 +42,7 @@
 				<a href="#"><span>Iniciar Sesión</span></a>
 				<a href="#"><span>Cuenta</span></a>
 				<a href="#"><span>Cursos</span></a>
-				<a href="#"><span>Contacto</span></a>
+				<a href="contacto.jsp"><span>Contacto</span></a>
 			</div>
 		</div>
 	</header>
@@ -72,9 +86,10 @@
 			</ul>
 		</div>
 		<!--fin submenu-->
+                <!--inicio contenido cursos-->
 		<div class="col-md-9" id="contenidoPagina">
-			a ver
 		</div>
+                <!--fin contenido cursos-->
 	</div>
 </body>
 </html>
