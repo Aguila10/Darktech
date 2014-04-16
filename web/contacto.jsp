@@ -72,7 +72,7 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="row">
-                    <img src="img/contacto.png" height="50%" width="50%" id="imgContacto">
+                    <img src="img/contac.png" height="50%" width="50%" id="imgContacto">
                 </div>
                 <div class="row">
                     <h3>Telefono:</h3>

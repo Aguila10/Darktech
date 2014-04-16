@@ -1,3 +1,8 @@
+body{
+    background-image: url('../img/fondoIndex.jpg');
+    background-size:1466px 868px;
+}
+
 @font-face {
     font-family: 'WebSymbolsRegular';
     src: url('websymbols/websymbols-regular-webfont.eot');
@@ -196,4 +201,12 @@ h2, h3{
 
 #contestaSesion{
     margin-left: 10%;
+}
+
+#cambia{
+    margin-left: 25%;
+}
+
+#menuPrincipal{
+    margin-bottom: 5%;
 }

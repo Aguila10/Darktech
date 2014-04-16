@@ -90,7 +90,7 @@
 				<li>
 					<a href="contacto.jsp">
 						<span>
-							<img src="img/contacto.jpg" height="200" width="200">
+							<img src="img/contacto.png" height="200" width="200">
 						</span>
 						<div class="ca-content">
 							<h2 class="ca-main">

@@ -36,21 +36,36 @@
                     
                 });
             });
+
+            function cambiaImagen(){
+            	if(document.getElementById("cambia").src.indexOf("ingles")==-1){
+            		document.getElementById("cambia").src = "img/ingles.png";
+            	} else {
+            		document.getElementById("cambia").src = "img/espaniol.png";
+            	}
+            }
             
         </script>
         
     </head>
     <body>
+    	<!--inicio encabezado-->
         <header>
             <div class="container">
                 <div class="row">
-                    <img src="img/logo.jpg" height="140" width="214" id="logo">
+                    <div class="col-md-4">
+                    	<img src="img/escuela.png" height="75%" width="75%">
+                    </div>
+                    <div class="col-md-8">
+                    	<img src="img/ingles.png" height="70%" width="70%" id="cambia" onmouseover="cambiaImagen()">
+                    </div>
                 </div>
             </div>
         </header>
+        <!--fin de encabezado-->
         <!--inicio contenido de la pagina-->
         <div class="container">
-            <div class="row">
+            <div class="row" id="menuPrincipal">
                 <ul class="ca-menu">
                     <li>
                         <a href="#popupDos" class="fancyBox" onclick="limpia()">
@@ -96,7 +111,7 @@
                     <li>
                         <a href="contacto.jsp">
                             <span>
-                                <img src="img/contacto.jpg" height="200" width="200">
+                                <img src="img/contacto.png" height="200" width="200">
                             </span>
                             <div class="ca-content">
                                 <h2 class="ca-main">
