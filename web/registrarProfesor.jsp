@@ -42,7 +42,7 @@
         <!--inicio formulario-->
         <div class="container">
             <div class="row" id="formularioProfesor">
-                <form action="">
+                <form action="SubirArchivo" method="post" enctype="multipart/form-data" id="formulario">
                     <fieldset class="login">
                         <legend>Detalles Login</legend>
                         <div>

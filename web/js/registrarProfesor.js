@@ -215,11 +215,14 @@ function callbackRevisa(valor){
             nivel : document.getElementById("nivel").value,
             horario : document.getElementById("horario").value
         }, function(data){
-            
+    
+             document.getElementById("formulario").submit();
+        
             var respuesta = data.valueOf().toString();
             if(respuesta.match("error")){ 
                 completeMarca(callbackMarca);
             }else{
+                
                 var docHeight = $(document).height(); //grab the height of the page
                 var scrollTop = $(window).scrollTop(); //grab the px value from the top of the page to where you're scrolling      
                 $('.overlay-bg').show().css({'height' : docHeight}); //display your popup and set height to the page height
@@ -233,15 +236,15 @@ function callbackRevisa(valor){
 }
 
 // hide popup when user clicks on close button
-    $('.close-btn').click(function(){
-        $('.overlay-bg').hide(); // hide the overlay
-    });
- 
-    // hides the popup if user clicks anywhere outside the container
-    $('.overlay-bg').click(function(){
-        $('.overlay-bg').hide();
-    })
-    // prevents the overlay from closing if user clicks inside the popup overlay
-    $('.overlay-content').click(function(){
-        return false;
-    });
+$('.close-btn').click(function(){
+    $('.overlay-bg').hide(); // hide the overlay
+});
+
+// hides the popup if user clicks anywhere outside the container
+$('.overlay-bg').click(function(){
+    $('.overlay-bg').hide();
+})
+// prevents the overlay from closing if user clicks inside the popup overlay
+$('.overlay-content').click(function(){
+    return false;
+});

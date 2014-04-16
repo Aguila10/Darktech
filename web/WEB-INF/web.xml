@@ -28,6 +28,10 @@
         <servlet-name>VerificaContrasenia</servlet-name>
         <servlet-class>Controlador.VerificaContrasenia</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SubirArchivo</servlet-name>
+        <servlet-class>Controlador.SubirArchivo</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>RegistrarAlumno</servlet-name>
         <url-pattern>/RegistrarAlumno</url-pattern>
@@ -55,6 +59,10 @@
     <servlet-mapping>
         <servlet-name>VerificaContrasenia</servlet-name>
         <url-pattern>/VerificaContrasenia</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SubirArchivo</servlet-name>
+        <url-pattern>/SubirArchivo</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
