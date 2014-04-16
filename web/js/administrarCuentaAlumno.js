@@ -1,5 +1,10 @@
 function muestraFormulario(){
-	var x = document.getElementById("modificarDatos").style.display ="block";
+    var x = document.getElementById("modificarDatos").style.display ="block";
+}
+
+function quitaContraseniaCero(){
+    document.getElementById("respuestaContraseniaCero").innerHTML = "";
+    document.getElementById("contraseniaCero").classList.remove("incorrecto");
 }
 
 function quitaContrasenia(){
@@ -130,49 +135,85 @@ function revisaMail(){
 }
 
 
-function marca(){
+function revisaContraseña(callback){
     
-    revisaContrasenia();
-    revisaNombre();
-    revisaTelefono();
-    revisaMail();
+    $.post("VerificaContrasenia",{
+        contrasenia: document.getElementById("contraseniaCero").value
+    }, function(data){
+        var respuesta = data.valueOf().toString();
+        if(respuesta.match("error")){ 
+            document.getElementById("respuestaContraseniaCero").innerHTML = "La contraseña es incorrecta";
+            document.getElementById("contraseniaCero").classList.add("incorrecto"); 
+        }else{    
+            callback();
+        }    
+    });
+    
+    
     
 }
 
 
-function revisa(){
+function callbackContraseña(){
+    
+    var continua = revisaContrasenia();
+    
+    if(continua){      
+        $.post("AdministrarCuentaAlumno",{
+            identificador: "contrasenia",
+            contraseniaCero : document.getElementById("contraseniaCero").value,
+            contraseniaUno : document.getElementById("contraseniaUno").value,
+            contraseniaDos : document.getElementById("contraseniaDos").value
+        }, function(data){
+           
+            var respuesta = data.valueOf().toString();
+             
+            if(respuesta.match("error")){ 
+                revisarContrasenia();
+            }else{    
+                var docHeight = $(document).height(); //grab the height of the page
+                var scrollTop = $(window).scrollTop(); //grab the px value from the top of the page to where you're scrolling      
+                $('.overlay-bg').show().css({'height' : docHeight}); //display your popup and set height to the page height
+                $('.overlay-content').css({'top': scrollTop+20+'px'}); //set the content 20px from the window top      
+                
+            }    
+        });
+        
+    }
+    
+}    
+
+function marcaDatos(){   
+    revisaContrasenia();
+    revisaNombre();
+    revisaTelefono();
+    revisaMail();
+}
+
+function revisaDatos(){
     
     var continua = true;
     
-    continua = revisaContrasenia() && continua;
     continua = revisaNombre() && continua;
     continua = revisaTelefono() && continua;
     continua = revisaMail() && continua; 
     
-    
-    if(continua){    
-        
-        $.post("RegistrarAlumno",{
-            login: document.getElementById("login").value,
-            contraseniaUno: document.getElementById("contraseniaUno").value,
-            contraseniaDos: document.getElementById("contraseniaDos").value,
+    if(continua){      
+        $.post("AdministrarCuentaAlumno",{
+            identificador: "datos",
             nombre: document.getElementById("nombre").value,
             telefono: document.getElementById("telefono").value,
             mail: document.getElementById("mail").value
         }, function(data){
-            
-            //---Desactivar revision de JS para probar complete_marca(callback_marca);
-            //---Poner nombres deacuerdo al estandar;
-            //---Checar lo de los commit;
-            
             var respuesta = data.valueOf().toString();
-            if(respuesta.match("error")){ // Si el servidor detecta un error marca
-                marca();
-            }else{
+            if(respuesta.match("error")){ 
+                marcaDatos();
+            }else{    
+                var docHeight = $(document).height(); //grab the height of the page
+                var scrollTop = $(window).scrollTop(); //grab the px value from the top of the page to where you're scrolling      
+                $('.overlay-bg').show().css({'height' : docHeight}); //display your popup and set height to the page height
+                $('.overlay-content').css({'top': scrollTop+20+'px'}); //set the content 20px from the window top      
                 
-                alert("El registro fue un exito");
-                location.href="vistaAlumno.jsp";        
-
             }    
         });
         
@@ -181,3 +222,17 @@ function revisa(){
 }
 
 
+
+// hide popup when user clicks on close button
+$('.close-btn').click(function(){
+    $('.overlay-bg').hide(); // hide the overlay
+});
+
+// hides the popup if user clicks anywhere outside the container
+$('.overlay-bg').click(function(){
+    $('.overlay-bg').hide();
+})
+// prevents the overlay from closing if user clicks inside the popup overlay
+$('.overlay-content').click(function(){
+    return false;
+});

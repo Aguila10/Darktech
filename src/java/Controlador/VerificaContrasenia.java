@@ -1,8 +1,8 @@
 /*
-* To change this license header, choose License Headers in Project Properties.
-* To change this template file, choose Tools | Templates
-* and open the template in the editor.
-*/
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 
 package Controlador;
 
@@ -12,16 +12,16 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import Modelo.ConexionBD;
-import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author rae
  */
-public class RegistrarAlumno extends HttpServlet {
-    
+public class VerificaContrasenia extends HttpServlet {
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -34,22 +34,11 @@ public class RegistrarAlumno extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
         try (PrintWriter out = response.getWriter()) {
-            
-            /*
-            out.println("login " + sesion.getAttribute("login"));
-            out.println("contrasenia " + sesion.getAttribute("contrasenia"));    // Codigo utiliazado para pruebas
-            out.println("nombre " + sesion.getAttribute("nombre"));
-            out.println("telefono " + sesion.getAttribute("telefono"));
-            out.println("mail " + sesion.getAttribute("mail"));
-            */
-            
-            out.println(validar(request,response));
-            
+            out.println(verificar_contraseña(request,response));
         }
     }
-    
+
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -64,7 +53,7 @@ public class RegistrarAlumno extends HttpServlet {
             throws ServletException, IOException {
         processRequest(request, response);
     }
-    
+
     /**
      * Handles the HTTP <code>POST</code> method.
      *
@@ -78,7 +67,7 @@ public class RegistrarAlumno extends HttpServlet {
             throws ServletException, IOException {
         processRequest(request, response);
     }
-    
+
     /**
      * Returns a short description of the servlet.
      *
@@ -88,44 +77,17 @@ public class RegistrarAlumno extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-    
-    public String validar(HttpServletRequest request,HttpServletResponse response){
-        
-        boolean continua = true;
-        String login = request.getParameter("login");
-        String contraseniaUno = request.getParameter("contraseniaUno");
-        String contraseniaDos = request.getParameter("contraseniaDos");
-        String nombre  = request.getParameter("nombre");
-        String telefono  = request.getParameter("telefono");
-        String mail  = request.getParameter("mail");
+
+    private String verificar_contraseña(HttpServletRequest request, HttpServletResponse response){
         
         HttpSession sesion = request.getSession(true);
-        
         ConexionBD conexion = new ConexionBD();
-        Boolean disponible = conexion.buscaLogin(login).equals("");
         
-        // Validacion del lado del servidor.
-        
-        continua = continua && Validacion.valida_login(login);
-        continua = continua && disponible;
-        continua = continua && Validacion.valida_contrasenia(contraseniaUno,contraseniaDos);
-        continua = continua && Validacion.valida_nombre(nombre);
-        continua = continua && Validacion.valida_telefono(telefono);
-        continua = continua && Validacion.valida_mail(mail);
-        
-        if(continua){
-            conexion.insertaAlumno(nombre, telefono, mail, login, contraseniaUno);
-            sesion.setAttribute("identidad","alumno");
-            sesion.setAttribute("login",login);
-            sesion.setAttribute("nombre", nombre);
-            sesion.setAttribute("telefono", telefono);
-            sesion.setAttribute("mail", mail);
-            return "El registro fue exitoso";
+        if(conexion.iniciaSesion((String)sesion.getAttribute("login"), request.getParameter("contrasenia"))){
+            return "exito";
         }else{
             return "error";
         }
         
     }
-    
-    
 }

@@ -72,7 +72,6 @@
                             <div id="respuestaMail" class="respuesta"></div>
                         </div>
                     </fieldset>
-                    <%--<a href="#popup" class="fancyBox">--%>
                     <button type="button" id="aceptar" onclick="completeRevisa(callbackRevisa)">Aceptar</button>
                 </form>
             </div>

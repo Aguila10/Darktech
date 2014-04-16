@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import Modelo.ConexionBD;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -84,6 +85,8 @@ public class RegistrarProfesor extends HttpServlet {
         String nivel = request.getParameter("nivel");
         String horario = request.getParameter("horario");
         
+        HttpSession sesion = request.getSession(true);
+        
         ConexionBD conexion = new ConexionBD();
         Boolean disponible = conexion.buscaLogin(login).equals("");
         
@@ -95,20 +98,13 @@ public class RegistrarProfesor extends HttpServlet {
         continua = continua && Validacion.valida_nombre(nombre);
         continua = continua && Validacion.valida_mail(mail);
         
-        //--- No se usa telefono
-        //--- Falta la fecha en el formulario
-        //--- Formato de la fecha
-        //--- Acento en el conversación conflictos con el domain
-        //    de la base de datos.
-        //--- regresaIdProfesor() nombres de profesores iguales
-         
-        //--- Para pruebas no se introdujeron nombres de profesores iguales.
-        
         if(continua){
             conexion.insertaProfesor(nombre,"pruebas","pruebas",mail,login,contraseniaUno);
             conexion.insertaCurso(nivel, horario,"2004-05-07", conexion.regresaIdProfesor(login));
-            request.getSession(true).setAttribute("identidad","profesor");
-            request.getSession(true).setAttribute("login",login);
+            sesion.setAttribute("identidad","profesor");
+            sesion.setAttribute("login",login);
+            sesion.setAttribute("nombre", nombre);
+            sesion.setAttribute("mail", mail);
             return "El registro fue exitoso";
         }else{
             return "error";

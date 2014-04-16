@@ -55,7 +55,7 @@
                         </div>
                         <div>
                             <label>Confirma Contraseña</label> <input type="password" id="contraseniaDos" onclick="confirmaContrasenia()" maxlength="15" value="holamundo">
-                            <div id="respuestaContraseniaDos"class="respuesta"></div>
+                            <div id="respuestaContraseniaDos" class="respuesta"></div>
                         </div>
                     </fieldset>
                     <fieldset class="contact">
@@ -149,7 +149,6 @@
                             <div id="respuestaVideo" class="respuesta"></div>
                         </div>
                     </fieldset>
-                    <%--<a href="#popup" class="fancyBox">--%>
                     <button type="button" id="aceptar" onclick="completeRevisa(callbackRevisa)">Aceptar</button>
                 </form>
             </div>

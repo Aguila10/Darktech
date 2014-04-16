@@ -89,31 +89,37 @@
                         <fieldset class="login">
                             <legend>Detalles Login</legend>
                             <div>
-                                <label>Contraseña</label> <input type="password">
+                                <label>Contraseña</label> <input type="password" id="contraseniaUno">
+                                <div id="respuestaContraseniaUno" class="respuesta"></div>
                             </div>
                             <div>
-                                <label>Confirma Contraseña</label> <input type="password">
+                                <label>Confirma Contraseña</label> <input type="password" id="contraseniaDos">
+                                <div id="respuestaContraseniaDos" class="respuesta"></div>
                             </div>
                         </fieldset>
                         <fieldset class="contact">
                             <legend>Detalles Usuario</legend>
                             <div>
-                                <label>Nombre</label> <input type="text">
+                                <label>Nombre</label> <input type="text" id="nombre" value=<%=(String)sesion.getAttribute("nombre")%> >
+                                <div id="respuestaNombre" class="respuesta"></div>
                             </div>
                             <div>
-                                <label>E-mail</label> <input type="text">
+                                <label>E-mail</label> <input type="text" id="mail" value=<%=(String)sesion.getAttribute("mail")%> >
+                                <div id="respuestaMail" class="respuesta"></div>
                             </div>
                             <div>
                                 <label>Constancia:</label>
                             </div>
                             <div>
-                                <input type="file" class="archivo">
+                                <input type="file" class="archivo" id="constancia">
+                                <div id="respuestaArchivo" class="respuesta"></div>
                             </div>
                             <div>
                                 <label>Video:</label>
                             </div>
                             <div>
-                                <input type="file" class="archivo">
+                                <input type="file" class="archivo" id="video">
+                                <div id="respuestaVideo" class="respuesta"></div>
                             </div>
                         </fieldset>
                         <button type="button" id="aceptar">Aceptar</button>

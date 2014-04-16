@@ -1,13 +1,13 @@
 <%-- 
-    Document   : administrarCuentaAlumno
+    Ddocument   : administrarCuentaAlumno
     Created on : 9/04/2014, 07:56:40 PM
     Author     : rae
 --%>
 <%
     /*Obtener la sesion ya iniciada*/
     HttpSession sesion = request.getSession(true);
-%>    
-
+    %>    
+        
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!doctype html>
 <html lang="es">
@@ -18,31 +18,22 @@
         <link rel="stylesheet" href="css/RibbonMenu.css"/>
         <link rel="stylesheet" href="css/FormularioAlumno.css">
         <link rel="stylesheet" href="css/administrarCuentaAlumno.css">
+        <link rel="stylesheet" href="css/alerta.css">
+        <script src="js/administrarCuentaAlumno.js"></script>
+        <script src="js/jquery-1.10.1.min.js"></script>
         <link rel="stylesheet" type="text/css" href="css/jquery.fancybox.css?v=2.1.5" media="screen" />
-        <title>Administrar Cuenta</title>
-        <script type="text/javascript" src="js/administrarCuentaAlumno.js"></script>
-        <script type="text/javascript" src="js/jquery-1.10.1.min.js"></script>
         <script type="text/javascript" src="js/jquery.fancybox.js?v=2.1.5"></script>
         <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Londrina Solid">
-        <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=McLaren">
-            
-        <script type="text/javascript">
-            $(document).ready(function(){
-                $(".fancyBox").fancybox({
-                    
-                });
-            });
-            
-        </script>
-            
+        <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=McLaren">               
+        <title>Administrar Cuenta</title> 
     </head>
     <body>
         <!--incio sesion-->
         <div class="container">
-		<div class="row">
-			<h2>Alumno: <%=sesion.getAttribute("login")%></h2>
-		</div>
-	</div>
+            <div class="row">
+                <h2>Alumno: <%=sesion.getAttribute("login")%></h2>
+            </div>
+        </div>
         <!--div sesion-->
         <!--inicio encabezado-->
         <header>
@@ -75,7 +66,7 @@
                     </li>
                     <li>
                         <a href="#popup" class="fancyBox">
-                            <span class="ca-icon">-</span>
+                            <span class="ca-icon">-</span> 
                             <div class="ca-content">
                                 <h4>Eliminar Cuenta</h4>
                             </div>
@@ -90,36 +81,55 @@
                         <fieldset class="login">
                             <legend>Modificar Detalles Login</legend>
                             <div>
-                                <label>Contraseña</label> <input type="password">
+                                <label>Anterior Contraseña</label> <input type="password" id="contraseniaCero" onclick="quitaContraseniaCero()">
+                                <div id="respuestaContraseniaCero" class="respuesta"></div>
                             </div>
                             <div>
-                                <label>Confirma Contraseña</label> <input type="password">
+                                <label>Contraseña</label> <input type="password" id="contraseniaUno" onclick="quitaContrasenia();">
+                                <div id="respuestaContraseniaUno" class="respuesta"></div>
                             </div>
+                            <div>
+                                <label>Confirma Contraseña</label> <input type="password" id="contraseniaDos" onclick="confirmaContrasenia()">
+                                <div id="respuestaContraseniaDos" class="respuesta"></div>
+                            </div>
+                            <button type="button" id="aceptarLogin" onclick="revisaContraseña(callbackContraseña)">Aceptar</button>
                         </fieldset>
                         <fieldset class="contact">
                             <legend>Modificar Detalles Usuario</legend>
                             <div>
-                                <label>Nombre</label> <input type="text">
+                                <label>Nombre</label> <input type="text" id="nombre" onclick="quitaNombre()" value=<%=(String)sesion.getAttribute("nombre")%>>
+                                <div id="respuestaNombre" class="respuesta"></div>
                             </div>
                             <div>
-                                <label>Telefono</label> <input type="text">
+                                <label>Telefono</label> <input type="text" id="telefono" onclick="quitaTelefono()" value=<%=(String)sesion.getAttribute("telefono")%> >
+                                <div id="respuestaTelefono" class="respuesta"></div>
                             </div>
                             <div>
-                                <label>E-mail</label> <input type="text">
+                                <label>E-mail</label> <input type="text" id="mail" onclick="quitaMail()" value=<%=(String)sesion.getAttribute("mail")%> >
+                                <div id="respuestaMail" class="respuesta"></div>
                             </div>
+                            <button type="button" id="aceptarUsuario" onclick="revisaDatos()">Aceptar</button>
                         </fieldset>
-                        <button type="button" id="aceptar">Aceptar</button>
+                            
                     </form>	
                 </div>
             </div>
         </div>
             
         <!--inicio ventana popup eliminar-->
-        <div id="popup">
-            <img src="img/eliminar.png" height="150" width="150">
-            <h1>¿Desea eliminar su cuenta?</h1>
-            <button type="button" class="aceptar">Aceptar</button>
+        <!--inicio ventana popUp para indicar que el registro fue exitoso-->
+        <div id="popup" class="overlay-bg">
+            <div class="row overlay-content">
+                <div class="col-md-6" id="contenedorImagenPop">
+                    <img src="img/ok.png" height="100%" width="100%">
+                </div>
+                <div class="col-md-6" id="contenedorParrafo">
+                    <p>¡Actualización Exitosa!</p>
+                </div>
+                <br>
+                <a href="administrarCuentaAlumno.jsp"><button id="AceptarPop">Aceptar</button></a>
+            </div>
         </div>
-        <!--fin ventana popup eliminar-->
+        <!--fin ventana popUp para indicar que el registro fue exitoso-->
     </body>
 </html>

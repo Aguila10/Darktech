@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import Modelo.ConexionBD;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -78,15 +79,26 @@ public class IniciarSesion extends HttpServlet {
         String login = request.getParameter("login") ;
         String contrasenia = request.getParameter("contrasenia");
         ConexionBD conexion = new ConexionBD();
+        String[] atributos;
+        
+        HttpSession sesion = request.getSession(true);
         
         if(conexion.iniciaSesion(login, contrasenia)){
             
             if(conexion.regresaIdAlumno(login) != 0){
-                request.getSession(true).setAttribute("identidad","alumno");
-                request.getSession(true).setAttribute("login",login);
+                atributos = conexion.regresaDatosAlumno(login);
+                sesion.setAttribute("identidad","alumno");
+                sesion.setAttribute("login",login);
+                sesion.setAttribute("nombre", atributos[0]);
+                sesion.setAttribute("telefono", atributos[1]);
+                sesion.setAttribute("mail", atributos[2]);
             }else{
-                request.getSession(true).setAttribute("identidad","profesor");
-                request.getSession(true).setAttribute("login",login);      
+                atributos = conexion.regresaDatosProfesor(login);
+                sesion.setAttribute("identidad","profesor");
+                sesion.setAttribute("login",login);
+                sesion.setAttribute("nombre", atributos[0]);
+                sesion.setAttribute("mail", atributos[1]);
+                sesion.setAttribute("video", atributos[2]);
             }
         }else{
             return "error";

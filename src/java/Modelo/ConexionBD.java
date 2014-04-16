@@ -637,7 +637,7 @@ public class ConexionBD{
             Class.forName(driver);
             Connection con = DriverManager.getConnection(connectString, user, password);
             PreparedStatement query = con.prepareStatement("select profesor.nombre, profesor.correo_electronico, "
-                    + "profesor.liga_video, registro.contrasenia from profesor join registro on"
+                    + "profesor.liga_video, profesor.liga_constancia from profesor join registro on"
                     + " profesor.idprofesor = registro.idprofesor where registro.loggin=?;");
             query.setString(1, login);
             ResultSet rset = query.executeQuery();
@@ -658,12 +658,12 @@ public class ConexionBD{
     }
     
     public String[] regresaDatosAlumno(String login) {
-        String[] arreglo = new String[4];
+        String[] arreglo = new String[3];
         try {
             Class.forName(driver);
             Connection con = DriverManager.getConnection(connectString, user, password);
-            PreparedStatement query = con.prepareStatement("select alumno.nombre, alumno.correo_electronico, "
-                    + "alumno.telefono, registro.contrasenia from alumno join registro on"
+            PreparedStatement query = con.prepareStatement("select alumno.nombre, alumno.telefono, "
+                    + "alumno.correo_electronico from alumno join registro on"
                     + " alumno.idalumno = registro.idalumno where registro.loggin=?;");
             query.setString(1, login);
             ResultSet rset = query.executeQuery();
@@ -673,7 +673,6 @@ public class ConexionBD{
                 arreglo[0]=rset.getString(1);
                 arreglo[1]=rset.getString(2);
                 arreglo[2]=rset.getString(3);
-                arreglo[3]=rset.getString(4);
                 
             }
             
@@ -682,5 +681,99 @@ public class ConexionBD{
         }
         return arreglo;
     }
+ 
+    public boolean actualizaDatosAlumno(int idalumno, String nombre, String telefono ,String correo) {
+        boolean res = false;
+        Statement statement;
+        ResultSet resultSet;
+        
+        try {
+            Connection con = DriverManager.getConnection(connectString, user, password);
+            statement = con.createStatement();
+            resultSet = statement.executeQuery("SELECT * from  actualizaAlumno1(" + idalumno + ", "
+                    + "'" + nombre + "','" + telefono + "','" + correo + "');");
+            
+            while (resultSet.next()) {
+                res = resultSet.getBoolean(1);
+            }
+            
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+        return res;
+    }
     
+       
+       
+       
+          public boolean actualizaContraseñaAlumno(int idalumno, String contrasenia) {
+        boolean res = false;
+        Statement statement;
+        ResultSet resultSet;
+        
+        try {
+            Connection con = DriverManager.getConnection(connectString, user, password);
+            statement = con.createStatement();
+            resultSet = statement.executeQuery("SELECT * from  actualizaAlumno2(" + idalumno + ", '" + contrasenia + "');");
+            
+            while (resultSet.next()) {
+                res = resultSet.getBoolean(1);
+            }
+            
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+        return res;
+    }
+       
+        
+     public boolean actualizaDatosProfesor(int idprofesor, String nombre, String correo) {
+        boolean res = false;
+        Statement statement;
+        ResultSet resultSet;
+        
+        try {
+            Connection con = DriverManager.getConnection(connectString, user, password);
+            statement = con.createStatement();
+            resultSet = statement.executeQuery("SELECT * from  actualizaProfesor1(" + idprofesor + ", "
+                    + "'" + nombre + "','" + correo + "');");
+            
+            while (resultSet.next()) {
+                res = resultSet.getBoolean(1);
+            }
+            
+            
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+        return res;
+    }
+    
+     
+     
+      public boolean actualizaContraseñaProfesor(int idprofesor, String contrasenia) {
+        boolean res = false;
+        Statement statement;
+        ResultSet resultSet;
+        
+        try {
+            Connection con = DriverManager.getConnection(connectString, user, password);
+            statement = con.createStatement();
+            resultSet = statement.executeQuery("SELECT * from  actualizaProfeso2(" + idprofesor  + contrasenia + "');");
+            
+            while (resultSet.next()) {
+                res = resultSet.getBoolean(1);
+            }
+            
+            
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+        return res;
+    }
+    
+    public static void main(String[] args) {
+        ConexionBD con = new ConexionBD();
+        con.actualizaContraseñaAlumno(4, "new");
+    }
 }

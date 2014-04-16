@@ -61,6 +61,12 @@ input.default {
     margin-left: 43%;
 }
 
+#aceptarLogin,#aceptarUsuario{
+    margin-top: 2%;
+    margin-left: 43%;
+}
+
+
 input{
     border-radius: 5px 5px 5px 5px;
 }
