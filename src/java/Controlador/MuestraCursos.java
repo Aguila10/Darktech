@@ -15,6 +15,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -66,10 +67,19 @@ public class MuestraCursos extends HttpServlet {
     private void mostrar_cursos(HttpServletRequest request, HttpServletResponse response) throws IOException{
         String nivel = request.getParameter("nivel");
         PrintWriter out = response.getWriter();
-        out.println(nivel);
+        out.println("<h1>"+nivel+"</h1>");
         ConexionBD con = new ConexionBD();
         ArrayList lista = null;
         
+        /*El boton de solicitar solo esta disponible si lo solicita un alumno*/
+        HttpSession sesion = request.getSession(true);
+        String presiona="disabled";
+        if(sesion.getAttribute("identidad")==null){
+            presiona="disabled";
+        } else if(sesion.getAttribute("identidad").equals("alumno")){
+            presiona="";
+        }
+          
         if (nivel.equals("Principiante")) {
             lista =  con.ListaCursosDisponiblesPrincipiantes();
         } else{
@@ -93,9 +103,9 @@ public class MuestraCursos extends HttpServlet {
                 for (int j =0; j < 3 ; j++) {
                     Curso cur = (Curso)lista.get(3*i + j);
                     
-                    out.println( "<div class="+"col-md-4 "+"id ="+cur.getIdcurso()+"> Nombre Profesor:<a class = 'prof' id = "+cur.getIdprofesor()+">"+cur.getProfesor()+"</a><br>"+
-                            "Horario :"+cur.getHora()+ "<br>"
-                            +"<button>Soliticar</button></div> ");
+                    out.println( "<div class="+"col-md-4 "+"id ="+cur.getIdcurso()+"><h5>Nombre Profesor: <a class = 'prof' id = "+cur.getIdprofesor()+">"+cur.getProfesor()+"</a><br>"+
+                            "Horario: "+cur.getHora()+ "</h5><br>"
+                            +"<button "+presiona+ " onclick='solicita("+cur.getIdcurso()+")'>Solicitar</button></div> ");
                 }
                 out.println("</div>");
             }
@@ -106,9 +116,9 @@ public class MuestraCursos extends HttpServlet {
                 for (int j =0; j < 3 ; j++) {
                     Curso cur = (Curso)lista.get(3*i + j);
                     
-                    out.println( "<div class="+"col-md-4 cuadrito > Nombre Profesor:<a class = 'prof'>"+cur.getProfesor()+"</a><br>"+
-                            "Horario :"+cur.getHora()+ "<br>"
-                            +"<button>Soliticar</button onclick='solicita("+cur.getIdcurso()+"')'></div> ");
+                    out.println( "<div class="+"col-md-4 cuadrito > <h5>Nombre Profesor: <a class = 'prof'>"+cur.getProfesor()+"</a><br>"+
+                            "Horario :"+cur.getHora()+ "</h5><br>"
+                            +"<button "+presiona+ " onclick='solicita("+cur.getIdcurso()+")'>Solicitar</button></div> ");
                 }
                 out.println("</div>");
             }
@@ -118,9 +128,9 @@ public class MuestraCursos extends HttpServlet {
             for (int j =0; j < lista.size()%3 ; j++) {
                 Curso cur = (Curso)lista.get(3*(lista.size()/3) + j);
                 
-                out.println( "<div class="+"col-md-4 "+"id ="+cur.getIdcurso()+"> Nombre Profesor:<a class = 'prof' id = "+cur.getIdprofesor()+">"+cur.getProfesor()+"</a><br>"+
-                        " Horario :"+cur.getHora()+ "<br>"
-                        +"<button>Soliticar</button></div> ");
+                out.println( "<div class="+"col-md-4 "+"id ="+cur.getIdcurso()+"> <h5>Nombre Profesor: <a class = 'prof' id = "+cur.getIdprofesor()+">"+cur.getProfesor()+"</a><br>"+
+                        " Horario: "+cur.getHora()+ "</h5><br>"
+                        +"<button "+presiona+ " onclick='solicita("+cur.getIdcurso()+")'>Solicitar</button></div> ");
             }
             out.println("</div>");
         }

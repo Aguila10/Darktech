@@ -14,7 +14,7 @@
         <script type="text/javascript" src="js/jquery.fancybox.js?v=2.1.5"></script>
         <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Londrina Solid">
         <script src="js/cerrarSesion.js"></script>
-        <title>Escuela de Inglés: Alumno</title>
+        <title>Escuela de Inglés: Profesor</title>
             
         <script type="text/javascript">
             /*Para ventana popUp*/
@@ -22,6 +22,14 @@
                 $(".fancyBox").fancybox({
                 });
             });
+            
+            function cambiaImagen(){
+            	if(document.getElementById("cambia").src.indexOf("ingles")==-1){
+            		document.getElementById("cambia").src = "img/ingles.png";
+            	} else {
+            		document.getElementById("cambia").src = "img/espaniol.png";
+            	}
+            }
         </script>
             
     </head>
@@ -33,15 +41,20 @@
             </div>
         </div>
         <!--fin sesion-->
-        <!--inicio logo-->
+        <!--inicio encabezado-->
         <header>
             <div class="container">
                 <div class="row">
-                    <img src="img/logo.jpg" height="140" width="214" id="logo">
+                    <div class="col-md-4">
+                    	<img src="img/escuela.png" height="75%" width="75%">
+                    </div>
+                    <div class="col-md-8">
+                    	<img src="img/ingles.png" height="70%" width="70%" id="cambia" onmouseover="cambiaImagen()">
+                    </div>
                 </div>
             </div>
         </header>
-        <!--fin logo-->
+        <!--fin de encabezado-->
         <!--inicio contenido de la pagina-->
         <div class="container">
             <div class="row">

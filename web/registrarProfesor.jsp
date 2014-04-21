@@ -138,14 +138,14 @@
                             <label>Constancia:</label>
                         </div>
                         <div>
-                            <input type="file" class="archivo" id="constancia" onclick="quitaConstancia()">
+                            <input type="file" class="archivo" id="constancia" name ="constancia" onclick="quitaConstancia()">
                             <div id="respuestaArchivo" class="respuesta"></div>
                         </div>
                         <div>
                             <label>Video:</label>
                         </div>
                         <div>
-                            <input type="file" class="archivo" id="video" onclick="quitaVideo()">
+                            <input type="file" class="archivo" id="video" name="video" onclick="quitaVideo()">
                             <div id="respuestaVideo" class="respuesta"></div>
                         </div>
                     </fieldset>

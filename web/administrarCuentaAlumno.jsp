@@ -24,8 +24,9 @@
         <link rel="stylesheet" type="text/css" href="css/jquery.fancybox.css?v=2.1.5" media="screen" />
         <script type="text/javascript" src="js/jquery.fancybox.js?v=2.1.5"></script>
         <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Londrina Solid">
-        <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=McLaren">               
-        <title>Administrar Cuenta</title> 
+        <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=McLaren">
+        <script src="js/cerrarSesion.js"></script>
+        <title>Administrar Cuenta: Alumno</title> 
         
         <script type="text/javascript">
             $(document).ready(function(){
@@ -53,7 +54,7 @@
             <div class="row">
                 <div class="ribbon">
                     <a href="vistaAlumno.jsp"><span>Inicio</span></a>                    
-                    <a href="#"><span>Cerrar Sesión</span></a>
+                    <a href="#" onclick="cerrarSesion()"><span>Cerrar Sesión</span></a>
                     <a href="#"><span>Cuenta</span></a>
                     <a href="elegirCurso.jsp"><span>Cursos</span></a>
                     <a href="#"><span>Metodología</span></a>

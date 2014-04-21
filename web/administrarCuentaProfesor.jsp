@@ -18,12 +18,13 @@
         <link rel="stylesheet" href="css/FormularioProfesor.css">
         <link rel="stylesheet" href="css/administrarCuentaProfesor.css">
         <link rel="stylesheet" type="text/css" href="css/jquery.fancybox.css?v=2.1.5" media="screen" />
-        <title>Administrar Cuenta</title>
         <script type="text/javascript" src="js/administrarCuentaProfesor.js"></script>
         <script type="text/javascript" src="js/jquery-1.10.1.min.js"></script>
         <script type="text/javascript" src="js/jquery.fancybox.js?v=2.1.5"></script>
         <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Londrina Solid">
         <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=McLaren">
+        <script src="js/cerrarSesion.js"></script>
+        <title>Administrar Cuenta: Profesor</title>
         
         <script type="text/javascript">
             $(document).ready(function(){
@@ -51,7 +52,7 @@
             <div class="row">
                 <div class="ribbon">
                     <a href="vistaProfesor.jsp"><span>Inicio</span></a>
-                    <a href="#"><span>Cerrar Sesión</span></a>
+                    <a href="#" onclick="cerrarSesion()"><span>Cerrar Sesión</span></a>
                     <a href="#"><span>Cuenta</span></a>
                     <a href="elegirCurso.jsp"><span>Cursos</span></a>
                     <a href="#"><span>Metodología</span></a>
@@ -106,20 +107,6 @@
                             <div>
                                 <label>E-mail</label> <input type="text" id="mail" value=<%=(String)sesion.getAttribute("mail")%> >
                                 <div id="respuestaMail" class="respuesta"></div>
-                            </div>
-                            <div>
-                                <label>Constancia:</label>
-                            </div>
-                            <div>
-                                <input type="file" class="archivo" id="constancia">
-                                <div id="respuestaArchivo" class="respuesta"></div>
-                            </div>
-                            <div>
-                                <label>Video:</label>
-                            </div>
-                            <div>
-                                <input type="file" class="archivo" id="video">
-                                <div id="respuestaVideo" class="respuesta"></div>
                             </div>
                         </fieldset>
                         <button type="button" id="aceptar">Aceptar</button>

@@ -512,7 +512,7 @@ public class ConexionBD{
             Class.forName(driver);
             Connection con = DriverManager.getConnection(connectString, user, password);
             PreparedStatement query = con.prepareStatement("select profesor.idprofesor,"
-                    + " profesor_disponible.idcurso, profesor.nombre, curso.horario , curso.fecha_apertura from "
+                    + " profesor_disponible.idcurso, profesor.nombre, curso.horario , curso.fecha_apertura , curso.nivel from "
                     + "profesor_disponible join profesor on profesor.idprofesor = profesor_disponible.idprofesor join "
                     + "curso on profesor_disponible.idcurso = curso.idcurso "
                     + "where curso.nivel = 'Avanzado' ;");
@@ -774,6 +774,13 @@ public class ConexionBD{
     
     public static void main(String[] args) {
         ConexionBD con = new ConexionBD();
-        con.actualizaContraseñaAlumno(4, "new");
+        con.insertaProfesor("profesor1", "video","constacia", "coreo", "profesor1", "profesor");
+    con.insertaCurso("Conversación", "1-2 pm", "12/12/89", 1);
+    con.insertaCurso("Conversación", "11-2 pm", "12/12/89", 1);
+    con.insertaCurso("Conversación", "12-2 pm", "12/12/89", 1);
+    con.insertaCurso("Conversación", "13-2 pm", "12/12/89", 1);
+    con.insertaCurso("Conversación", "14-2 pm", "12/12/89", 1);
+    con.insertaCurso("Intermedio", "18-2 am", "12/12/89", 1);
+    con.insertaCurso("Avanzado", "19-2 am", "12/12/89", 1);
     }
 }

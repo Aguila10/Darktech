@@ -70,6 +70,11 @@ body{
 h4{
     margin-left: 50px;
     font-weight: 500;
+    color: black;
+}
+
+.ca-icon{
+    color:black;
 }
 
 .ca-main{
@@ -192,4 +197,88 @@ h4{
 h2{
     font-family:"Londrina Solid", serif !important;
     color:black !important;
+}
+
+h1{
+    color:black;
+    margin-bottom: 5%;
+}
+
+/*Estilo para mostrar cursos*/
+.col-md-4{
+    border-style:outset;
+    border-width:3px;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    border-color:rgb(191,3,0);
+}
+
+.col-md-4 button{
+    margin-left: 35%;
+    color:black;
+}
+
+.col-md-4 h5{
+    color:black;
+    /*font-weight:900;*/
+    font-size:120%
+}
+
+/*Para la ventana de registrar*/
+#popup{
+    display: none;
+    font-family: "McLaren", serif !important;
+    color: black;
+}
+
+#popup a {
+    color: black;
+    font-weight: 900;
+}
+
+#prof {
+    margin-left: 30px;
+}
+
+#al {
+    margin-left: 70px;
+}
+
+.seleccionImagen:hover {
+    filter: alpha(opacity=100);
+    -moz-opacity: 1;
+    -khtml-opacity: 1;
+    opacity: 1;
+}
+
+.seleccionImagen {
+    filter: alpha(opacity=50);
+    -moz-opacity: 0.5;
+    -khtml-opacity: 0.5;
+    opacity: 0.5;
+}
+
+/*Para venta de inicio de sesion*/
+#popupDos{
+    display: none;
+    width: 300px;
+}
+
+#popupDos {
+    display: none;
+    font-family: "McLaren", serif !important;
+    color: black;
+}
+
+#popupDos input {
+    width: 300px;
+}
+
+#popupDos button{
+    margin-left: 35%;
+}
+
+#contestaSesion{
+    color: red;
+    margin-left: 10%;
 }
