@@ -22,6 +22,15 @@
         	$(".fancyBox").fancybox({
                 	});
             });
+            
+        function cambiaImagen(){
+            	if(document.getElementById("cambia").src.indexOf("ingles")==-1){
+            		document.getElementById("cambia").src = "img/ingles.png";
+            	} else {
+            		document.getElementById("cambia").src = "img/espaniol.png";
+            	}
+            }
+          
     </script>
 
 </head>
@@ -29,19 +38,24 @@
 	<!--inicio sesion-->
 	<div class="container" id="contenedorSesion">
 		<div class="row">
-			<h2>Alumno: <%=sesion.getAttribute("login")%></h2>
+			<h3>Alumno: <%=sesion.getAttribute("login")%></h3>
 		</div>
 	</div>
 	<!--fin sesion-->
-	<!--inicio logo-->
-	<header>
-		<div class="container">
-			<div class="row">
-				<img src="img/logo.jpg" height="140" width="214" id="logo">
-			</div>
-		</div>
-	</header>
-	<!--fin logo-->
+	<!--inicio encabezado-->
+        <header>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4">
+                    	<img src="img/escuela.png" height="75%" width="75%">
+                    </div>
+                    <div class="col-md-8">
+                    	<img src="img/ingles.png" height="70%" width="70%" id="cambia" onmouseover="cambiaImagen()">
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!--fin de encabezado-->
 	<!--inicio contenido de la pagina-->
 	<div class="container">
 		<div class="row">

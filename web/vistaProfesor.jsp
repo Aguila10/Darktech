@@ -29,7 +29,7 @@
         <!--inicio sesion-->
         <div class="container">
             <div class="row">
-                <h2>Profesor: <%=sesion.getAttribute("login")%></h2>
+                <h3>Profesor: <%=sesion.getAttribute("login")%></h3>
             </div>
         </div>
         <!--fin sesion-->

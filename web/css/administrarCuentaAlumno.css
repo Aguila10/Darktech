@@ -203,16 +203,16 @@ h4{
 
 
 /*Eliminar cuenta (popup)*/
-#popup {
+#popupEliminar {
   display: none;    
   color:black;
 }
 
-#popup img{
+#popupEliminar img{
     margin-left: 170px;
 }
 
-#popup button{
+#popupEliminar button{
     margin-top: 30px;
     margin-left: 200px;
 }

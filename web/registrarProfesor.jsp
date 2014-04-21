@@ -149,7 +149,7 @@
                             <div id="respuestaVideo" class="respuesta"></div>
                         </div>
                     </fieldset>
-                    <button type="button" id="aceptar" onclick="completeRevisa(callbackRevisa)">Aceptar</button>
+                    <a href="javascript:completeRevisa(callbackRevisa)"><button type="button" id="aceptar">Aceptar</button></a>
                 </form>
             </div>
             <!--fin formulario-->

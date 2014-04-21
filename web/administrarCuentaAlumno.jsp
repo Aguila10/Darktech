@@ -26,6 +26,16 @@
         <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Londrina Solid">
         <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=McLaren">               
         <title>Administrar Cuenta</title> 
+        
+        <script type="text/javascript">
+            $(document).ready(function(){
+                $(".fancyBox").fancybox({
+                    
+                });
+            });
+            
+        </script>
+        
     </head>
     <body>
         <!--incio sesion-->
@@ -65,7 +75,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#popup" class="fancyBox">
+                        <a href="#popupEliminar" class="fancyBox">
                             <span class="ca-icon">-</span> 
                             <div class="ca-content">
                                 <h4>Eliminar Cuenta</h4>
@@ -114,9 +124,14 @@
                     </form>	
                 </div>
             </div>
-        </div>
-            
+        </div>     
         <!--inicio ventana popup eliminar-->
+        <div id="popupEliminar">
+            <img src="img/eliminar.png" height="150" width="150">
+            <h1>¿Desea eliminar su cuenta?</h1>
+            <button type="button" class="aceptar">Aceptar</button>
+        </div>
+        <!--fin ventana popup eliminar-->
         <!--inicio ventana popUp para indicar que el registro fue exitoso-->
         <div id="popup" class="overlay-bg">
             <div class="row overlay-content">
