@@ -216,7 +216,7 @@ function callbackRevisa(valor){
             horario : document.getElementById("horario").value
         }, function(data){
     
-             document.getElementById("formulario").submit();
+             //document.getElementById("formulario").submit();
         
             var respuesta = data.valueOf().toString();
             if(respuesta.match("error")){ 

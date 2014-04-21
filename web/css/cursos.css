@@ -282,3 +282,10 @@ h1{
     color: red;
     margin-left: 10%;
 }
+
+/*Para la ventana de confirmacion de solicitud*/
+#popupTres {
+    display: none;
+    font-family: "McLaren", serif !important;
+    color: black;
+}

@@ -445,7 +445,7 @@ public class ConexionBD{
                     + " profesor_disponible.idcurso, profesor.nombre, curso.horario , curso.fecha_apertura ,"
                     + "curso.nivel from profesor_disponible join profesor on profesor.idprofesor = profesor_disponible.idprofesor join "
                     + "curso on profesor_disponible.idcurso = curso.idcurso "
-                    + "where curso.nivel = 'Principiante' ;");
+                    + "where curso.nivel = 'Principiante' and curso.estado = 'Disponible'  ;");
             ResultSet rset = query.executeQuery();
             String cad = "";
             while (rset.next()) {
@@ -479,7 +479,7 @@ public class ConexionBD{
             PreparedStatement query = con.prepareStatement("select profesor.idprofesor,"
                     + " profesor_disponible.idcurso, profesor.nombre, curso.horario , curso.fecha_apertura , curso.nivel from "
                     + "profesor_disponible join profesor on profesor.idprofesor = profesor_disponible.idprofesor join "
-                    + "curso on profesor_disponible.idcurso = curso.idcurso where curso.nivel = 'Intermedio' ;");
+                    + "curso on profesor_disponible.idcurso = curso.idcurso where curso.nivel = 'Intermedio' and curso.estado = 'Disponible' ;");
             ResultSet rset = query.executeQuery();
             String cad = "";
             while (rset.next()) {
@@ -515,7 +515,7 @@ public class ConexionBD{
                     + " profesor_disponible.idcurso, profesor.nombre, curso.horario , curso.fecha_apertura , curso.nivel from "
                     + "profesor_disponible join profesor on profesor.idprofesor = profesor_disponible.idprofesor join "
                     + "curso on profesor_disponible.idcurso = curso.idcurso "
-                    + "where curso.nivel = 'Avanzado' ;");
+                    + "where curso.nivel = 'Avanzado' and curso.estado = 'Disponible' ;");
             ResultSet rset = query.executeQuery();
             String cad = "";
             while (rset.next()) {
@@ -548,7 +548,7 @@ public class ConexionBD{
             Connection con = DriverManager.getConnection(connectString, user, password);
             PreparedStatement query = con.prepareStatement("select profesor.idprofesor, profesor_disponible.idcurso, "
                     + "profesor.nombre, curso.horario , curso.fecha_apertura , curso.nivel from profesor_disponible join profesor on profesor.idprofesor = profesor_disponible.idprofesor join "
-                    + "curso on profesor_disponible.idcurso = curso.idcurso where curso.nivel = 'Conversación' ;");
+                    + "curso on profesor_disponible.idcurso = curso.idcurso where curso.nivel = 'Conversación' and curso.estado = 'Disponible' ;");
             ResultSet rset = query.executeQuery();
             String cad = "";
             
@@ -772,6 +772,56 @@ public class ConexionBD{
         return res;
     }
     
+      
+      
+      
+      
+      public String regresaNombreAlumno(String login) {
+        String res = "";
+        try {
+            Class.forName(driver);
+            Connection con = DriverManager.getConnection(connectString, user, password);
+            PreparedStatement query = con.prepareStatement("select alumno.nombre from alumno join "
+                    + "registro on registro.idalumno = alumno.idalumno where registro.loggin =?");
+            query.setString(1, login);
+            ResultSet rset = query.executeQuery();
+            while (rset.next()) {
+                
+                res = (rset.getString(1));
+            }
+        } catch (SQLException | java.lang.ClassNotFoundException e) {
+            System.out.println(e.getMessage());
+        }
+        
+        return res;
+    }
+      
+      
+       public String[] regresaNombreCorreoNivelHorarioProfesor(int idcurso) {
+        String[] res = new String[4];
+        try {
+            Class.forName(driver);
+            Connection con = DriverManager.getConnection(connectString, user, password);
+            PreparedStatement query = con.prepareStatement("select profesor.nombre , profesor.correo_electronico , "
+                    + "curso.horario , curso.nivel from profesor join registro on registro.idprofesor = profesor.idprofesor "
+                    + "join curso on curso.idprofesor = profesor.idprofesor where curso.idcurso =?");
+     
+            query.setInt(1, idcurso);
+            ResultSet rset = query.executeQuery();
+            while (rset.next()) {
+                res[0] = rset.getString(1);
+                res[1] =rset.getString(2);
+                res[2] = rset.getString(3);
+                res[3] = rset.getString(4);
+            }
+        } catch (SQLException | java.lang.ClassNotFoundException e) {
+            System.out.println(e.getMessage());
+        }
+        
+        return res;
+    }
+      
+     
     public static void main(String[] args) {
         ConexionBD con = new ConexionBD();
         con.insertaProfesor("profesor1", "video","constacia", "coreo", "profesor1", "profesor");

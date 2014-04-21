@@ -154,5 +154,12 @@
             <div id="contestaSesion"></div>
         </div>
         <!--fin iniciar sesion-->
+        <!--inicio solicitar curso-->
+        <div id="popupTres">
+            <img src="img/ok.png" height="256" width="256">
+            <p>¡Solicitud Envidada!</p>
+            <button>Aceptar</button>
+        </div>
+        <!--fin solicitar curso-->
 </body>
 </html>
