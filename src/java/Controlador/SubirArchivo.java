@@ -38,8 +38,9 @@ public class SubirArchivo extends HttpServlet {
     protected void processRequest(HttpServletRequest request,
             HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-            // Create path components to save the file
+        
+        
+        // Create path components to save the file
         final String path = "/tmp";
         final Part filePart = request.getPart("video");
         final String fileName = getFileName(filePart);
@@ -59,17 +60,34 @@ public class SubirArchivo extends HttpServlet {
             while ((read = filecontent.read(bytes)) != -1) {
                 out.write(bytes, 0, read);
             }
+            
+            /*
             writer.println("New file " + fileName + " created at " + path);
             LOGGER.log(Level.INFO, "File{0}being uploaded to {1}",
-                    new Object[]{fileName, path});
+            new Object[]{fileName, path});
+            */
+            
+           
+            
+
+        
         } catch (FileNotFoundException fne) {
+            
+            
+            
+            /*
             writer.println("You either did not specify a file to upload or are "
-                    + "trying to upload a file to a protected or nonexistent "
-                    + "location.");
+            + "trying to upload a file to a protected or nonexistent "
+            + "location.");
             writer.println("<br/> ERROR: " + fne.getMessage());
             
             LOGGER.log(Level.SEVERE, "Problems during file upload. Error: {0}",
-                    new Object[]{fne.getMessage()});
+            new Object[]{fne.getMessage()});
+            */
+            
+
+            
+            
         } finally {
             if (out != null) {
                 out.close();
@@ -81,8 +99,6 @@ public class SubirArchivo extends HttpServlet {
                 writer.close();
             }
         }
-
-        
     }
     
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -138,7 +154,7 @@ public class SubirArchivo extends HttpServlet {
     }
     
     
-     
+    
     
     
     

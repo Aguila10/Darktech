@@ -16,23 +16,38 @@
         <link rel="stylesheet" href="css/alerta.css">
         <script src="js/jquery-1.10.1.min.js"></script>
         <script src="js/registrarProfesor.js"></script>
+        <link rel="stylesheet" type="text/css" href="css/jquery.fancybox.css?v=2.1.5" media="screen" />
+        <script type="text/javascript" src="js/jquery-1.10.1.min.js"></script>
+        <script type="text/javascript" src="js/jquery.fancybox.js?v=2.1.5"></script>
         <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Londrina Solid">
         <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=McLaren">
+        <script src="js/iniciarSesion.js"></script>
             
         <title>Registrar Profesor</title>
+        
+        <script type="text/javascript">
+            $(document).ready(function(){
+                $(".fancyBox").fancybox({});
+            }); 
+            
+            function limpia(){ 
+                document.getElementById("login").value = "";
+                document.getElementById("contrasenia").value = "";
+                document.getElementById("contestaSesion").innerHTML = "";
+            }   
+        </script>
     </head>
     <body>
         <!--inicio encabezado-->
         <header>
             <div class="row">
-                <img src="img/logo.jpg" height="140" width="214">
+                <img src="img/escuela.png" height="140" width="214">
             </div>
             <div class="row">
                 <div class="ribbon">
                     <a href="index.jsp"><span>Inicio</span></a>
-                    <a href="#"><span>Registrar</span></a>
-                    <a href="#"><span>Iniciar Sesión</span></a>
-                    <a href="#"><span>Cuenta</span></a>
+                    <a href="#popupTres" class="fancyBox"><span>Registrar</span></a>
+                    <a href="#popupDos" class="fancyBox" onclick="limpia()"><span>Iniciar Sesión</span></a>
                     <a href="elegirCurso.jsp"><span>Cursos</span></a>
                     <a href="contacto.jsp"><span>Contacto</span></a>
                 </div>
@@ -42,7 +57,7 @@
         <!--inicio formulario-->
         <div class="container">
             <div class="row" id="formularioProfesor">
-                <form action="SubirArchivo" method="post" enctype="multipart/form-data" id="formulario">
+                <form action="SubirArchivo" method="post" enctype="multipart/form-data" id="formulario" name="formulario">
                     <fieldset class="login">
                         <legend>Detalles Login</legend>
                         <div>
@@ -149,7 +164,7 @@
                             <div id="respuestaVideo" class="respuesta"></div>
                         </div>
                     </fieldset>
-                    <a href="javascript:completeRevisa(callbackRevisa)"><button type="button" id="aceptar">Aceptar</button></a>
+                    <button type="button" id="aceptar" onclick="completeRevisa(callbackRevisa)">Aceptar</button>
                 </form>
             </div>
             <!--fin formulario-->

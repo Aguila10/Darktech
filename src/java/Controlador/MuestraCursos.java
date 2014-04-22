@@ -105,7 +105,7 @@ public class MuestraCursos extends HttpServlet {
                 for (int j =0; j < 3 ; j++) {
                     Curso cur = (Curso)lista.get(3*i + j);
                     
-                    out.println( "<div class="+"col-md-4 "+"id ="+cur.getIdcurso()+"><h5>Nombre Profesor: <a class = 'prof' id = "+cur.getIdprofesor()+">"+cur.getProfesor()+"</a><br>"+
+                    out.println( "<div class="+"col-md-4 "+"id ="+cur.getIdcurso()+"><h5>Nombre Profesor: <a>"+cur.getProfesor()+"</a><br>"+
                             "Horario: "+cur.getHora()+ "</h5><br>"
                             +"<button href='#popupTres' class='fancyBox' "+presiona+ " onclick= \"solicita('"+cur.getIdcurso()+"','"+alumno+"')\" >Solicitar</button></div> ");
                 }
@@ -118,7 +118,7 @@ public class MuestraCursos extends HttpServlet {
                 for (int j =0; j < 3 ; j++) {
                     Curso cur = (Curso)lista.get(3*i + j);
                     
-                    out.println( "<div class="+"col-md-4 cuadrito > <h5>Nombre Profesor: <a class = 'prof'>"+cur.getProfesor()+"</a><br>"+
+                    out.println( "<div class="+"col-md-4 "+"id ="+cur.getIdcurso()+"><h5>Nombre Profesor: <a>"+cur.getProfesor()+"</a><br>"+
                             "Horario :"+cur.getHora()+ "</h5><br>"
                             +"<button href='#popupTres' class='fancyBox' "+presiona+ " onclick= \"solicita('"+cur.getIdcurso()+"','"+alumno+"')\" >Solicitar</button></div> ");
                 }
@@ -130,7 +130,7 @@ public class MuestraCursos extends HttpServlet {
             for (int j =0; j < lista.size()%3 ; j++) {
                 Curso cur = (Curso)lista.get(3*(lista.size()/3) + j);
                 
-                out.println( "<div class="+"col-md-4 "+"id ="+cur.getIdcurso()+"> <h5>Nombre Profesor: <a class = 'prof' id = "+cur.getIdprofesor()+">"+cur.getProfesor()+"</a><br>"+
+                out.println( "<div class="+"col-md-4 "+"id ="+cur.getIdcurso()+"><h5>Nombre Profesor: <a>"+cur.getProfesor()+"</a><br>"+
                         " Horario: "+cur.getHora()+ "</h5><br>"
                         +"<button href='#popupTres' class='fancyBox' "+presiona+ " onclick= \"solicita('"+cur.getIdcurso()+"','"+alumno+"')\" >Solicitar</button></div> ");
             }

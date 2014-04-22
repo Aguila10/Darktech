@@ -6,7 +6,7 @@
 <%
     /*Obtener la sesion ya iniciada*/
     HttpSession sesion = request.getSession(true);
-%>
+    %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!doctype html>
 <html lang="es">
@@ -35,6 +35,15 @@
 
         </script>
         
+        <script>
+            function eliminaCuenta(){    
+                $.post('EliminaCuenta',{
+                }, function(data){         
+                    location.href="index.jsp";
+                });
+            }
+        </script>
+        
     </head>
     <body>
         <!--inicio sesion-->
@@ -47,7 +56,7 @@
         <!--inicio encabezado-->
         <header>
             <div class="row">
-                <img src="img/logo.jpg" height="140" width="214">
+                <img src="img/escuela.png" height="140" width="214">
             </div>
             <div class="row">
                 <div class="ribbon">
@@ -119,7 +128,7 @@
         <div id="popup">
             <img src="img/eliminar.png" height="150" width="150">
             <h1>¿Desea eliminar su cuenta?</h1>
-            <button type="button" class="aceptar">Aceptar</button>
+            <button type="button" class="aceptar" onclick="eliminaCuenta()">Aceptar</button>
         </div>
         <!--fin ventana popup eliminar-->
     </body>

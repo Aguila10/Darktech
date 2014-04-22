@@ -289,3 +289,28 @@ h1{
     font-family: "McLaren", serif !important;
     color: black;
 }
+
+#contenedorImagenPop {
+    width: 30%;
+}
+
+#contenedorParrafo {
+    width: 70%;
+}
+
+#popupTres p {
+    font-size: 30px;
+    color: black;
+    margin-left: 7%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+#AceptarPop {
+    margin-left: 20%;
+}
+
+button[disabled]{
+    opacity:0.6;
+    filter:alpha(opacity=60);
+}

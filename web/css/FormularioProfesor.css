@@ -79,7 +79,63 @@ input{
 	border: 1px solid red;
 }
 
-.fancybox-close{
-	background-image: none !important;
+
+/*Para la ventana de registrar*/
+#popupTres{
+    display: none;
+    font-family: "McLaren", serif !important;
+    color: black;
+}
+
+#popupTres a {
+    color: black;
+    font-weight: 900;
+}
+
+#prof {
+    margin-left: 30px;
+}
+
+#al {
+    margin-left: 70px;
+}
+
+.seleccionImagen:hover {
+    filter: alpha(opacity=100);
+    -moz-opacity: 1;
+    -khtml-opacity: 1;
+    opacity: 1;
+}
+
+.seleccionImagen {
+    filter: alpha(opacity=50);
+    -moz-opacity: 0.5;
+    -khtml-opacity: 0.5;
+    opacity: 0.5;
+}
+
+/*Para venta de inicio de sesion*/
+#popupDos{
+    display: none;
+    width: 300px;
+}
+
+#popupDos {
+    display: none;
+    font-family: "McLaren", serif !important;
+    color: black;
+}
+
+#popupDos input {
+    width: 300px;
+}
+
+#popupDos button{
+    margin-left: 35%;
+}
+
+#contestaSesion{
+    color: red;
+    margin-left: 10%;
 }
 

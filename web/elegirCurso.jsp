@@ -2,6 +2,7 @@
     /*Obtener la sesion ya iniciada*/
     HttpSession sesion = request.getSession(true);
 %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!doctype html>
 <html lang="es">
 <head>
@@ -26,6 +27,12 @@
                 $(".fancyBox").fancybox({});
             });
             
+            function limpia(){ 
+                document.getElementById("login").value = "";
+                document.getElementById("contrasenia").value = "";
+                document.getElementById("contestaSesion").innerHTML = "";
+            }   
+            
             function iniciarSesion(){
                 $.post("IniciarSesion", {
                     login : document.getElementById("login").value,
@@ -35,7 +42,7 @@
                     document.getElementById("login").value = "";
                     document.getElementById("contrasenia").value = "";
                         if(respuesta.match("error")){
-                            $("#contestaSesion").html("Login o contrase馻 incorrecta");
+                            $("#contestaSesion").html("Login o contrase帽a incorrecta");
                         }else{ 
                             location.href="elegirCurso.jsp";
                         }});
@@ -59,16 +66,16 @@
 	<!--inicio encabezado-->
 	<header>
 		<div class="row">
-			<img src="img/logo.jpg" height="140" width="214">
+			<img src="img/escuela.png" height="140" width="214">
 		</div>
 		<div class="row">
 			<div class="ribbon">
 				<a href="index.jsp"><span>Inicio</span></a>
                                 <!--inicio menu dinamico iniciar/cerrar sesion-->
                                 <%if(request.getSession(true).getAttribute("identidad") != null){%>
-                                    <a href="#" onclick="cerrarSesion('elegirCurso.jsp')"><span>Cerrar Sesi髇</span></a>
+                                    <a href="#" onclick="cerrarSesion('elegirCurso.jsp')"><span>Cerrar Sesi贸n</span></a>
                                   <%}else{%>
-                                  <a href="#popupDos" class="fancyBox" onclick="limpia()"><span>Iniciar Sesi髇</span></a>
+                                  <a href="#popupDos" class="fancyBox" onclick="limpia()"><span>Iniciar Sesi贸n</span></a>
                                   <a href="#popup" class="fancyBox"><span>Registrar</span></a>
                                   <%}%>
                                 <!--fin menu dinamico iniciar/cerrar sesion-->
@@ -116,10 +123,10 @@
 					</a>
 				</li>
 				<li>
-					<a onclick="regresaCursos('Conversaci髇')">
+					<a onclick="regresaCursos('Conversaci贸n')">
 						<span class="ca-icon">j</span>
 						<div class="ca-content">
-							<h4>Conversaci髇</h4>
+							<h4>Conversaci贸n</h4>
 						</div>
 					</a>
 				</li>
@@ -146,7 +153,7 @@
             <input type="text" placeholder =" Login" id="login" value="">
             <br>
             <p id="espacio"></p>
-            <input type="password" placeholder = " Contrase馻" id ="contrasenia" value="">
+            <input type="password" placeholder = " Contrase帽a" id ="contrasenia" value="">
             <br>
             <p id="espacio2"></p>
             <button id="aceptar" onclick="iniciarSesion('elegirCurso.jsp')">Aceptar</button>
@@ -156,9 +163,14 @@
         <!--fin iniciar sesion-->
         <!--inicio solicitar curso-->
         <div id="popupTres">
-            <img src="img/ok.png" height="256" width="256">
-            <p>olicitud Envidada!</p>
-            <button>Aceptar</button>
+            <div class="col-md-6" id="contenedorImagenPop">
+                <img src="img/ok.png" height="100%" width="100%">
+            </div>
+            <div class="col-md-6" id="contenedorParrafo">
+                <p>隆Solicitud Enviada!</p>
+            </div>
+            <br>
+            <a onClick="parent.jQuery.fancybox.close();"><button id="AceptarPop">Aceptar</button></a>
         </div>
         <!--fin solicitar curso-->
 </body>

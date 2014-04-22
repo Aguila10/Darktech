@@ -21,9 +21,9 @@ import java.util.ArrayList;
 public class ConexionBD{
     
     String driver = "org.postgresql.Driver";
-    String connectString = "jdbc:postgresql://localhost:5433/pag_ingles";
+    String connectString = "jdbc:postgresql://localhost:5432/escuela_ingles";
     String user = "postgres";
-    String password = "308264113";
+    String password = "1008rpdml3";
     
     
     /**
@@ -632,13 +632,12 @@ public class ConexionBD{
     }
     
     public String[] regresaDatosProfesor(String login) {
-        String[] arreglo = new String[4];
+        String[] arreglo = new String[2];
         try {
             Class.forName(driver);
             Connection con = DriverManager.getConnection(connectString, user, password);
-            PreparedStatement query = con.prepareStatement("select profesor.nombre, profesor.correo_electronico, "
-                    + "profesor.liga_video, profesor.liga_constancia from profesor join registro on"
-                    + " profesor.idprofesor = registro.idprofesor where registro.loggin=?;");
+            PreparedStatement query = con.prepareStatement("select profesor.nombre, profesor.correo_electronico "
+                    + "from profesor join registro on profesor.idprofesor = registro.idprofesor where registro.loggin=?;");
             query.setString(1, login);
             ResultSet rset = query.executeQuery();
             
@@ -646,8 +645,6 @@ public class ConexionBD{
                 
                 arreglo[0]=rset.getString(1);
                 arreglo[1]=rset.getString(2);
-                arreglo[2]=rset.getString(3);
-                arreglo[3]=rset.getString(4);
                 
             }
             
@@ -681,7 +678,7 @@ public class ConexionBD{
         }
         return arreglo;
     }
- 
+    
     public boolean actualizaDatosAlumno(int idalumno, String nombre, String telefono ,String correo) {
         boolean res = false;
         Statement statement;
@@ -703,10 +700,10 @@ public class ConexionBD{
         return res;
     }
     
-       
-       
-       
-          public boolean actualizaContraseñaAlumno(int idalumno, String contrasenia) {
+    
+    
+    
+    public boolean actualizaContraseñaAlumno(int idalumno, String contrasenia) {
         boolean res = false;
         Statement statement;
         ResultSet resultSet;
@@ -725,9 +722,9 @@ public class ConexionBD{
         }
         return res;
     }
-       
-        
-     public boolean actualizaDatosProfesor(int idprofesor, String nombre, String correo) {
+    
+    
+    public boolean actualizaDatosProfesor(int idprofesor, String nombre, String correo) {
         boolean res = false;
         Statement statement;
         ResultSet resultSet;
@@ -749,9 +746,9 @@ public class ConexionBD{
         return res;
     }
     
-     
-     
-      public boolean actualizaContraseñaProfesor(int idprofesor, String contrasenia) {
+    
+    
+    public boolean actualizaContraseñaProfesor(int idprofesor, String contrasenia) {
         boolean res = false;
         Statement statement;
         ResultSet resultSet;
@@ -772,11 +769,11 @@ public class ConexionBD{
         return res;
     }
     
-      
-      
-      
-      
-      public String regresaNombreAlumno(String login) {
+    
+    
+    
+    
+    public String regresaNombreAlumno(String login) {
         String res = "";
         try {
             Class.forName(driver);
@@ -795,9 +792,9 @@ public class ConexionBD{
         
         return res;
     }
-      
-      
-       public String[] regresaNombreCorreoNivelHorarioProfesor(int idcurso) {
+    
+    
+    public String[] regresaNombreCorreoNivelHorarioProfesor(int idcurso) {
         String[] res = new String[4];
         try {
             Class.forName(driver);
@@ -805,7 +802,7 @@ public class ConexionBD{
             PreparedStatement query = con.prepareStatement("select profesor.nombre , profesor.correo_electronico , "
                     + "curso.horario , curso.nivel from profesor join registro on registro.idprofesor = profesor.idprofesor "
                     + "join curso on curso.idprofesor = profesor.idprofesor where curso.idcurso =?");
-     
+            
             query.setInt(1, idcurso);
             ResultSet rset = query.executeQuery();
             while (rset.next()) {
@@ -820,17 +817,65 @@ public class ConexionBD{
         
         return res;
     }
-      
-     
+    
+    
+    public boolean eliminaAlumno(String login) {
+        boolean res = true;
+        Statement statement;
+        ResultSet resultSet;
+        
+        try {
+            Connection con = DriverManager.getConnection(connectString, user, password);
+            statement = con.createStatement();
+            resultSet = statement.executeQuery("SELECT * from eliminaalumno('" + login + "');");
+            
+            while (resultSet.next()) {
+                res = resultSet.getBoolean(1);
+            }
+            
+            
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+        return res;
+    }
+    
+    
+    
+    
+    
+    public boolean eliminaProfesor(String login) {
+        boolean res = true;
+        Statement statement;
+        ResultSet resultSet;
+        
+        try {
+            Connection con = DriverManager.getConnection(connectString, user, password);
+            statement = con.createStatement();
+            resultSet = statement.executeQuery("SELECT * from eliminaprofesor('" + login + "');");
+            
+            while (resultSet.next()) {
+                res = resultSet.getBoolean(1);
+            }
+            
+            
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+        return res;
+    }
+    
+    
+    
     public static void main(String[] args) {
         ConexionBD con = new ConexionBD();
         con.insertaProfesor("profesor1", "video","constacia", "coreo", "profesor1", "profesor");
-    con.insertaCurso("Conversación", "1-2 pm", "12/12/89", 1);
-    con.insertaCurso("Conversación", "11-2 pm", "12/12/89", 1);
-    con.insertaCurso("Conversación", "12-2 pm", "12/12/89", 1);
-    con.insertaCurso("Conversación", "13-2 pm", "12/12/89", 1);
-    con.insertaCurso("Conversación", "14-2 pm", "12/12/89", 1);
-    con.insertaCurso("Intermedio", "18-2 am", "12/12/89", 1);
-    con.insertaCurso("Avanzado", "19-2 am", "12/12/89", 1);
+        con.insertaCurso("Conversación", "1-2 pm", "12/12/89", 1);
+        con.insertaCurso("Conversación", "11-2 pm", "12/12/89", 1);
+        con.insertaCurso("Conversación", "12-2 pm", "12/12/89", 1);
+        con.insertaCurso("Conversación", "13-2 pm", "12/12/89", 1);
+        con.insertaCurso("Conversación", "14-2 pm", "12/12/89", 1);
+        con.insertaCurso("Intermedio", "18-2 am", "12/12/89", 1);
+        con.insertaCurso("Avanzado", "19-2 am", "12/12/89", 1);
     }
 }

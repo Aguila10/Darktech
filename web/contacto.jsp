@@ -62,6 +62,12 @@
         
     });
 }
+
+    function limpia(){ 
+                document.getElementById("login").value = "";
+                document.getElementById("contrasenia").value = "";
+                document.getElementById("contestaSesion").innerHTML = "";
+            }   
 </script>
 <!--fin detalles googleMap-->
 <body>
@@ -81,7 +87,7 @@
     <!--inicio encabezado-->
     <header>
         <div class="row">
-            <img src="img/logo.jpg" height="140" width="214">
+            <img src="img/escuela.png" height="140" width="214">
         </div>
         <div class="row">
             <div class="ribbon">

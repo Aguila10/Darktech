@@ -165,9 +165,9 @@ function callbackContraseña(){
             contraseniaUno : document.getElementById("contraseniaUno").value,
             contraseniaDos : document.getElementById("contraseniaDos").value
         }, function(data){
-           
+            
             var respuesta = data.valueOf().toString();
-             
+            
             if(respuesta.match("error")){ 
                 revisarContrasenia();
             }else{    
@@ -220,7 +220,6 @@ function revisaDatos(){
         
     }
 }
-
 
 
 // hide popup when user clicks on close button

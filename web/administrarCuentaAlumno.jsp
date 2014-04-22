@@ -20,14 +20,15 @@
         <link rel="stylesheet" href="css/administrarCuentaAlumno.css">
         <link rel="stylesheet" href="css/alerta.css">
         <script src="js/administrarCuentaAlumno.js"></script>
+        <script src="js/cerrarSesion.js"></script>
         <script src="js/jquery-1.10.1.min.js"></script>
-        <link rel="stylesheet" type="text/css" href="css/jquery.fancybox.css?v=2.1.5" media="screen" />
         <script type="text/javascript" src="js/jquery.fancybox.js?v=2.1.5"></script>
+        <link rel="stylesheet" type="text/css" href="css/jquery.fancybox.css?v=2.1.5" media="screen" />
         <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Londrina Solid">
         <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=McLaren">
-        <script src="js/cerrarSesion.js"></script>
+            
         <title>Administrar Cuenta: Alumno</title> 
-        
+            
         <script type="text/javascript">
             $(document).ready(function(){
                 $(".fancyBox").fancybox({
@@ -36,7 +37,16 @@
             });
             
         </script>
-        
+            
+        <script>
+            function eliminaCuenta(){    
+                $.post('EliminaCuenta',{
+                }, function(data){         
+                    location.href="index.jsp";
+                });
+            }
+        </script>
+            
     </head>
     <body>
         <!--incio sesion-->
@@ -49,7 +59,7 @@
         <!--inicio encabezado-->
         <header>
             <div class="row">
-                <img src="img/logo.jpg" height="140" width="214">
+                <img src="img/escuela.png" height="140" width="214">
             </div>
             <div class="row">
                 <div class="ribbon">
@@ -130,7 +140,7 @@
         <div id="popupEliminar">
             <img src="img/eliminar.png" height="150" width="150">
             <h1>¿Desea eliminar su cuenta?</h1>
-            <button type="button" class="aceptar">Aceptar</button>
+            <button type="button" class="aceptar" onclick="eliminaCuenta()">Aceptar</button>
         </div>
         <!--fin ventana popup eliminar-->
         <!--inicio ventana popUp para indicar que el registro fue exitoso-->
