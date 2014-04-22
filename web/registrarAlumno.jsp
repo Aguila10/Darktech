@@ -60,7 +60,7 @@
                     <fieldset class="login">
                         <legend>Detalles Login</legend>
                         <div>
-                            <label>Login</label> <input id ="login" type="text" onclick="quitaLogin()" onblur="revisaDisponibilidad()" maxlength="15">
+                            <label>Login</label> <input id ="login" type="text" onclick="quitaLogin()" onblur="revisaDisponibilidad()" maxlength="15" placeholder="Ej. login_12">
                             <div id="respuestaLogin" class="respuesta"></div>
                         </div>
                         <div>
@@ -75,15 +75,15 @@
                     <fieldset class="contact">
                         <legend>Detalles Usuario</legend>
                         <div>
-                            <label>Nombre</label> <input id="nombre" type="text" onclick="quitaNombre()" maxlength="70">
+                            <label>Nombre</label> <input id="nombre" type="text" onclick="quitaNombre()" maxlength="70"  placeholder="Ej. Carlos Escalona Navarro">
                             <div id="respuestaNombre" class="respuesta"></div>
                         </div>
                         <div>
-                            <label>Telefono</label> <input id="telefono" type="text" onclick="quitaTelefono()" maxlength="15">
+                            <label>Telefono</label> <input id="telefono" type="text" onclick="quitaTelefono()" maxlength="15"  placeholder="Ej. 5512345678 ">
                             <div id="respuestaTelefono" class="respuesta"></div>
                         </div>
                         <div>
-                            <label>E-mail</label> <input id="mail" type="text" onclick="quitaMail()" maxlength="70">
+                            <label>E-mail</label> <input id="mail" type="text" onclick="quitaMail()" maxlength="70"  placeholder="Ej. soy@alumno.com">
                             <div id="respuestaMail" class="respuesta"></div>
                         </div>
                     </fieldset>

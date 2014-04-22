@@ -24,7 +24,7 @@
         <script src="js/iniciarSesion.js"></script>
             
         <title>Registrar Profesor</title>
-        
+            
         <script type="text/javascript">
             $(document).ready(function(){
                 $(".fancyBox").fancybox({});
@@ -61,26 +61,26 @@
                     <fieldset class="login">
                         <legend>Detalles Login</legend>
                         <div>
-                            <label>Login</label> <input type="text" id="login" onclick="quitaLogin()" onblur="revisaDisponibilidad()" maxlength="15" >
+                            <label>Login</label> <input type="text" id="login" onclick="quitaLogin()" onblur="revisaDisponibilidad()" maxlength="15"  placeholder="Ej. login_12">
                             <div id="respuestaLogin" class="respuesta"></div>
                         </div>
                         <div>
-                            <label>Contraseña</label> <input type="password" id="contraseniaUno" onclick="quitaContrasenia()" maxlength="15" value="holamundo">
+                            <label>Contraseña</label> <input type="password" id="contraseniaUno" onclick="quitaContrasenia()" maxlength="15">
                             <div id="respuestaContraseniaUno" class="respuesta"></div>
                         </div>
                         <div>
-                            <label>Confirma Contraseña</label> <input type="password" id="contraseniaDos" onclick="confirmaContrasenia()" maxlength="15" value="holamundo">
+                            <label>Confirma Contraseña</label> <input type="password" id="contraseniaDos" onclick="confirmaContrasenia()" maxlength="15">
                             <div id="respuestaContraseniaDos" class="respuesta"></div>
                         </div>
                     </fieldset>
                     <fieldset class="contact">
                         <legend>Detalles Usuario</legend>
                         <div>
-                            <label>Nombre</label> <input type="text" id="nombre" onclick="quitaNombre()" maxlength="70" value="pray">
+                            <label>Nombre</label> <input type="text" id="nombre" onclick="quitaNombre()" maxlength="70"  placeholder="Ej. Carlos Escalona Navarro">
                             <div id="respuestaNombre" class="respuesta"></div>
                         </div>
                         <div>
-                            <label>E-mail</label> <input type="text" id="mail" onclick="quitaMail()" maxlength="70" value="soy@profesor.com">
+                            <label>E-mail</label> <input type="text" id="mail" onclick="quitaMail()" maxlength="70" placeholder="Ej. soy@profesor.com">
                             <div id="respuestaMail" class="respuesta"></div>
                         </div>
                         <div>
@@ -184,5 +184,27 @@
             </div>
         </div>
         <!--fin ventana popUp para indicar que el registro fue exitoso-->
+        <!--inicio registrar-->
+        <div id="popupTres">
+            <a href="registrarProfesor.jsp"><img src="img/profesor.png" height="128" width="128" class="seleccionImagen"></a>
+            <a href="registrarAlumno.jsp"><img src="img/alumno.png" height="128" width="128" class="seleccionImagen"></a>
+            <br>
+            <a id="prof">Profesor</a>
+            <a id="al">Alumno</a>
+        </div>
+        <!--fin registrar-->
+        <!--inicio iniciar sesion-->
+        <div id="popupDos">
+            <input type="text" placeholder =" Login" id="login" value="">
+            <br>
+            <p id="espacio"></p>
+            <input type="password" placeholder = " Contraseña" id ="contrasenia" value="">
+            <br>
+            <p id="espacio2"></p>
+            <button id="aceptar" onclick="iniciarSesion('elegirCurso.jsp')">Aceptar</button>
+            <p id="espacio3"></p>
+            <div id="contestaSesion"></div>
+        </div>
+        <!--fin iniciar sesion-->  
     </body>
 </html>
