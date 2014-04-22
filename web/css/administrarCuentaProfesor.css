@@ -211,14 +211,9 @@ h4{
   color:black;
 }
 
-#popup img{
-    margin-left: 170px;
-}
 
-#popup button{
-    margin-top: 30px;
-    margin-left: 200px;
-}
+
+
 
 .fancybox-close {
     background-image: url('fancybox_sprite.png');

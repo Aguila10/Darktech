@@ -146,7 +146,7 @@
                     <p>¡Actualización Exitosa!</p>
                 </div>
                 <br>
-                <a href="administrarCuentaProfesor.jsp"><button id="AceptarPop">Aceptar</button></a>
+                <a href="administrarCuentaAlumno.jsp"><button id="AceptarPop">Aceptar</button></a>
             </div>
         </div>
         <!--fin ventana popUp para indicar que el registro fue exitoso-->
