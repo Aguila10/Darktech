@@ -1,21 +1,27 @@
+/*
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 
 package Controlador;
 
+import Modelo.ConexionBD;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import Modelo.ConexionBD;
 import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author rae
  */
-public class IniciarSesion extends HttpServlet {
+@WebServlet(name = "AdministrarCuentaProfesor", urlPatterns = {"/AdministrarCuentaProfesor"})
+public class AdministrarCuentaProfesor extends HttpServlet {
     
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -30,7 +36,8 @@ public class IniciarSesion extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            out.println(revisaSesion(request,response));
+
+            out.println(validar(request,response));
         }
     }
     
@@ -73,35 +80,49 @@ public class IniciarSesion extends HttpServlet {
         return "Short description";
     }// </editor-fold>
     
-    
-    private String revisaSesion(HttpServletRequest request, HttpServletResponse response){
+    public String validar(HttpServletRequest request,HttpServletResponse response){
         
-        String login = request.getParameter("login") ;
-        String contrasenia = request.getParameter("contrasenia");
+        boolean continua = true;
+        
+        String identificador = request.getParameter("identificador");
         ConexionBD conexion = new ConexionBD();
-        String[] atributos;
-        
         HttpSession sesion = request.getSession(true);
         
-        if(conexion.iniciaSesion(login, contrasenia)){
+        if(identificador.equals("datos")){
+            String nombre  = request.getParameter("nombre");
+            String mail  = request.getParameter("mail");
             
-            if(conexion.regresaIdAlumno(login) != 0){
-                atributos = conexion.regresaDatosAlumno(login);
-                sesion.setAttribute("identidad","alumno");
-                sesion.setAttribute("login",login);
-                sesion.setAttribute("nombre", atributos[0]);
-                sesion.setAttribute("telefono", atributos[1]);
-                sesion.setAttribute("mail", atributos[2]);
+            continua = continua && Validacion.valida_nombre(nombre);
+            continua = continua && Validacion.valida_mail(mail);
+            
+            if(continua){
+                conexion.actualizaDatosProfesor(conexion.regresaIdProfesor((String)sesion.getAttribute("login")), nombre, mail);
+                
+                sesion.setAttribute("nombre",nombre);
+                sesion.setAttribute("mail",mail);
+                
+                return "exito";
             }else{
-                atributos = conexion.regresaDatosProfesor(login);
-                sesion.setAttribute("identidad","profesor");
-                sesion.setAttribute("login",login);
-                sesion.setAttribute("nombre", atributos[0]);
-                sesion.setAttribute("mail", atributos[1]);
+                return "error";
             }
-        }else{
-            return "error";
+            
+        }else{ // identificador == "contrasenia"
+            String contraseniaCero = request.getParameter("contraseniaCero");
+            String contraseniaUno = request.getParameter("contraseniaUno");
+            String contraseniaDos = request.getParameter("contraseniaDos");
+            
+            continua = Validacion.valida_contrasenia(contraseniaUno,contraseniaDos);
+            
+            if(continua){
+                conexion.actualizaContraseñaProfesor(conexion.regresaIdProfesor((String)sesion.getAttribute("login")),contraseniaUno);
+                return "exito";
+            }else{
+                return "error";
+            }
+            
         }
-        return"logueado";
+        
+        
     }
+    
 }

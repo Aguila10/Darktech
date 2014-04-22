@@ -36,6 +36,12 @@ legend span {
 	width:10em;
 	text-align:right;
 }
+
+#aceptarLogin,#aceptarUsuario{
+    margin-top: 2%;
+    margin-left: 43%;
+}
+
 input {
 	padding:0.15em;
 	width:10em;

@@ -17,6 +17,7 @@
         <link rel="stylesheet" href="css/RibbonMenu.css"/>
         <link rel="stylesheet" href="css/FormularioProfesor.css">
         <link rel="stylesheet" href="css/administrarCuentaProfesor.css">
+        <link rel="stylesheet" href="css/alerta.css">
         <link rel="stylesheet" type="text/css" href="css/jquery.fancybox.css?v=2.1.5" media="screen" />
         <script type="text/javascript" src="js/administrarCuentaProfesor.js"></script>
         <script type="text/javascript" src="js/jquery-1.10.1.min.js"></script>
@@ -99,31 +100,35 @@
                         <fieldset class="login">
                             <legend>Detalles Login</legend>
                             <div>
-                                <label>Contraseña</label> <input type="password" id="contraseniaUno">
+                                <label>Anterior Contraseña</label> <input type="password" id="contraseniaCero" onclick="quitaContraseniaCero()">
+                                <div id="respuestaContraseniaCero" class="respuesta"></div>
+                            </div>
+                            <div>
+                                <label>Contraseña</label> <input type="password" id="contraseniaUno" onclick="quitaContrasenia()">
                                 <div id="respuestaContraseniaUno" class="respuesta"></div>
                             </div>
                             <div>
-                                <label>Confirma Contraseña</label> <input type="password" id="contraseniaDos">
+                                <label>Confirma Contraseña</label> <input type="password" id="contraseniaDos" onclick="confirmaContrasenia()">
                                 <div id="respuestaContraseniaDos" class="respuesta"></div>
                             </div>
+                            <button type="button" id="aceptarLogin" onclick="revisaContraseña(callbackContraseña)">Aceptar</button>
                         </fieldset>
                         <fieldset class="contact">
                             <legend>Detalles Usuario</legend>
                             <div>
-                                <label>Nombre</label> <input type="text" id="nombre" value=<%=(String)sesion.getAttribute("nombre")%> >
+                                <label>Nombre</label> <input type="text" id="nombre" onclick="quitaNombre()" value=<%=(String)sesion.getAttribute("nombre")%> >
                                 <div id="respuestaNombre" class="respuesta"></div>
                             </div>
                             <div>
-                                <label>E-mail</label> <input type="text" id="mail" value=<%=(String)sesion.getAttribute("mail")%> >
+                                <label>E-mail</label> <input type="text" id="mail" onclick="quitaMail()" value=<%=(String)sesion.getAttribute("mail")%> >
                                 <div id="respuestaMail" class="respuesta"></div>
                             </div>
-                        </fieldset>
-                        <button type="button" id="aceptar">Aceptar</button>
+                            <button type="button" id="aceptarUsuario" onclick="revisaDatos()">Aceptar</button>
+                        </fieldset>                      
                     </form>
                 </div>
             </div>
-        </div>
-        
+        </div>       
         <!--inicio ventana popup eliminar-->
         <div id="popup">
             <img src="img/eliminar.png" height="150" width="150">
@@ -131,5 +136,19 @@
             <button type="button" class="aceptar" onclick="eliminaCuenta()">Aceptar</button>
         </div>
         <!--fin ventana popup eliminar-->
+        <!--inicio ventana popUp para indicar que el registro fue exitoso-->
+        <div id="popup" class="overlay-bg">
+            <div class="row overlay-content">
+                <div class="col-md-6" id="contenedorImagenPop">
+                    <img src="img/ok.png" height="100%" width="100%">
+                </div>
+                <div class="col-md-6" id="contenedorParrafo">
+                    <p>¡Actualización Exitosa!</p>
+                </div>
+                <br>
+                <a href="administrarCuentaProfesor.jsp"><button id="AceptarPop">Aceptar</button></a>
+            </div>
+        </div>
+        <!--fin ventana popUp para indicar que el registro fue exitoso-->
     </body>
 </html>

@@ -756,7 +756,7 @@ public class ConexionBD{
         try {
             Connection con = DriverManager.getConnection(connectString, user, password);
             statement = con.createStatement();
-            resultSet = statement.executeQuery("SELECT * from  actualizaProfeso2(" + idprofesor  + contrasenia + "');");
+            resultSet = statement.executeQuery("SELECT * from  actualizaProfesor2(" + idprofesor + ", '" + contrasenia + "');");
             
             while (resultSet.next()) {
                 res = resultSet.getBoolean(1);
@@ -869,13 +869,6 @@ public class ConexionBD{
     
     public static void main(String[] args) {
         ConexionBD con = new ConexionBD();
-        con.insertaProfesor("profesor1", "video","constacia", "coreo", "profesor1", "profesor");
-        con.insertaCurso("Conversación", "1-2 pm", "12/12/89", 1);
-        con.insertaCurso("Conversación", "11-2 pm", "12/12/89", 1);
-        con.insertaCurso("Conversación", "12-2 pm", "12/12/89", 1);
-        con.insertaCurso("Conversación", "13-2 pm", "12/12/89", 1);
-        con.insertaCurso("Conversación", "14-2 pm", "12/12/89", 1);
-        con.insertaCurso("Intermedio", "18-2 am", "12/12/89", 1);
-        con.insertaCurso("Avanzado", "19-2 am", "12/12/89", 1);
+        con.insertaCurso("Principiante","algun","2014-12-14", 1);
     }
 }

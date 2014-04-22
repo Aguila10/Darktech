@@ -17,6 +17,8 @@ import javax.servlet.http.HttpSession;
  */
 public class RegistrarProfesor extends HttpServlet {
     
+    String nivel;
+    
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -32,6 +34,7 @@ public class RegistrarProfesor extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println(validar(request,response));
+
         }
     }
     
@@ -82,8 +85,12 @@ public class RegistrarProfesor extends HttpServlet {
         String contraseniaDos = request.getParameter("contraseniaDos");
         String nombre  = request.getParameter("nombre");
         String mail  = request.getParameter("mail");
+        String dia = request.getParameter("dia");
+        String mes = request.getParameter("mes");
         String nivel = request.getParameter("nivel");
         String horario = request.getParameter("horario");
+        
+        this.nivel = nivel;
         
         HttpSession sesion = request.getSession(true);
         
@@ -100,7 +107,7 @@ public class RegistrarProfesor extends HttpServlet {
         
         if(continua){
             conexion.insertaProfesor(nombre,"pruebas","pruebas",mail,login,contraseniaUno);
-            conexion.insertaCurso(nivel, horario,"2004-05-07", conexion.regresaIdProfesor(login));
+            conexion.insertaCurso(nivel,horario,"2004-"+mes+"-"+dia, conexion.regresaIdProfesor(login));
             sesion.setAttribute("identidad","profesor");
             sesion.setAttribute("login",login);
             sesion.setAttribute("nombre", nombre);
