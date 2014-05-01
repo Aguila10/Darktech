@@ -97,7 +97,7 @@
             </div>
             <!--fin submenu-->
             <div class="col-md-9" id="contenidoPagina">
-                <div class="col-md-row" id="modificarDatos">
+                <div class="row" id="modificarDatos">
                     <form action="">
                         <fieldset class="login">
                             <legend>Modificar Detalles Login</legend>

@@ -84,6 +84,30 @@
                         </a>
                     </li>
                     <li>
+                        <a onclick="agregarCursos()">
+                            <span class="ca-icon">+</span>
+                            <div class="ca-content">
+                                <h4>Agregar Curso</h4>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a onclick="aceptarCursos()">
+                            <span class="ca-icon">.</span>
+                            <div class="ca-content">
+                                <h4>Aceptar Curso</h4>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a onclick="calificaCursos()">
+                            <span class="ca-icon">Q</span>
+                            <div class="ca-content">
+                                <h4>Calificar</h4>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
                         <a href="#popup" class="fancyBox">
                             <span class="ca-icon">-</span>
                             <div class="ca-content">
@@ -95,7 +119,83 @@
             </div>
             <!--fin submenu-->
             <div class="col-md-9" id="contenidoPagina">
-                <div class="col-md-row" id="modificarDatos">
+                <div class="row" id="agregarCurso">
+                    <form>
+                    <fieldset class="contact">
+                        <legend>Nuevo Curso:</legend>
+                        <div>
+                            <label>Fecha incio</label>
+                            <select id="dia">
+                                <option value="01">1</option>
+                                <option value="02">2</option>
+                                <option value="03">3</option>
+                                <option value="04">4</option>
+                                <option value="05">5</option>
+                                <option value="06">6</option>
+                                <option value="07">7</option>
+                                <option value="08">8</option>
+                                <option value="09">9</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                                <option value="13">13</option>
+                                <option value="14">14</option>
+                                <option value="15">15</option>
+                                <option value="16">16</option>
+                                <option value="17">17</option>
+                                <option value="18">18</option>
+                                <option value="19">19</option>
+                                <option value="20">20</option>
+                                <option value="21">21</option>
+                                <option value="22">22</option>
+                                <option value="23">23</option>
+                                <option value="24">24</option>
+                                <option value="25">25</option>
+                                <option value="26">26</option>
+                                <option value="27">27</option>
+                                <option value="28">28</option>
+                                <option value="29">29</option>
+                                <option value="30">30</option>
+                                <option value="31">31</option>
+                            </select>
+                            <select id="mes">
+                                <option value="01">Enero</option>
+                                <option value="02">Febrero</option>
+                                <option value="03">Marzo</option>
+                                <option value="04">Abril</option>
+                                <option value="05">Mayo</option>
+                                <option value="06">Junio</option>
+                                <option value="07">Julio</option>
+                                <option value="08">Agosto</option>
+                                <option value="09">Septiembre</option>
+                                <option value="10">Octubre</option>
+                                <option value="11">Noviembre</option>
+                                <option value="12">Diciembre</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label>Nivel</label>
+                            <select id="nivel">
+                                <option>Principiante</option>
+                                <option>Intermedio</option>
+                                <option>Avanzado</option>
+                                <option>Conversación</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label>Horario</label>
+                            <select id="horario">
+                                <option>10:00hrs-11:00hrs</option>
+                                <option>11:00hrs-12:00hrs</option>
+                            </select>
+                        </div>
+                    </fieldset>
+                    <button onclick="nuevoCurso()">Aceptar</button>
+                    </form>
+                </div>
+                <div class="row" id="aceptarCurso"></div>
+                <div class="row" id="calificaCurso"></div>
+                <div class="row" id="modificarDatos">
                     <form action="">
                         <fieldset class="login">
                             <legend>Detalles Login</legend>
@@ -146,7 +246,7 @@
                     <p>¡Actualización Exitosa!</p>
                 </div>
                 <br>
-                <a href="administrarCuentaAlumno.jsp"><button id="AceptarPop">Aceptar</button></a>
+                <a href="administrarCuentaProfesor.jsp"><button id="AceptarPop">Aceptar</button></a>
             </div>
         </div>
         <!--fin ventana popUp para indicar que el registro fue exitoso-->

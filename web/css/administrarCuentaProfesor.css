@@ -205,14 +205,37 @@ h4{
     margin-left: 32%;
 }
 
+/*Calificar*/
+#agregarCurso{
+    width: 70%;
+    height: 70%;
+    margin-left: 15%;
+    margin-top: 5%;
+}
+
+#agregarCurso button{
+    margin-top: 5%;
+    margin-left: 45%;
+}
+
+#calificaCurso, #agregarCurso, #aceptarCurso{
+    display: none;
+}
+
 /*Eliminar cuenta (popup)*/
 #popup {
   display: none;  
   color:black;
 }
 
+#popup img {
+    margin-left: 170px;
+}
 
-
+#popup button {
+    margin-top: 30px;
+    margin-left: 200px;
+}
 
 
 .fancybox-close {

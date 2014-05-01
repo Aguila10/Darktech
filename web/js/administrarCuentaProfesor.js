@@ -1,6 +1,14 @@
+function limpiaPanel(){
+    document.getElementById("modificarDatos").style.display ="none";
+    document.getElementById("agregarCurso").style.display ="none";
+    document.getElementById("aceptarCurso").style.display ="none";
+    document.getElementById("calificaCurso").style.display ="none";
+}
+
 function muestraFormulario(){
-    var x = document.getElementById("modificarDatos").style.display ="block";
-    var y = document.getElementById("contenidoPagina").style.height ="600px";
+    limpiaPanel();
+    document.getElementById("modificarDatos").style.display ="block";
+    document.getElementById("contenidoPagina").style.height ="600px";
 }
 
 function quitaContraseniaCero(){
@@ -194,8 +202,68 @@ $('.close-btn').click(function(){
 // hides the popup if user clicks anywhere outside the container
 $('.overlay-bg').click(function(){
     $('.overlay-bg').hide();
-})
+});
 // prevents the overlay from closing if user clicks inside the popup overlay
 $('.overlay-content').click(function(){
     return false;
 });
+
+/*Para agregarCursos*/
+function agregarCursos(){
+    limpiaPanel();
+    document.getElementById("agregarCurso").style.display ="block";
+}
+
+function nuevoCurso(){
+    alert("Curso");
+}
+
+/*Para aceptar solicitudes de cursos*/
+function aceptarCursos(){
+    limpiaPanel();
+    document.getElementById("aceptarCurso").style.display ="block";
+    
+    $.post('MuestraAceptarCursos',{
+	
+        }, function(data){         
+        $("#aceptarCurso").html(data);    
+      });
+}
+
+function aceptoCurso(idCurso){
+    $.post('AceptarCursos',{
+	id: idCurso,
+        acepto: true
+        }, function(data){         
+        
+      });
+}
+
+function rechazoCurso(idCurso){
+    $.post('AceptarCursos',{
+	id: idCurso,
+        acepto: false
+        }, function(data){         
+        
+      });
+}
+
+
+/*Para calificar cursos*/
+function calificaCursos(){
+    limpiaPanel();
+    document.getElementById("calificaCurso").style.display ="block";
+    
+    $.post('MuestraCalificaCursos',{
+	
+        }, function(data){         
+        $("#calificaCurso").html(data);    
+      });
+}
+
+function calificacion(idCurso){
+    $.post('CalificaCursos',{
+          id: idCurso
+        }, function(data){         
+      });
+}

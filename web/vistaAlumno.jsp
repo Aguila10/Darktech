@@ -36,7 +36,7 @@
 </head>
 <body>
 	<!--inicio sesion-->
-	<div class="container" id="contenedorSesion">
+	<div class="container">
 		<div class="row">
 			<h3>Alumno: <%=sesion.getAttribute("login")%></h3>
 		</div>
@@ -45,7 +45,7 @@
 	<!--inicio encabezado-->
         <header>
             <div class="container">
-                <div class="row" id="menuPrincipal">
+                <div class="row">
                     <div class="col-md-4">
                     	<img src="img/escuela.png" height="75%" width="75%">
                     </div>

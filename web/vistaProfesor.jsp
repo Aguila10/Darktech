@@ -44,7 +44,7 @@
         <!--inicio encabezado-->
         <header>
             <div class="container">
-                <div class="row" id="menuPrincipal">
+                <div class="row">
                     <div class="col-md-4">
                     	<img src="img/escuela.png" height="75%" width="75%">
                     </div>
