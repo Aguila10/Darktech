@@ -25,11 +25,13 @@ function quitaMail(){
 }
 
 function quitaConstancia(){
-    document.getElementById("respuestaArchivo").innerHTML = "";
+    document.getElementById("respuestaConstancia").innerHTML = "";
+    document.getElementById("constancia").classList.remove("incorrecto");
 }
 
 function quitaVideo(){
     document.getElementById("respuestaVideo").innerHTML = "";
+    document.getElementById("video").classList.remove("incorrecto");
 }
 
 function revisaLogin(){
@@ -64,12 +66,12 @@ function revisaContrasenia(){
     
     if(contraseniaUno === ""){
         document.getElementById("respuestaContraseniaUno").innerHTML ="El campo no puede quedar vacio";
-        document.getElementById("contraseniaDos").classList.add("incorrecto");
+        document.getElementById("contraseniaUno").classList.add("incorrecto");
         return false;   
     }   
     if(contraseniaUno.length < 5 || contraseniaUno.length > 15){
         document.getElementById("respuestaContraseniaUno").innerHTML ="Contraseña de tamaño inválido";
-        document.getElementById("contraseniaDos").classList.add("incorrecto");
+        document.getElementById("contraseniaUno").classList.add("incorrecto");
         return false;
     } 
     if(contraseniaUno !== contraseniaDos){
@@ -134,6 +136,75 @@ function revisaMail(){
     
 }
 
+function revisaVideo(){
+    
+    var sFileName;
+    var sFileExtension;
+    var iFileSize;
+    
+    sFileName = document.getElementById("video").value;
+    
+    if(sFileName === ""){
+        document.getElementById("video").classList.add("incorrecto");    
+        document.getElementById("respuestaVideo").innerHTML = "Este campo no pude quedar vacio";
+        return false;
+    }
+    
+    sFileExtension = sFileName.split('.')[sFileName.split('.').length - 1];
+    
+    if ( sFileExtension !== "mp4"){         
+        document.getElementById("video").classList.add("incorrecto");    
+        document.getElementById("respuestaVideo").innerHTML = "Solo son aceptados archivos" +
+                " con formato *.mp4";
+        return false;
+    }
+    
+    iFileSize = document.getElementById("video").files[0].size;
+
+    if(iFileSize>10485760){
+        document.getElementById("video").classList.add("incorrecto");    
+        document.getElementById("respuestaVideo").innerHTML = "El tamaño maximo de archivo son 10 Mb";
+        return false; 
+    }
+    
+    return true;
+    
+}
+
+
+function revisaConstancia(){
+    
+    var sFileName;
+    var sFileExtension;
+    var iFileSize;
+    
+    sFileName = document.getElementById("constancia").value;
+    
+    if(sFileName === ""){
+        document.getElementById("constancia").classList.add("incorrecto");    
+        document.getElementById("respuestaConstancia").innerHTML = "Este campo no pude quedar vacio";
+        return false;
+    }
+    
+    sFileExtension = sFileName.split('.')[sFileName.split('.').length - 1];
+    
+    if (sFileExtension !== "pdf" ){
+        document.getElementById("constancia").classList.add("incorrecto");    
+        document.getElementById("respuestaConstancia").innerHTML = "Solo son aceptados archivos con formato *.pdf";
+        return false;
+    }
+    
+    iFileSize = document.getElementById("constancia").files[0].size;
+
+    if(iFileSize>2097152){
+        document.getElementById("constancia").classList.add("incorrecto");    
+        document.getElementById("respuestaConstancia").innerHTML = "El tamaño maximo de archivo son 2 Mb";
+        return false; 
+    }       
+    
+    return true;
+}
+
 function revisaDisponibilidad(){
     
     $.post("DisponibilidadLogin",{
@@ -170,7 +241,6 @@ function callbackMarca(valor){
     }   
     revisaContrasenia();
     revisaNombre();
-    revisaTelefono();
     revisaMail();
     
 }
@@ -203,40 +273,37 @@ function callbackRevisa(valor){
     continua = revisaContrasenia() && continua;
     continua = revisaNombre() && continua;
     continua = revisaMail() && continua; 
+    continua = revisaVideo() && continua;
+    continua = revisaConstancia() && continua;
     
-            
-
     if(continua){    
-        
-        $.post("RegistrarProfesor",{
-            login: document.getElementById("login").value,
-            contraseniaUno: document.getElementById("contraseniaUno").value,
-            contraseniaDos: document.getElementById("contraseniaDos").value,
-            nombre: document.getElementById("nombre").value,
-            mail: document.getElementById("mail").value,
-            dia : document.getElementById("dia").value,
-            mes : document.getElementById("mes").value,
-            nivel : document.getElementById("nivel").value,
-            horario : document.getElementById("horario").value
-        }, function(data){
-    
-             //document.getElementById("formulario").submit();
-                
-            var respuesta = data.valueOf().toString();
-            if(respuesta.match("error")){ 
-                completeMarca(callbackMarca);
-            }else{  
-                var docHeight = $(document).height(); //grab the height of the page
-                var scrollTop = $(window).scrollTop(); //grab the px value from the top of the page to where you're scrolling      
-                $('.overlay-bg').show().css({'height' : docHeight}); //display your popup and set height to the page height
-                $('.overlay-content').css({'top': scrollTop+20+'px'}); //set the content 20px from the window top  
-            }    
-            
-        });
-        
-        
-    }
+        document.getElementById("formulario").submit();
+    }    
 }
+
+
+function muestraPopup(){
+    var docHeight = $(document).height(); //grab the height of the page
+    var scrollTop = $(window).scrollTop(); //grab the px value from the top of the page to where you're scrolling      
+    $('.overlay-bg').show().css({'height' : docHeight}); //display your popup and set height to the page height
+    $('.overlay-content').css({'top': scrollTop+20+'px'}); //set the content 20px from the window top  
+}
+
+function buildSelect(options,value){
+    var $select = $('<select></select>');
+    var $option;
+    
+    for (var val in options) {
+        $option = $('<option value="' + val + '">' + options[val] + '</option>');
+        if (val === value) {
+            $option.attr('selected', 'selected');
+        }
+        $select.append($option);
+    }
+    
+    return $select;
+}
+
 
 // hide popup when user clicks on close button
 $('.close-btn').click(function(){

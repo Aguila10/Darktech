@@ -4,6 +4,23 @@
     Author     : rae
 --%>
     
+<% 
+    
+    HttpSession sesion = request.getSession(true);
+    
+    if(sesion.getAttribute("resultado") == null){
+        sesion.setAttribute("login", "");
+        sesion.setAttribute("contraseniaUno", "");
+        sesion.setAttribute("contraseniaDos", "");
+        sesion.setAttribute("nombre", "");
+        sesion.setAttribute("mail", "");
+        sesion.setAttribute("dia", "");
+        sesion.setAttribute("mes", "");
+        sesion.setAttribute("nivel", "");
+        sesion.setAttribute("horario", "");
+    }else{%>
+   <%}%>
+  
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!doctype html>
 <html lang="es">
@@ -24,7 +41,7 @@
         <script src="js/iniciarSesion.js"></script>
             
         <title>Registrar Profesor</title>
-            
+             
         <script type="text/javascript">
             $(document).ready(function(){
                 $(".fancyBox").fancybox({});
@@ -57,35 +74,40 @@
         <!--inicio formulario-->
         <div class="container">
             <div class="row" id="formularioProfesor">
-                <form action="SubirArchivo" method="post" enctype="multipart/form-data" id="formulario" name="formulario">
+                <form action="RegistrarProfesor" method="post" enctype="multipart/form-data" id="formulario" name="formulario">
                     <fieldset class="login">
                         <legend>Detalles Login</legend>
                         <div>
-                            <label>Login</label> <input type="text" id="login" onclick="quitaLogin()" onblur="revisaDisponibilidad()" maxlength="15"  placeholder="Ej. login_12">
+                            <label>Login</label> <input type="text" id="login" name="login" onclick="quitaLogin()" onblur="revisaDisponibilidad()" 
+                                                        maxlength="15"  placeholder="Ej. login_12" value=${login} >
                             <div id="respuestaLogin" class="respuesta"></div>
                         </div>
                         <div>
-                            <label>Contraseña</label> <input type="password" id="contraseniaUno" onclick="quitaContrasenia()" maxlength="15">
+                            <label>Contraseña</label> <input type="password" id="contraseniaUno" name="contraseniaUno" onclick="quitaContrasenia()"
+                                                             maxlength="15" value=<%=sesion.getAttribute("contraseniaUno") %> >
                             <div id="respuestaContraseniaUno" class="respuesta"></div>
                         </div>
                         <div>
-                            <label>Confirma Contraseña</label> <input type="password" id="contraseniaDos" onclick="confirmaContrasenia()" maxlength="15">
+                            <label>Confirma Contraseña</label> <input type="password" id="contraseniaDos" name="contraseniaDos" onclick="confirmaContrasenia()"
+                                                                      maxlength="15" value=<%=sesion.getAttribute("contraseniaDos") %> >
                             <div id="respuestaContraseniaDos" class="respuesta"></div>
                         </div>
                     </fieldset>
                     <fieldset class="contact">
                         <legend>Detalles Usuario</legend>
                         <div>
-                            <label>Nombre</label> <input type="text" id="nombre" onclick="quitaNombre()" maxlength="70"  placeholder="Ej. Carlos Escalona Navarro">
+                            <label>Nombre</label> <input type="text" id="nombre" name="nombre" onclick="quitaNombre()" maxlength="70"  
+                                                         placeholder="Ej. Carlos Escalona Navarro" value=<%=(String)sesion.getAttribute("nombre") %>>
                             <div id="respuestaNombre" class="respuesta"></div>
                         </div>
                         <div>
-                            <label>E-mail</label> <input type="text" id="mail" onclick="quitaMail()" maxlength="70" placeholder="Ej. soy@profesor.com">
+                            <label>E-mail</label> <input type="text" id="mail" name="mail" onclick="quitaMail()" maxlength="70" 
+                                                         placeholder="Ej. soy@profesor.com" value=<%=sesion.getAttribute("mail") %>>
                             <div id="respuestaMail" class="respuesta"></div>
                         </div>
                         <div>
                             <label>Fecha incio</label>
-                            <select id="dia">
+                            <select id="dia" name="dia">
                                 <option value="01">1</option>
                                 <option value="02">2</option>
                                 <option value="03">3</option>
@@ -118,11 +140,11 @@
                                 <option value="30">30</option>
                                 <option value="31">31</option>
                             </select>
-                            <select id="mes">
+                            <select id="mes" name="mes">
                                 <option value="01">Enero</option>
                                 <option value="02">Febrero</option>
                                 <option value="03">Marzo</option>
-                                <option value="04">Abril</option>
+                                <option value="04">Abri l</option>
                                 <option value="05">Mayo</option>
                                 <option value="06">Junio</option>
                                 <option value="07">Julio</option>
@@ -135,7 +157,7 @@
                         </div>
                         <div>
                             <label>Nivel</label>
-                            <select id="nivel">
+                            <select id="nivel" name="nivel">
                                 <option>Principiante</option>
                                 <option>Intermedio</option>
                                 <option>Avanzado</option>
@@ -144,7 +166,7 @@
                         </div>
                         <div>
                             <label>Horario</label>
-                            <select id="horario">
+                            <select id="horario" name="horario" >
                                 <option>10:00hrs-11:00hrs</option>
                                 <option>11:00hrs-12:00hrs</option>
                             </select>
@@ -153,20 +175,33 @@
                             <label>Constancia:</label>
                         </div>
                         <div>
-                            <input type="file" class="archivo" id="constancia" name ="constancia" onclick="quitaConstancia()">
-                            <div id="respuestaArchivo" class="respuesta"></div>
+                            <input type="file" class="archivo" id="constancia" name ="constancia" onclick="quitaConstancia()">                            
+                           
+                            <%if(sesion.getAttribute("pdf") != null){%>
+                             <div id="respuestaConstancia" class="respuesta"><%=sesion.getAttribute("pdf")%></div>  
+                            <%}else{%>
+                             <div id="respuestaConstancia" class="respuesta" ></div>
+                            <%}%>
                         </div>
                         <div>
                             <label>Video:</label>
                         </div>
                         <div>
                             <input type="file" class="archivo" id="video" name="video" onclick="quitaVideo()">
+                            <%if(sesion.getAttribute("video") != null){%>
+                            <div id="respuestaVideo" class="respuesta"><%=sesion.getAttribute("video")%></div> 
+                            <%}else{%>
                             <div id="respuestaVideo" class="respuesta"></div>
+                            <%}%>
                         </div>
                     </fieldset>
                     <button type="button" id="aceptar" onclick="completeRevisa(callbackRevisa)">Aceptar</button>
                 </form>
+     
             </div>
+         <%if(sesion.getAttribute("resultado") != null && sesion.getAttribute("resultado").equals("error")){%>   
+           <script>completeMarca(callbackMarca);</script>   
+           <%}%>
             <!--fin formulario-->
         </div>
         <img src="img/listonProfesor.png" height="150" width="151" style='position:absolute; top:0; right:0;'/>
@@ -193,7 +228,7 @@
             <a id="al">Alumno</a>
         </div>
         <!--fin registrar-->
-        <!--inicio iniciar sesion-->
+        <!--inicio iniciar request-->
         <div id="popupDos">
             <input type="text" placeholder =" Login" id="login" value="">
             <br>
@@ -205,6 +240,36 @@
             <p id="espacio3"></p>
             <div id="contestaSesion"></div>
         </div>
-        <!--fin iniciar sesion-->  
+        <!--fin iniciar request-->  
+            
+    <%
+      if(sesion.getAttribute("resultado") != null){
+          if(sesion.getAttribute("resultado").equals("exito")){
+            sesion.removeAttribute("contraseniaUno");
+            sesion.removeAttribute("contraseniaDos");
+            sesion.removeAttribute("dia");
+            sesion.removeAttribute("mes");
+            sesion.removeAttribute("nivel");
+            sesion.removeAttribute("horario");
+            sesion.removeAttribute("resultado");%>
+            <script>muestraPopup();</script>
+<%}else{
+           sesion.removeAttribute("login");
+           sesion.removeAttribute("contraseniaUno");
+           sesion.removeAttribute("contraseniaDos");
+           sesion.removeAttribute("nombre");
+           sesion.removeAttribute("mail");
+           sesion.removeAttribute("dia");
+           sesion.removeAttribute("mes");
+           sesion.removeAttribute("nivel");
+           sesion.removeAttribute("horario");
+           sesion.removeAttribute("resultado");
+           sesion.removeAttribute("video");
+           sesion.removeAttribute("pdf");
+
+          }
+      }
+%>
     </body>
+
 </html>

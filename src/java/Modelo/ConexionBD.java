@@ -21,9 +21,9 @@ import java.util.ArrayList;
 public class ConexionBD{
     
     String driver = "org.postgresql.Driver";
-    String connectString = "jdbc:postgresql://localhost:5433/pag_ingles";
+    String connectString = "jdbc:postgresql://localhost:5432/escuela_ingles";
     String user = "postgres";
-    String password = "308264113";
+    String password = "1008rpdml3";
     
     
     /**
