@@ -8,6 +8,9 @@
     
     HttpSession sesion = request.getSession(true);
     
+    if(sesion.getAttribute("identidad") != null && sesion.getAttribute("init") == null){
+        response.sendRedirect("index.jsp");
+    }else{          
     if(sesion.getAttribute("resultado") == null){
         sesion.setAttribute("login", "");
         sesion.setAttribute("contraseniaUno", "");
@@ -18,8 +21,9 @@
         sesion.setAttribute("mes", "");
         sesion.setAttribute("nivel", "");
         sesion.setAttribute("horario", "");
-    }else{%>
-   <%}%>
+       }
+    }%>
+   
   
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!doctype html>
@@ -197,7 +201,6 @@
                     </fieldset>
                     <button type="button" id="aceptar" onclick="completeRevisa(callbackRevisa)">Aceptar</button>
                 </form>
-     
             </div>
          <%if(sesion.getAttribute("resultado") != null && sesion.getAttribute("resultado").equals("error")){%>   
            <script>completeMarca(callbackMarca);</script>   
@@ -240,9 +243,7 @@
             <p id="espacio3"></p>
             <div id="contestaSesion"></div>
         </div>
-        <!--fin iniciar request-->  
-            
-    <%
+        <!--fin iniciar request-->                 <%
       if(sesion.getAttribute("resultado") != null){
           if(sesion.getAttribute("resultado").equals("exito")){
             sesion.removeAttribute("contraseniaUno");
@@ -251,7 +252,8 @@
             sesion.removeAttribute("mes");
             sesion.removeAttribute("nivel");
             sesion.removeAttribute("horario");
-            sesion.removeAttribute("resultado");%>
+            sesion.removeAttribute("resultado");
+            sesion.removeAttribute("init");%>
             <script>muestraPopup();</script>
 <%}else{
            sesion.removeAttribute("login");
@@ -269,7 +271,6 @@
 
           }
       }
-%>
+%>       
     </body>
-
 </html>

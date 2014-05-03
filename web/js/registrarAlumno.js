@@ -31,13 +31,13 @@ function quitaMail(){
 function revisaLogin(){
     
     var login = document.getElementById("login").value;
-    var login_pat = /^[A-Za-z0-9_]+$/;
+    var login_pat = /^[A-Za-z0-9_ñ]+$/;
     
     if(login.match(login_pat)){
         if(login.length >= 4 && login.length <= 15){ //  tamaño [4,15]
             return true;
         }else{
-            document.getElementById("respuestaLogin").innerHTML = "Login de tamaño inválido";
+            document.getElementById("respuestaLogin").innerHTML = "El login debe tener un mínimo de 4 caracteres y un máximo de 15";
             document.getElementById("login").classList.add("incorrecto");
             return false;
         }
@@ -46,7 +46,7 @@ function revisaLogin(){
             document.getElementById("respuestaLogin").innerHTML = "El campo no puede quedar vacio";
             document.getElementById("login").classList.add("incorrecto");
         }else{
-            document.getElementById("respuestaLogin").innerHTML = "Login con estructura inválida";
+            document.getElementById("respuestaLogin").innerHTML = "El login solo puede contener numeros,letras y guiones bajos";
             document.getElementById("login").classList.add("incorrecto");    
         }
         return false;
@@ -64,12 +64,13 @@ function revisaContrasenia(){
         return false;   
     }   
     if(contraseniaUno.length < 5 || contraseniaUno.length > 15){
-        document.getElementById("respuestaContraseniaUno").innerHTML ="Contraseña de tamaño inválido";
+        document.getElementById("respuestaContraseniaUno").innerHTML ="La contraseña debe tener un mínimo de 5 caracteres y un máximo de 15";
         document.getElementById("contraseniaUno").classList.add("incorrecto");
         return false;
     } 
     if(contraseniaUno !== contraseniaDos){
         document.getElementById("respuestaContraseniaDos").innerHTML ="Las contraseñas no coinciden";
+        document.getElementById("contraseniaUno").classList.add("incorrecto");
         document.getElementById("contraseniaDos").classList.add("incorrecto");
         return false;
     }
@@ -80,13 +81,13 @@ function revisaContrasenia(){
 function revisaNombre(){
     
     var nombre = document.getElementById("nombre").value;
-    var nombre_pat = /^([A-Za-z])+([\s]{1}[A-Za-z]+)?([\s]{1}[A-Za-z]+)?$/;
+    var nombre_pat = /^([A-Za-zñ])+([\s]{1}[A-Za-zñ]+)?([\s]{1}[A-Za-zñ]+)?$/;
     
     if(nombre.match(nombre_pat)){
         if(nombre.length >= 2 && nombre.length <= 70){ //Tamaño [2,70]
             return true;
         }else{
-            document.getElementById("respuestaNombre").innerHTML = "Nombre de tamaño inválido";
+            document.getElementById("respuestaNombre").innerHTML = "El nombre debe tener un mínimo de 2 caracteres y un máximo de 70";
             document.getElementById("nombre").classList.add("incorrecto");
             return false;
         }
@@ -95,8 +96,36 @@ function revisaNombre(){
             document.getElementById("respuestaNombre").innerHTML = "Este campo no pude quedar vacio";
             document.getElementById("nombre").classList.add("incorrecto");      
         }else{
-            document.getElementById("respuestaNombre").innerHTML = "Nombre con estructura inválida";
+            document.getElementById("respuestaNombre").innerHTML = "El nombre solo puede contener letras y debe tener la estructura: [Nombre] [ApellidoP (opcional)] [ApellidoM (opcional)].";
             document.getElementById("nombre").classList.add("incorrecto");      
+        }
+        return false;
+    }
+    
+}
+
+
+function revisaMail(){
+    
+    var mail = document.getElementById("mail").value;
+    var mail_pat = /^[A-Za-z0-9_](\.?[\w-]+)*@[a-zA-Z]+(\.[a-zA-z]+){1,2}$/;
+    
+    if(mail.match(mail_pat)){
+        if(mail.length <= 70){  // Si cumple la estructura y su tamaño es menor a 70 
+            return true;
+        }else{
+            document.getElementById("respuestaMail").innerHTML = "El mail debe tener un tamaño máximo de 70 caracteres";
+            document.getElementById("mail").classList.add("incorrecto");
+            return false;
+        }     
+    }else{        
+        if(mail === ""){
+            document.getElementById("respuestaMail").innerHTML = "Este campo no puede quedar vacio";
+            document.getElementById("mail").classList.add("incorrecto");  
+        }else{
+            document.getElementById("respuestaMail").innerHTML = "El mail debe tener la siguiente estructura: </br> \n\
+                                                                  [nombre]@[dominio].[subdominio (opcional)].com";
+            document.getElementById("mail").classList.add("incorrecto");    
         }
         return false;
     }
@@ -112,7 +141,7 @@ function revisaTelefono(){
         if(telefono.length >= 8 && telefono.length <= 15){  // Tamaño [8,15]
             return true;
         }else{
-            document.getElementById("respuestaTelefono").innerHTML = "Telefono de tamaño inválido";
+            document.getElementById("respuestaTelefono").innerHTML = "El telefono debe tener un mínimo de 8 numeros y un máximo de 15";
             document.getElementById("telefono").classList.add("incorrecto");
             return false;
         }
@@ -121,38 +150,12 @@ function revisaTelefono(){
             document.getElementById("respuestaTelefono").innerHTML = "Este campo no puede quedar vacio";
             document.getElementById("telefono").classList.add("incorrecto");
         }else{
-            document.getElementById("respuestaTelefono").innerHTML = "Telefono de estructura inválida";
+            document.getElementById("respuestaTelefono").innerHTML = "El telefono solo puede contener numeros";
             document.getElementById("telefono").classList.add("incorrecto");
             
         }   
         return false;
     }
-}
-
-function revisaMail(){
-    
-    var mail = document.getElementById("mail").value;
-    var mail_pat = /^[A-Za-z](\.?[\w-]+)*@[a-zA-Z]+(\.[a-zA-z]+){1,2}$/;
-    
-    if(mail.match(mail_pat)){
-        if(mail.length <= 70){  // Si cumple la estructura y su tamaño es menor a 70 
-            return true;
-        }else{
-            document.getElementById("respuestaMail").innerHTML = "Mail de tamaño inválido";
-            document.getElementById("mail").classList.add("incorrecto");
-            return false;
-        }     
-    }else{        
-        if(mail === ""){
-            document.getElementById("respuestaMail").innerHTML = "Este campo no puede quedar vacio";
-            document.getElementById("mail").classList.add("incorrecto");  
-        }else{
-            document.getElementById("respuestaMail").innerHTML = "Mail de estructura inválida";
-            document.getElementById("mail").classList.add("incorrecto");    
-        }
-        return false;
-    }
-    
 }
 
 function revisaDisponibilidad(){

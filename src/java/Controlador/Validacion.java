@@ -23,7 +23,7 @@ public class Validacion {
     
     public static boolean valida_login(String login){
         
-        String login_pat = "^[A-Za-z0-9]+$";
+        String login_pat = "^[A-Za-z0-9ñ_]+$";
         
         if(login == null){
             return false;
@@ -43,7 +43,7 @@ public class Validacion {
     
     public static boolean valida_nombre(String nombre){
         
-        String nombre_pat = "^([A-Za-z])+([\\s]{1}[A-Za-z]+)?([\\s]{1}[A-Za-z]+)?$"; //Nombres de 2 hasta hasta 70
+        String nombre_pat = "^([A-Za-zñ])+([\\s]{1}[A-Za-zñ]+)?([\\s]{1}[A-Za-zñ]+)?$"; //Nombres de 2 hasta hasta 70
         
         if(nombre == null){
             return false;
@@ -59,11 +59,11 @@ public class Validacion {
             return false;
         }
         
-        return telefono.matches(telefono_pat);// && telefono.length() >= 8 && telefono.length() <= 15 ;
+        return telefono.matches(telefono_pat) && telefono.length() >= 8 && telefono.length() <= 15 ;
     }
     
     public static boolean valida_mail(String email){
-        String mail_pat = "^[A-Za-z](\\.?[\\w-]+)*@[a-zA-Z]+(\\.[a-zA-z]+){1,2}$";
+        String mail_pat = "^[A-Za-z0-9_](\\.?[\\w-]+)*@[a-zA-Z]+(\\.[a-zA-z]+){1,2}$";
         
         if(email == null){
             return false;

@@ -163,6 +163,7 @@ public class RegistrarProfesor extends HttpServlet {
             conexion.insertaProfesor(nombre,path_video,path_pdf,mail,login,contraseniaUno);
             conexion.insertaCurso(nivel,horario,"2004-"+mes+"-"+dia, conexion.regresaIdProfesor(login));
             sesion.setAttribute("identidad","profesor");
+            sesion.setAttribute("init","Iniciando sesion");
             sesion.setAttribute("resultado", "exito");
         }else{
             sesion.setAttribute("resultado", "error");

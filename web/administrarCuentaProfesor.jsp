@@ -6,7 +6,12 @@
 <%
     /*Obtener la sesion ya iniciada*/
     HttpSession sesion = request.getSession(true);
-    %>
+    
+    if(sesion.getAttribute("identidad") == null || sesion.getAttribute("identidad").equals("alumno")){
+       response.sendRedirect("index.jsp");
+    }
+    
+    %> 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!doctype html>
 <html lang="es">

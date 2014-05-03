@@ -3,7 +3,15 @@
     Created on : 9/04/2014, 07:58:37 PM
     Author     : rae
 --%>
-    
+<%
+    /*Obtener la sesion ya iniciada*/
+    HttpSession sesion = request.getSession(true);
+            
+    if(sesion.getAttribute("identidad") != null){
+        response.sendRedirect("index.jsp");
+    }
+            
+        %> 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!doctype html>
 <html lang="es">
@@ -23,7 +31,7 @@
         <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=McLaren">    
         <script src="js/iniciarSesion.js"></script>
         <title>Registrar Alumno</title>
-        
+            
         <script type="text/javascript">
             $(document).ready(function(){
                 $(".fancyBox").fancybox({});
