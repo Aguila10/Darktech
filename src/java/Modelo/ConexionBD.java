@@ -21,9 +21,9 @@ import java.util.ArrayList;
 public class ConexionBD{
     
     String driver = "org.postgresql.Driver";
-    String connectString = "jdbc:postgresql://localhost:5432/escuela_ingles";
+    String connectString = "jdbc:postgresql://localhost:5433/pag_ingles";
     String user = "postgres";
-    String password = "1008rpdml3";
+    String password = "308264113";
     
     
     /**
@@ -865,7 +865,62 @@ public class ConexionBD{
         return res;
     }
     
+    /**
+     *
+     * @param idcurso
+     * @return
+     */
+    public String regresaLigaVIdeoProfesor(int idcurso) {
+        String res = "";
+        try {
+            Class.forName(driver);
+            Connection con = DriverManager.getConnection(connectString, user, password);
+            PreparedStatement query = con.prepareStatement("select profesor.liga_video from"
+                    + " profesor join curso on curso.idprofesor = profesor.idprofesor where curso.idcurso =? ");
+            query.setInt(1, idcurso);
+            ResultSet rset = query.executeQuery();
+            while (rset.next()) {
+                
+                res = (rset.getString(1));
+            }
+        } catch (SQLException | java.lang.ClassNotFoundException e) {
+            System.out.println(e.getMessage());
+        }
+        
+        return res;
+    }
     
+    public ArrayList<Curso> CursosProfesor(String loggin) {
+        ArrayList<Curso> lista = new ArrayList<Curso>();
+        try {
+            Class.forName(driver);
+            Connection con = DriverManager.getConnection(connectString, user, password);
+             PreparedStatement query = con.prepareStatement("select curso.idcurso,curso.horario , curso.nivel , alumno.nombre from curso join profesor on\n" +
+"curso.idprofesor = profesor.idprofesor join registro on registro.idprofesor = profesor.idprofesor\n" +
+"join alumno_inscrito on alumno_inscrito.idcurso = curso.idcurso join alumno on alumno_inscrito.idalumno = alumno.idalumno  \n" +
+"             where registro.loggin = ?");
+            
+            query.setString(1, loggin);
+            String cad = "";
+            ResultSet rset = query.executeQuery();
+            while (rset.next()) {
+                cad = (  "Curso" + rset.getInt(1)
+                        +"Horario " + rset.getString(2)
+                        + "Nivel " + rset.getString(3)
+                        +"Nombre Alumno" + rset.getString(4));
+                
+                Curso curso = new Curso(1,rset.getInt(1),"",rset.getString(2),"",rset.getString(3),rset.getString(4));
+                
+                lista.add(curso);
+            }
+            
+        } catch (SQLException | java.lang.ClassNotFoundException e) {
+            System.out.println(e.getMessage());
+        }
+        return lista;
+    }
+    
+
     
     public static void main(String[] args) {
         ConexionBD con = new ConexionBD();
