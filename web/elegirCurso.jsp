@@ -173,5 +173,12 @@
             <a onClick="parent.jQuery.fancybox.close();"><button id="AceptarPop">Aceptar</button></a>
         </div>
         <!--fin solicitar curso-->
+        <!--inicio popUp video-->
+        <div id="popupCuatro">
+            <video width="620" height="340" controls>
+                <source  id="videoProfe" src="" type="video/mp4">
+            </video>
+        </div>
+        <!--fin popUp video-->
 </body>
 </html>

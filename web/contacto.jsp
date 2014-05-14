@@ -110,7 +110,6 @@
                  }%> 
                 <!--fin menu dinamico cuenta alumno/profesor-->
                 <a href="elegirCurso.jsp"><span>Cursos</span></a>
-                <a href="#"><span>Metodología</span></a>
                 <a href="#"><span>Contacto</span></a>
             </div>
         </div>

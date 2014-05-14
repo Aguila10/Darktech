@@ -3,16 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Controlador;
 
+import Modelo.ConexionBD;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -35,15 +37,18 @@ public class CalificaCursos extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet CalificaCursos</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet CalificaCursos at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+//            out.println("<!DOCTYPE html>");
+//            out.println("<html>");
+//            out.println("<head>");
+//            out.println("<title>Servlet CalificaCursos</title>");
+//            out.println("</head>");
+//            out.println("<body>");
+//            out.println("<h1>Servlet CalificaCursos at " + request.getContextPath() + "</h1>");
+//            out.println("</body>");
+//            out.println("</html>");
+            
+            
+            
         }
     }
 
@@ -73,7 +78,9 @@ public class CalificaCursos extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        mostrar_cursos(request, response);
+//        PrintWriter out = response.getWriter();
+//        out.println("hola");
     }
 
     /**
@@ -84,6 +91,80 @@ public class CalificaCursos extends HttpServlet {
     @Override
     public String getServletInfo() {
         return "Short description";
-    }// </editor-fold>
+    }
 
+    private void mostrar_cursos(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String nivel = request.getParameter("nivel");
+        PrintWriter out = response.getWriter();
+        out.println("<h1> Calificar </h1>");
+        ConexionBD con = new ConexionBD();
+        ArrayList lista = null;
+
+        /*El boton de solicitar solo esta disponible si lo solicita un alumno*/
+        HttpSession sesion = request.getSession(true);
+
+        lista = con.CursosProfesor((String) sesion.getAttribute("login"));
+
+        if (lista.size() % 3 == 0) {
+            for (int i = 0; i < (lista.size() / 3); i++) {
+                out.println(" <div class='row'> ");
+
+                for (int j = 0; j < 3; j++) {
+                    Curso cur = (Curso) lista.get(3 * i + j);
+
+                    out.println("<div class=" + "col-md-4 " + "id =" + cur.getIdcurso() + ">"
+                            + "<h5>Alumno:" + cur.getAlumno() + "<br>"
+                            + "Horario: " + cur.getHora() + "<br>"
+                            + "Nivel: " + cur.getNivel() + "</h5><br>"
+                            + cajita()
+                            + "<button href='#popupTres' class='fancyBox'  onclick= \"calificar('" + cur.getIdcurso() + "')\" >Aceptar</button></div> ");
+                }
+                out.println("</div>");
+            }
+        } else {
+            for (int i = 0; i < (lista.size() / 3); i++) {
+                out.println(" <div class='row'> ");
+
+                for (int j = 0; j < 3; j++) {
+                    Curso cur = (Curso) lista.get(3 * i + j);
+
+                    out.println("<div class=" + "col-md-4 " + "id =" + cur.getIdcurso() + ">"
+                            + "<h5>Alumno:" + cur.getAlumno() + "<br>"
+                            + "Horario: " + cur.getHora() + "<br>"
+                            + "Nivel: " + cur.getNivel() + "</h5><br>"
+                            +cajita()
+                            + "<button href='#popupTres' class='fancyBox'  onclick= \"calificar('" + cur.getIdcurso() + "')\" >Aceptar</button></div> ");
+                }
+                out.println("</div>");
+            }
+
+            out.println(" <div class='row'> ");
+
+            for (int j = 0; j < lista.size() % 3; j++) {
+                Curso cur = (Curso) lista.get(3 * (lista.size() / 3) + j);
+
+                out.println("<div class=" + "col-md-4 " + "id =" + cur.getIdcurso() + ">"
+                        + "<h5>Alumno:" + cur.getAlumno() + "<br>"
+                        + "Horario: " + cur.getHora() + "<br>"
+                        + "Nivel: " + cur.getNivel() + "</h5><br>"
+                        +cajita()
+                        + "<button href='#popupTres' class='fancyBox'  onclick= \"calificar('" + cur.getIdcurso() + "')\" >Aceptar</button></div> ");
+            }
+            out.println("</div>");
+        }
+
+    }
+
+    public String cajita() {
+
+        return "<select id=\"calf\" name=\"calf\">"
+                + "<option value=\"05\">5</option>"
+                + "<option value=\"06\">6</option>"
+                + "<option value=\"07\">7</option>"
+                + "<option value=\"08\">8</option>"
+                + "<option value=\"09\">9</option>"
+                + "<option value=\"10\">10</option>"
+                + "</select>";
+
+    }
 }

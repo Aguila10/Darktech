@@ -225,3 +225,7 @@ h2{
 .fancybox-close {
     background-image: url('fancybox_sprite.png') !important;
 }
+
+#inscripcion, #historial{
+    display:none;
+}

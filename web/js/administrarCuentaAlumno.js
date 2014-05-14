@@ -262,6 +262,6 @@ function historial(){
     $.post('HistorialAlumno',{
 	
         }, function(data){         
-        $("#historial").html(data);    
+        //$("#historial").html(data);    
       });
 }

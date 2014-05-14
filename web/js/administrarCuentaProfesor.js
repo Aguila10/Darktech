@@ -215,7 +215,17 @@ function agregarCursos(){
 }
 
 function nuevoCurso(){
-    alert("Curso");
+
+ $.post('AgregarCurso',{
+	dia: document.getElementById("dia").value,
+        mes: document.getElementById("mes").value
+        
+        }, function(data){         
+           alert(data);
+    });
+    
+
+
 }
 
 /*Para aceptar solicitudes de cursos*/
@@ -254,7 +264,7 @@ function calificaCursos(){
     limpiaPanel();
     document.getElementById("calificaCurso").style.display ="block";
     
-    $.post('MuestraCalificaCursos',{
+    $.post('CalificaCursos',{
 	
         }, function(data){         
         $("#calificaCurso").html(data);    

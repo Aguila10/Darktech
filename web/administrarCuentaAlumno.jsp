@@ -73,7 +73,6 @@
                     <a href="#" onclick="cerrarSesion()"><span>Cerrar Sesión</span></a>
                     <a href="#"><span>Cuenta</span></a>
                     <a href="elegirCurso.jsp"><span>Cursos</span></a>
-                    <a href="#"><span>Metodología</span></a>
                     <a href="contacto.jsp"><span>Contacto</span></a>
                 </div>
             </div>

@@ -7,7 +7,20 @@ package Controlador;
 public class Curso {
     public int idprofesor;
     public int idcurso;
-    public String profesor,hora,fecha,nivel;
+    public String profesor,hora,fecha,nivel,alumno;
+    
+    public Curso(int idprofesor, int idcurso, String profesor,String hora, String fecha,String nivel, String nombre){
+        this.idprofesor = idprofesor;
+        this.idcurso = idcurso;
+        this.profesor = profesor;
+        this.hora = hora;
+        this.fecha = fecha;
+        this.nivel = nivel;
+        this.alumno = nombre;     
+    }
+    
+    
+    
     
     public Curso(int idprofesor, int idcurso, String profesor,String hora, String fecha,String nivel){
         this.idprofesor = idprofesor;
@@ -16,7 +29,9 @@ public class Curso {
         this.hora = hora;
         this.fecha = fecha;
         this.nivel = nivel;
+    
     }
+    
     
     public int getIdprofesor() {
         return idprofesor;
@@ -64,5 +79,19 @@ public class Curso {
     
     public String getNivel() {
         return nivel;
+    }
+
+    /**
+     * @return the alumno
+     */
+    public String getAlumno() {
+        return alumno;
+    }
+
+    /**
+     * @param alumno the alumno to set
+     */
+    public void setAlumno(String alumno) {
+        this.alumno = alumno;
     }
 }

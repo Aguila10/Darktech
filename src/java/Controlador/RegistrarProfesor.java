@@ -141,9 +141,10 @@ public class RegistrarProfesor extends HttpServlet {
         
         File video = subirVideo(request,response);
         File pdf = subirPdf(request,response);
+
         
-        path_video = video.getAbsolutePath();
-        path_pdf = pdf.getAbsolutePath();
+        path_video = "videos/" + video.getName();
+        path_pdf = "pdfs/" + pdf.getName();
         
         this.video = video;
         this.pdf = pdf;

@@ -29,11 +29,11 @@
             });
             
             function cambiaImagen(){
-            	if(document.getElementById("cambia").src.indexOf("ingles")==-1){
-            		document.getElementById("cambia").src = "img/ingles.png";
-            	} else {
-            		document.getElementById("cambia").src = "img/espaniol.png";
-            	}
+            	if(document.getElementById("cambia").src.indexOf("inglesFrase")!==-1){
+                    document.getElementById("cambia").src ="img/espaniol.png";
+                }else {
+                    document.getElementById("cambia").src="img/inglesFrase.png";}
+            	
             }
         </script>
             
@@ -54,7 +54,7 @@
                     	<img src="img/escuela.png" height="75%" width="75%">
                     </div>
                     <div class="col-md-8">
-                    	<img src="img/ingles.png" height="70%" width="70%" id="cambia" onmouseover="cambiaImagen()">
+                    	<img src="img/inglesFrase.png" height="70%" width="70%" id="cambia" onmouseover="cambiaImagen()">
                     </div>
                 </div>
             </div>
