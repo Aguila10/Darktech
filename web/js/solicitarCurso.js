@@ -19,3 +19,12 @@ function solicita(curso, alumno){
 function noDisponible(id){
     document.getElementById(id).style.display = "none";
 }
+
+/*Para video*/
+function showVideo(id){
+  $.post('MuestraVideo',{
+  idCurso: id
+        }, function(data){         
+       document.getElementById("videoProfe").src =data;
+      });
+}
