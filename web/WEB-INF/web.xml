@@ -32,6 +32,14 @@
         <servlet-name>SubirArchivo</servlet-name>
         <servlet-class>Controlador.SubirArchivo</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>HistorialAlumno</servlet-name>
+        <servlet-class>Controlador.HistorialAlumno</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>InscripcionAlumno</servlet-name>
+        <servlet-class>Controlador.InscripcionAlumno</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>RegistrarAlumno</servlet-name>
         <url-pattern>/RegistrarAlumno</url-pattern>
@@ -63,6 +71,14 @@
     <servlet-mapping>
         <servlet-name>SubirArchivo</servlet-name>
         <url-pattern>/SubirArchivo</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>HistorialAlumno</servlet-name>
+        <url-pattern>/HistorialAlumno</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>InscripcionAlumno</servlet-name>
+        <url-pattern>/InscripcionAlumno</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

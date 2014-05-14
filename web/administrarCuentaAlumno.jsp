@@ -6,13 +6,14 @@
 <%
     /*Obtener la sesion ya iniciada*/
     HttpSession sesion = request.getSession(true);
-    
+        
     if(sesion.getAttribute("identidad") == null || sesion.getAttribute("identidad").equals("profesor")){
         response.sendRedirect("index.jsp");
-    }
-    
+            
+    } 
+
     %>    
-        
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!doctype html>
 <html lang="es">
@@ -31,9 +32,9 @@
         <link rel="stylesheet" type="text/css" href="css/jquery.fancybox.css?v=2.1.5" media="screen" />
         <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Londrina Solid">
         <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=McLaren">
-            
+        
         <title>Administrar Cuenta: Alumno</title> 
-            
+        
         <script type="text/javascript">
             $(document).ready(function(){
                 $(".fancyBox").fancybox({
@@ -42,7 +43,7 @@
             });
             
         </script>
-            
+        
         <script>
             function eliminaCuenta(){    
                 $.post('EliminaCuenta',{
@@ -51,7 +52,7 @@
                 });
             }
         </script>
-            
+        
     </head>
     <body>
         <!--incio sesion-->
@@ -90,6 +91,22 @@
                             </div>
                         </a>
                     </li>
+                    <li onclick="inscripcion()">
+                        <a>
+                            <span class="ca-icon">S</span>
+                            <div class="ca-content">
+                                <h4>Inscripción</h4>
+                            </div>
+                        </a>
+                    </li>
+                    <li onclick="historial()">
+                        <a>
+                            <span class="ca-icon">S</span>
+                            <div class="ca-content">
+                                <h4>Historial</h4>
+                            </div>
+                        </a>
+                    </li>
                     <li>
                         <a href="#popupEliminar" class="fancyBox">
                             <span class="ca-icon">-</span> 
@@ -102,6 +119,8 @@
             </div>
             <!--fin submenu-->
             <div class="col-md-9" id="contenidoPagina">
+                <div class="row" id="historial"></div>
+                <div class="row" id="inscripcion"></div>
                 <div class="row" id="modificarDatos">
                     <form action="">
                         <fieldset class="login">
@@ -136,7 +155,7 @@
                             </div>
                             <button type="button" id="aceptarUsuario" onclick="revisaDatos()">Aceptar</button>
                         </fieldset>
-                            
+                        
                     </form>	
                 </div>
             </div>

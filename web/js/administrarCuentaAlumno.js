@@ -1,3 +1,9 @@
+function limpiaPanel(){
+    document.getElementById("modificarDatos").style.display ="none";
+    document.getElementById("historial").style.display ="none";
+    document.getElementById("inscripcion").style.display ="none";
+}
+
 function muestraFormulario(){
     var x = document.getElementById("modificarDatos").style.display ="block";
 }
@@ -235,3 +241,27 @@ $('.overlay-bg').click(function(){
 $('.overlay-content').click(function(){
     return false;
 });
+
+
+/*Para el resto de los casos de uso*/
+function inscripcion(){
+    limpiaPanel();
+    document.getElementById("inscripcion").style.display ="block";
+    
+    $.post('InscripcionAlumno',{
+	
+        }, function(data){         
+        $("#inscripcion").html(data);    
+      });
+}
+
+function historial(){
+    limpiaPanel();
+    document.getElementById("historial").style.display ="block";
+    
+    $.post('HistorialAlumno',{
+	
+        }, function(data){         
+        $("#historial").html(data);    
+      });
+}
