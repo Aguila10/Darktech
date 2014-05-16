@@ -920,10 +920,103 @@ public class ConexionBD{
         return lista;
     }
     
+ 
+    public ArrayList<Curso> CursosProfesorPendiente(String loggin) {
+        ArrayList<Curso> lista = new ArrayList<Curso>();
+        try {
+            Class.forName(driver);
+            Connection con = DriverManager.getConnection(connectString, user, password);
+             PreparedStatement query = con.prepareStatement("select curso.idcurso,curso.horario , curso.nivel , alumno.nombre \n" +
+"from curso join profesor on curso.idprofesor = profesor.idprofesor join registro on registro.idprofesor = profesor.idprofesor\n" +
+"join historial_curso on historial_curso.idcurso = curso.idcurso join alumno on historial_curso.idalumno = alumno.idalumno \n" +
+" where registro.loggin = ?  and curso.estado = 'Solicitado'");
+            
+            query.setString(1, loggin);
+            String cad = "";
+            ResultSet rset = query.executeQuery();
+            while (rset.next()) {
+                cad = (  "Curso" + rset.getInt(1)
+                        +"Horario " + rset.getString(2)
+                        + "Nivel " + rset.getString(3)
+                        +"Nombre Alumno" + rset.getString(4));
+                
+                Curso curso = new Curso(1,rset.getInt(1),"",rset.getString(2),"",rset.getString(3),rset.getString(4));
+                
+                lista.add(curso);
+            }
+            
+        } catch (SQLException | java.lang.ClassNotFoundException e) {
+            System.out.println(e.getMessage());
+        }
+        return lista;
+    }
+    
+    public ArrayList<Curso> CursosAlumnoEnCurso(String loggin) {
+        ArrayList<Curso> lista = new ArrayList<Curso>();
+        try {
+            Class.forName(driver);
+            Connection con = DriverManager.getConnection(connectString, user, password);
+             PreparedStatement query = con.prepareStatement("select curso.idcurso, curso.horario ,  curso.nivel , profesor.nombre "
+                     + "from alumno join registro on registro.idalumno = alumno.idalumno join alumno_inscrito on"
+                     + " alumno_inscrito.idalumno = alumno.idalumno join curso on "
+                     + "curso.idcurso = alumno_inscrito.idcurso join profesor on profesor.idprofesor = curso.idprofesor " 
+                     + " where registro.loggin = ? ");
+            
+            query.setString(1, loggin);
+            String cad = "";
+            ResultSet rset = query.executeQuery();
+            while (rset.next()) {
+                cad = (  "Curso" + rset.getInt(1)
+                        +"Horario " + rset.getString(2)
+                        + "Nivel " + rset.getString(3)
+                        +"Nombre Profesor" + rset.getString(4));
+                
+                Curso curso = new Curso(1,rset.getInt(1),"",rset.getString(2),"",rset.getString(3),rset.getString(4));
+                
+                lista.add(curso);
+            }
+            
+        } catch (SQLException | java.lang.ClassNotFoundException e) {
+            System.out.println(e.getMessage());
+        }
+        return lista;
+    }
+    
+     public ArrayList<Curso> CursosAlumnoFinalizados(String loggin) {
+        ArrayList<Curso> lista = new ArrayList<Curso>();
+        try {
+            Class.forName(driver);
+            Connection con = DriverManager.getConnection(connectString, user, password);
+             PreparedStatement query = con.prepareStatement("select curso.idcurso, curso.horario ,  curso.nivel , profesor.nombre , alumno_inscrito.calificacion "
+                     + "from alumno join registro on registro.idalumno = alumno.idalumno join alumno_inscrito on"
+                     + " alumno_inscrito.idalumno = alumno.idalumno join curso on "
+                     + "curso.idcurso = alumno_inscrito.idcurso join profesor on profesor.idprofesor = curso.idprofesor " 
+                     + " where registro.loggin = ?  and curso.estado = 'Finalizado' ");
+            
+            query.setString(1, loggin);
+            String cad = "";
+            ResultSet rset = query.executeQuery();
+            while (rset.next()) {
+                cad = (  "Curso" + rset.getInt(1)
+                        +"Horario " + rset.getString(2)
+                        + "Nivel " + rset.getString(3)
+                        +"Nombre Profesor" + rset.getString(4)
+                        +"Calificacion " + rset.getInt(5));
+                
+                Curso curso = new Curso(rset.getInt(1),rset.getString(4),rset.getString(2),rset.getString(3),rset.getInt(5));
+                
+                lista.add(curso);
+            }
+            
+        } catch (SQLException | java.lang.ClassNotFoundException e) {
+            System.out.println(e.getMessage());
+        }
+        return lista;
+    }
 
     
-    public static void main(String[] args) {
-        ConexionBD con = new ConexionBD();
-        con.insertaCurso("Principiante","algun","2014-12-14", 1);
-    }
+//    public static void main(String[] args) {
+//        ConexionBD con = new ConexionBD();
+//        con.insertaCurso("Principiante","algun","2014-12-14", 1);
+//    }
 }

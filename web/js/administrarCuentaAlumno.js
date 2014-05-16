@@ -248,7 +248,7 @@ function inscripcion(){
     limpiaPanel();
     document.getElementById("inscripcion").style.display ="block";
     
-    $.post('InscripcionAlumno',{
+    $.post('MuestraInscripcion',{
 	
         }, function(data){         
         $("#inscripcion").html(data);    
@@ -259,9 +259,17 @@ function historial(){
     limpiaPanel();
     document.getElementById("historial").style.display ="block";
     
-    $.post('HistorialAlumno',{
+    $.post('MuestraHistorial',{
 	
         }, function(data){         
-        //$("#historial").html(data);    
+        $("#historial").html(data);    
+      });
+}
+
+function generaConstancia(idCurso){
+    $.post('GeneraConstancia',{
+	id: idCurso
+        }, function(data){         
+       
       });
 }

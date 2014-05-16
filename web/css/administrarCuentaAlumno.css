@@ -229,3 +229,13 @@ h2{
 #inscripcion, #historial{
     display:none;
 }
+
+h1{
+    color:black;
+}
+
+/*Formato para tablas*/
+table, tr, td
+{
+    border: 1px solid black;
+}

@@ -6,18 +6,23 @@
 
 package Controlador;
 
+import Modelo.ConexionBD;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author rae
+ * @author mphb
  */
-public class InscripcionAlumno extends HttpServlet {
+@WebServlet(name = "MuestraInscripcion", urlPatterns = {"/MuestraInscripcion"})
+public class MuestraInscripcion extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,15 +38,15 @@ public class InscripcionAlumno extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet InscripcionAlumno</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet InscripcionAlumno at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+//            out.println("<!DOCTYPE html>");
+//            out.println("<html>");
+//            out.println("<head>");
+//            out.println("<title>Servlet MuestraInscripcion</title>");            
+//            out.println("</head>");
+//            out.println("<body>");
+//            out.println("<h1>Servlet MuestraInscripcion at " + request.getContextPath() + "</h1>");
+//            out.println("</body>");
+//            out.println("</html>");
         }
     }
 
@@ -71,7 +76,7 @@ public class InscripcionAlumno extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        muestraInscripcion(request, response);
     }
 
     /**
@@ -84,4 +89,31 @@ public class InscripcionAlumno extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
+    private void muestraInscripcion(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException{
+        PrintWriter out = response.getWriter();
+        out.println("<h1>Inscripción</h1>");
+        
+         /*Obtener login alumno*/
+        HttpSession sesion = request.getSession(true);
+        String login = (String)sesion.getAttribute("login");
+        /*Pedir consulta segun login del alumno*/
+        ConexionBD con = new ConexionBD();
+        ArrayList<Curso> lista = con.CursosAlumnoEnCurso(login);
+        
+        /*Imprimir lista de cursos en los que esta inscrito el alumno*/
+        out.println("<table>");
+        
+        out.println("<tr><td>Curso</td><td>Horario</td></tr>");
+        
+        for(int i=0; i<lista.size(); i++){
+            Curso cur = lista.get(i);
+            out.println("<tr>");
+            out.println("<td>Nivel: "+cur.getNivel()
+                        +"Profesor: "+cur.getProfesor()+"</td>"
+                        +"<td>"+cur.getHora()+"</td>");
+            out.println("</tr>");
+        }
+        out.println("</table>");
+    }
 }

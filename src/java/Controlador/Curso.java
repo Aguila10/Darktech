@@ -7,6 +7,7 @@ package Controlador;
 public class Curso {
     public int idprofesor;
     public int idcurso;
+    public int califi;
     public String profesor,hora,fecha,nivel,alumno;
     
     public Curso(int idprofesor, int idcurso, String profesor,String hora, String fecha,String nivel, String nombre){
@@ -19,9 +20,6 @@ public class Curso {
         this.alumno = nombre;     
     }
     
-    
-    
-    
     public Curso(int idprofesor, int idcurso, String profesor,String hora, String fecha,String nivel){
         this.idprofesor = idprofesor;
         this.idcurso = idcurso;
@@ -31,7 +29,14 @@ public class Curso {
         this.nivel = nivel;
     
     }
-    
+
+    public Curso(int idcurso, String profesor,String hora, String nivel, int calif){
+        this.idcurso = idcurso;
+        this.profesor = profesor;
+        this.hora = hora;
+        this.nivel = nivel;
+        this.califi = calif; 
+    }
     
     public int getIdprofesor() {
         return idprofesor;
@@ -93,5 +98,20 @@ public class Curso {
      */
     public void setAlumno(String alumno) {
         this.alumno = alumno;
+    }
+    
+    
+    /**
+     * @return the califi
+     */
+    public int getCalifi() {
+        return califi;
+    }
+
+    /**
+     * @param califi the califi to set
+     */
+    public void setCalifi(int califi) {
+        this.califi = califi;
     }
 }

@@ -240,6 +240,8 @@ function aceptarCursos(){
       });
 }
 
+
+/*Funcion para aceptar o rechazar curso*/
 function aceptoCurso(idCurso){
     $.post('AceptarCursos',{
 	id: idCurso,
