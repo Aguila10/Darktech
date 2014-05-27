@@ -6,13 +6,19 @@
 
 package Controlador;
 
+import Modelo.ConexionBD;
+import com.itextpdf.text.DocumentException;
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -33,15 +39,18 @@ public class GeneraConstancia extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        String basePath = new File("").getAbsolutePath();
+        String[] parts = basePath.split("/");
+        final String path = "/"+parts[1]+"/"+parts[2]+"/NetBeansProjects/pag_ingles/web/constancia.pdf";
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet GeneraConstancia</title>");            
+            out.println("<title>Constancia</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet GeneraConstancia at " + request.getContextPath() + "</h1>");
+            out.println("<embed width=\"100%\" height=\"100%\" name=\"plugin\" src=\""+path+"\" type=\"application/pdf\">");
             out.println("</body>");
             out.println("</html>");
         }
@@ -73,7 +82,27 @@ public class GeneraConstancia extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+       
+        HttpSession sesion = request.getSession(true);
+        
+        String alumno = (String)sesion.getAttribute("login");
+        int idCurso = new Integer(request.getParameter("id")).intValue();
+        
+        ConexionBD con = new ConexionBD();
+        String[] arr = con.regresaDatosAlumno(alumno);
+    String nombre = arr[0];
+    
+    PDF constancia = new PDF(); 
+        try {
+            
+            constancia.escribePDF(nombre);
+            
+            
+        } catch (DocumentException ex) {
+            Logger.getLogger(GeneraConstancia.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    
+         processRequest(request, response);
     }
 
     /**

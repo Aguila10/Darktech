@@ -271,6 +271,8 @@ function generaConstancia(idCurso){
     $.post('GeneraConstancia',{
 	id: idCurso
         }, function(data){         
-       
-      });
+            window.open('/home/mphb/NetBeansProjects/pag_ingles/web/constancia.pdf', 'NewTab');
+             // Aqui falta que abra el pdf
+    
+    });
 }

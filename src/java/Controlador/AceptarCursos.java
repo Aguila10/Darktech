@@ -9,6 +9,13 @@ package Controlador;
 import Modelo.ConexionBD;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -76,8 +83,13 @@ public class AceptarCursos extends HttpServlet {
             throws ServletException, IOException {
         //processRequest(request, response);
         
+    String driver = "org.postgresql.Driver";
+    String connectString = "jdbc:postgresql://localhost:5433/pag_ingles";
+    String user = "postgres";
+    String password = "308264113";
         ConexionBD bd = new ConexionBD();
-
+Statement statement;
+        ResultSet resultSet;
         // curso
         int idCurso = new Integer(request.getParameter("id")).intValue();
         // alumno
@@ -85,9 +97,20 @@ public class AceptarCursos extends HttpServlet {
         
         // acepto el curso
         if("true".equals(request.getParameter("acepto"))){
+        try {
             bd.asignaCurso(idCurso, idAlumno);
-        // rechazo el curso    
-        } else {
+            
+            Connection con = DriverManager.getConnection(connectString, user, password);
+            statement = con.createStatement();
+            resultSet = statement.executeQuery(" update curso set  "
+                    + "estado = 'Asignado' where idcurso="+ idCurso+";");
+            // rechazo el curso    
+        } catch (SQLException ex) {
+            Logger.getLogger(AceptarCursos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        }
+        
+        else {
             bd.rechazaCurso(idCurso, idAlumno);
         }
     }

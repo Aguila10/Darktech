@@ -254,7 +254,7 @@ function aceptoCurso(idCurso){
           
       });
       
-      aceptarCursos();
+      document.getElementById("con"+idCurso).style.display ="none";
 }
 
 function rechazoCurso(idCurso){
@@ -265,7 +265,7 @@ function rechazoCurso(idCurso){
         
       });
       
-      aceptarCursos();
+      document.getElementById("con"+idCurso).style.display ="none";
 }
 
 
@@ -281,9 +281,13 @@ function calificaCursos(){
       });
 }
 
-function calificacion(idCurso){
-    $.post('CalificaCursos',{
-          id: idCurso
-        }, function(data){         
+function califica(idCurso){
+    $.post('Calificar',{
+          id: idCurso,
+          calif: document.getElementById("calf"+idCurso).value
+        }, function(data){    
+            
       });
+      
+      document.getElementById("ca"+idCurso).style.display ="none";
 }

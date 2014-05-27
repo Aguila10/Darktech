@@ -994,7 +994,7 @@ public class ConexionBD{
                         + "Nivel " + rset.getString(3)
                         +"Nombre Profesor" + rset.getString(4));
                 
-                Curso curso = new Curso(1,rset.getInt(1),"",rset.getString(2),"",rset.getString(3),rset.getString(4));
+                Curso curso = new Curso(1,rset.getInt(1),rset.getString(4),rset.getString(2),"",rset.getString(3),rset.getString(4));
                 
                 lista.add(curso);
             }
@@ -1037,9 +1037,41 @@ public class ConexionBD{
         return lista;
     }
 
+     public ArrayList<Curso> CursosProfesorCalificar(String loggin) {
+        ArrayList<Curso> lista = new ArrayList<Curso>();
+        try {
+            Class.forName(driver);
+            Connection con = DriverManager.getConnection(connectString, user, password);
+             PreparedStatement query = con.prepareStatement("select curso.idcurso,curso.horario , curso.nivel , alumno.nombre from curso join profesor on\n" +
+"curso.idprofesor = profesor.idprofesor join registro on registro.idprofesor = profesor.idprofesor\n" +
+"join alumno_inscrito on alumno_inscrito.idcurso = curso.idcurso join alumno on alumno_inscrito.idalumno = alumno.idalumno \n" +
+"           where registro.loggin = ? and alumno_inscrito.calificacion is null and curso.estado = 'Asignado'");
+            
+            query.setString(1, loggin);
+            String cad = "";
+            ResultSet rset = query.executeQuery();
+            while (rset.next()) {
+                cad = (  "Curso" + rset.getInt(1)
+                        +"Horario " + rset.getString(2)
+                        + "Nivel " + rset.getString(3)
+                        +"Nombre Alumno" + rset.getString(4));
+                
+                Curso curso = new Curso(1,rset.getInt(1),"",rset.getString(2),"",rset.getString(3),rset.getString(4));
+                
+                lista.add(curso);
+            }
+            
+        } catch (SQLException | java.lang.ClassNotFoundException e) {
+            System.out.println(e.getMessage());
+        }
+        return lista;
+    }
     
-//    public static void main(String[] args) {
-//        ConexionBD con = new ConexionBD();
-//        con.insertaCurso("Principiante","algun","2014-12-14", 1);
-//    }
+    public static void main(String[] args) {
+        ConexionBD con = new ConexionBD();
+        ArrayList a = con.CursosProfesorCalificar("profesor");
+        System.out.println(a.size());
+        
+        
+    }
 }

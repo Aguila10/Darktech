@@ -109,7 +109,7 @@ public class MuestraAceptarCursos extends HttpServlet {
                 for (int j =0; j < 3 ; j++) {
                     Curso cur = (Curso)lista.get(3*i + j);
                     
-                    out.println( "<div class='col-md-4'><center>"
+                    out.println( "<div class='col-md-4' id='con"+cur.getIdcurso()+"'><center>"
                             +"Nivel:"+cur.getNivel() +"<br>"
                             +"Horario:<br>"+cur.getHora() +"<br>"
                             +"Alumno:"+cur.getAlumno() +"</center><br><br>"
@@ -126,7 +126,7 @@ public class MuestraAceptarCursos extends HttpServlet {
                 for (int j =0; j < 3 ; j++) {
                     Curso cur = (Curso)lista.get(3*i + j);
                     
-                    out.println( "<div class='col-md-4'><center>"
+                    out.println( "<div class='col-md-4' id='con"+cur.getIdcurso()+"'><center>"
                             +"Nivel:"+cur.getNivel() +"<br>"
                             +"Horario: <br>"+cur.getHora() +"<br>"
                             +"Alumno:"+cur.getAlumno() +"</center><br><br>"
@@ -142,7 +142,7 @@ public class MuestraAceptarCursos extends HttpServlet {
             for (int j =0; j < lista.size()%3 ; j++) {
                 Curso cur = (Curso)lista.get(3*(lista.size()/3) + j);
                 
-                out.println( "<div class='col-md-4'><center>"
+                out.println( "<div class='col-md-4' id='con"+cur.getIdcurso()+"'><center>"
                             +"Nivel:"+cur.getNivel() +"<br>"
                             +"Horario:<br>"+cur.getHora() +"<br>"
                             +"Alumno:"+cur.getAlumno() +"</center><br><br>"

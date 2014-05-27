@@ -103,7 +103,7 @@ public class CalificaCursos extends HttpServlet {
         /*El boton de solicitar solo esta disponible si lo solicita un alumno*/
         HttpSession sesion = request.getSession(true);
 
-        lista = con.CursosProfesor((String) sesion.getAttribute("login"));
+        lista = con.CursosProfesorCalificar((String) sesion.getAttribute("login"));
 
         if (lista.size() % 3 == 0) {
             for (int i = 0; i < (lista.size() / 3); i++) {
@@ -112,12 +112,12 @@ public class CalificaCursos extends HttpServlet {
                 for (int j = 0; j < 3; j++) {
                     Curso cur = (Curso) lista.get(3 * i + j);
 
-                    out.println("<div class=" + "col-md-4 " + "id =" + cur.getIdcurso() + ">"
+                    out.println("<div class=" + "col-md-4 " + "id =ca" + cur.getIdcurso() + ">"
                             + "<center><h5>Alumno:" + cur.getAlumno() + "<br>"
                             + "Horario:<br> " + cur.getHora() + "<br>"
                             + "Nivel: " + cur.getNivel() + "</h5><br>"
-                            + cajita()
-                            + "<button href='#popupTres' onclick= \"calificar('" + cur.getIdcurso() + "')\" >Aceptar</button></center></div> ");
+                            + cajita(cur.getIdcurso())
+                            + "<button onclick= 'califica("+cur.getIdcurso()+")'>Aceptar</button></center></div> ");
                 }
                 out.println("</div>");
             }
@@ -128,12 +128,12 @@ public class CalificaCursos extends HttpServlet {
                 for (int j = 0; j < 3; j++) {
                     Curso cur = (Curso) lista.get(3 * i + j);
 
-                    out.println("<div class=" + "col-md-4 " + "id =" + cur.getIdcurso() + ">"
+                    out.println("<div class=" + "col-md-4 " + "id =ca" + cur.getIdcurso() + ">"
                             + "<center><h5>Alumno:" + cur.getAlumno() + "<br>"
                             + "Horario:<br> " + cur.getHora() + "<br>"
                             + "Nivel: " + cur.getNivel() + "</h5><br>"
-                            +cajita()
-                            + "<button href='#popupTres' onclick= \"calificar('" + cur.getIdcurso() + "')\" >Aceptar</button></center></div> ");
+                            +cajita(cur.getIdcurso())
+                            + "<button onclick= 'califica("+cur.getIdcurso()+")'>Aceptar</button></center></div> ");
                 }
                 out.println("</div>");
             }
@@ -143,21 +143,21 @@ public class CalificaCursos extends HttpServlet {
             for (int j = 0; j < lista.size() % 3; j++) {
                 Curso cur = (Curso) lista.get(3 * (lista.size() / 3) + j);
 
-                out.println("<div class=" + "col-md-4 " + "id =" + cur.getIdcurso() + ">"
+                out.println("<div class=" + "col-md-4 " + "id =ca" + cur.getIdcurso() + ">"
                         + "<center><h5>Alumno:" + cur.getAlumno() + "<br>"
                         + "Horario: <br>" + cur.getHora() + "<br>"
                         + "Nivel: " + cur.getNivel() + "</h5><br>"
-                        +cajita()
-                        + "<button href='#popupTres' onclick= \"calificar('" + cur.getIdcurso() + "')\" >Aceptar</button></center></div> ");
+                        +cajita(cur.getIdcurso())
+                        + "<button onclick= 'califica("+cur.getIdcurso()+")'>Aceptar</button></center></div> ");
             }
             out.println("</div>");
         }
 
     }
 
-    public String cajita() {
+    public String cajita(int idCurso) {
 
-        return "<select id=\"calf\" name=\"calf\">"
+        return "<select id=\"calf"+idCurso+"\" name=\"calf\">"
                 + "<option value=\"05\">5</option>"
                 + "<option value=\"06\">6</option>"
                 + "<option value=\"07\">7</option>"

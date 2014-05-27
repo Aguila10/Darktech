@@ -6,6 +6,7 @@
 
 package Controlador;
 
+import Modelo.ConexionBD;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -18,8 +19,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author mphb
  */
-@WebServlet(name = "MuestraCalificaCursos", urlPatterns = {"/MuestraCalificaCursos"})
-public class MuestraCalificaCursos extends HttpServlet {
+@WebServlet(name = "Calificar", urlPatterns = {"/Calificar"})
+public class Calificar extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,10 +39,10 @@ public class MuestraCalificaCursos extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet MuestraCalificaCursos</title>");            
+            out.println("<title>Servlet Calificar</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet MuestraCalificaCursos at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet Calificar at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -73,7 +74,16 @@ public class MuestraCalificaCursos extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        //processRequest(request, response);
+       
+        //PrintWriter out = response.getWriter();
+        ConexionBD bd = new ConexionBD();
+        
+       int idcurso = new Integer(request.getParameter("id")).intValue();
+       double calificacion = new Double(request.getParameter("calif")).doubleValue();
+        
+       bd.asignaCalificacion(idcurso, calificacion);
+       
     }
 
     /**

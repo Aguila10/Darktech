@@ -171,8 +171,14 @@
                         <div>
                             <label>Horario</label>
                             <select id="horario" name="horario" >
+                                <option>09:00hrs-10:00hrs</option>
                                 <option>10:00hrs-11:00hrs</option>
                                 <option>11:00hrs-12:00hrs</option>
+                                <option>13:00hrs-14:00hrs</option>
+                                <option>14:00hrs-15:00hrs</option>
+                                <option>15:00hrs-16:00hrs</option>
+                                <option>16:00hrs-17:00hrs</option>
+                                <option>17:00hrs-18:00hrs</option>
                             </select>
                         </div>
                         <div>
