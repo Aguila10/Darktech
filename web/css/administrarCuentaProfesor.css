@@ -213,6 +213,14 @@ h4{
     margin-top: 5%;
 }
 
+#tache{
+    margin-left: 33%;
+}
+
+#aceptarTache{
+    margin-left: 42%;
+}
+
 #agregarCurso button{
     margin-top: 5%;
     margin-left: 45%;
@@ -228,13 +236,8 @@ h4{
   color:black;
 }
 
-#popup img {
-    margin-left: 170px;
-}
-
 #popup button {
     margin-top: 30px;
-    margin-left: 200px;
 }
 
 
@@ -249,4 +252,46 @@ h2{
 
 .fancybox-close {
     background-image: url('fancybox_sprite.png') !important;
+}
+
+#aceptarCurso{
+    color:black;
+}
+
+#aceptarCurso .row{
+    margin-left: 15px;
+}
+
+#aceptarCurso button{
+    margin-left: 10px;
+}
+
+.col-md-4{
+    border-style: outset;
+    border-width: 3px;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    border-color: rgb(191,3,0);
+    width: 23%;
+}
+
+#calificaCurso{
+    color:black;
+}
+
+#calificaCurso .row{
+    margin-left: 15px;
+}
+
+#calificaCurso button{
+    margin-left: 20px;
+}
+
+a:link   
+{   
+ text-decoration:none;   
+} 
+
+#popupDos img{
+    margin-left: 25%;
 }

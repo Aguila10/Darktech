@@ -189,12 +189,18 @@
                         <div>
                             <label>Horario</label>
                             <select id="horario">
+                                <option>09:00hrs-10:00hrs</option>
                                 <option>10:00hrs-11:00hrs</option>
                                 <option>11:00hrs-12:00hrs</option>
+                                <option>13:00hrs-14:00hrs</option>
+                                <option>14:00hrs-15:00hrs</option>
+                                <option>15:00hrs-16:00hrs</option>
+                                <option>16:00hrs-17:00hrs</option>
+                                <option>17:00hrs-18:00hrs</option>
                             </select>
                         </div>
                     </fieldset>
-                    <button onclick="nuevoCurso()">Aceptar</button>
+                    <button onclick="nuevoCurso()"><a href="#popupDos" class="fancyBox">Aceptar</a></button>
                     </form>
                 </div>
                 <div class="row" id="aceptarCurso"></div>
@@ -235,9 +241,9 @@
         </div>       
         <!--inicio ventana popup eliminar-->
         <div id="popup">
-            <img src="img/eliminar.png" height="150" width="150">
+            <img id="tache" src="img/eliminar.png" height="150" width="150">
             <h1>¿Desea eliminar su cuenta?</h1>
-            <button type="button" class="aceptar" onclick="eliminaCuenta()">Aceptar</button>
+            <button id="aceptarTache" type="button" class="aceptar" onclick="eliminaCuenta()">Aceptar</button>
         </div>
         <!--fin ventana popup eliminar-->
         <!--inicio ventana popUp para indicar que el registro fue exitoso-->
@@ -254,5 +260,11 @@
             </div>
         </div>
         <!--fin ventana popUp para indicar que el registro fue exitoso-->
+        <!--inicio ventana popUp agregar curso-->
+        <div id="popupDos">
+            <img src="" height="50%" width="50%" id="imagenRespuestaCurso">
+            <center><p id="respuestaCurso"></p></center>
+        </div>
+        <!--fin ventana popUp agregar curso-->
     </body>
 </html>

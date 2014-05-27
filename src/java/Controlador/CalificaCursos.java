@@ -113,11 +113,11 @@ public class CalificaCursos extends HttpServlet {
                     Curso cur = (Curso) lista.get(3 * i + j);
 
                     out.println("<div class=" + "col-md-4 " + "id =" + cur.getIdcurso() + ">"
-                            + "<h5>Alumno:" + cur.getAlumno() + "<br>"
-                            + "Horario: " + cur.getHora() + "<br>"
+                            + "<center><h5>Alumno:" + cur.getAlumno() + "<br>"
+                            + "Horario:<br> " + cur.getHora() + "<br>"
                             + "Nivel: " + cur.getNivel() + "</h5><br>"
                             + cajita()
-                            + "<button href='#popupTres' class='fancyBox'  onclick= \"calificar('" + cur.getIdcurso() + "')\" >Aceptar</button></div> ");
+                            + "<button href='#popupTres' onclick= \"calificar('" + cur.getIdcurso() + "')\" >Aceptar</button></center></div> ");
                 }
                 out.println("</div>");
             }
@@ -129,11 +129,11 @@ public class CalificaCursos extends HttpServlet {
                     Curso cur = (Curso) lista.get(3 * i + j);
 
                     out.println("<div class=" + "col-md-4 " + "id =" + cur.getIdcurso() + ">"
-                            + "<h5>Alumno:" + cur.getAlumno() + "<br>"
-                            + "Horario: " + cur.getHora() + "<br>"
+                            + "<center><h5>Alumno:" + cur.getAlumno() + "<br>"
+                            + "Horario:<br> " + cur.getHora() + "<br>"
                             + "Nivel: " + cur.getNivel() + "</h5><br>"
                             +cajita()
-                            + "<button href='#popupTres' class='fancyBox'  onclick= \"calificar('" + cur.getIdcurso() + "')\" >Aceptar</button></div> ");
+                            + "<button href='#popupTres' onclick= \"calificar('" + cur.getIdcurso() + "')\" >Aceptar</button></center></div> ");
                 }
                 out.println("</div>");
             }
@@ -144,11 +144,11 @@ public class CalificaCursos extends HttpServlet {
                 Curso cur = (Curso) lista.get(3 * (lista.size() / 3) + j);
 
                 out.println("<div class=" + "col-md-4 " + "id =" + cur.getIdcurso() + ">"
-                        + "<h5>Alumno:" + cur.getAlumno() + "<br>"
-                        + "Horario: " + cur.getHora() + "<br>"
+                        + "<center><h5>Alumno:" + cur.getAlumno() + "<br>"
+                        + "Horario: <br>" + cur.getHora() + "<br>"
                         + "Nivel: " + cur.getNivel() + "</h5><br>"
                         +cajita()
-                        + "<button href='#popupTres' class='fancyBox'  onclick= \"calificar('" + cur.getIdcurso() + "')\" >Aceptar</button></div> ");
+                        + "<button href='#popupTres' onclick= \"calificar('" + cur.getIdcurso() + "')\" >Aceptar</button></center></div> ");
             }
             out.println("</div>");
         }

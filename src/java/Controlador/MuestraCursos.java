@@ -105,8 +105,8 @@ public class MuestraCursos extends HttpServlet {
                 for (int j =0; j < 3 ; j++) {
                     Curso cur = (Curso)lista.get(3*i + j);
                     
-                    out.println( "<div class="+"col-md-4 "+"id ="+cur.getIdcurso()+"><h5>Nombre Profesor: <a href=\"#popupCuatro\" class=\"fancyBox\" onclick='showVideo("+cur.getIdcurso()+")'>"+cur.getProfesor()+"</a><br>"+
-                            "Horario: "+cur.getHora()+ "</h5><br>"
+                    out.println( "<div class="+"col-md-4 "+"id ="+cur.getIdcurso()+"><center><h5>Nombre Profesor:<br> <a href=\"#popupCuatro\" class=\"fancyBox\" onclick='showVideo("+cur.getIdcurso()+")'>"+cur.getProfesor()+"</a><br>"+
+                            "Horario:<br> "+cur.getHora()+ "</h5><center><br>"
                             +"<button href='#popupTres' class='fancyBox' "+presiona+ " onclick= \"solicita('"+cur.getIdcurso()+"','"+alumno+"')\" >Solicitar</button></div> ");
                 }
                 out.println("</div>");
@@ -118,8 +118,8 @@ public class MuestraCursos extends HttpServlet {
                 for (int j =0; j < 3 ; j++) {
                     Curso cur = (Curso)lista.get(3*i + j);
                     
-                    out.println( "<div class="+"col-md-4 "+"id ="+cur.getIdcurso()+"><h5>Nombre Profesor: <a href=\"#popupCuatro\" class=\"fancyBox\" onclick='showVideo("+cur.getIdcurso()+")'>"+cur.getProfesor()+"</a><br>"+
-                            "Horario :"+cur.getHora()+ "</h5><br>"
+                    out.println( "<div class="+"col-md-4 "+"id ="+cur.getIdcurso()+"><center><h5>Nombre Profesor:<br> <a href=\"#popupCuatro\" class=\"fancyBox\" onclick='showVideo("+cur.getIdcurso()+")'>"+cur.getProfesor()+"</a><br>"+
+                            "Horario: <br>"+cur.getHora()+ "</h5></center><br>"
                             +"<button href='#popupTres' class='fancyBox' "+presiona+ " onclick= \"solicita('"+cur.getIdcurso()+"','"+alumno+"')\" >Solicitar</button></div> ");
                 }
                 out.println("</div>");
@@ -130,8 +130,8 @@ public class MuestraCursos extends HttpServlet {
             for (int j =0; j < lista.size()%3 ; j++) {
                 Curso cur = (Curso)lista.get(3*(lista.size()/3) + j);
                 
-                out.println( "<div class="+"col-md-4 "+"id ="+cur.getIdcurso()+"><h5>Nombre Profesor: <a href=\"#popupCuatro\" class=\"fancyBox\" onclick='showVideo("+cur.getIdcurso()+")'>"+cur.getProfesor()+"</a><br>"+
-                        " Horario: "+cur.getHora()+ "</h5><br>"
+                out.println( "<div class="+"col-md-4 "+"id ="+cur.getIdcurso()+"><center><h5>Nombre Profesor:<br> <a href=\"#popupCuatro\" class=\"fancyBox\" onclick='showVideo("+cur.getIdcurso()+")'>"+cur.getProfesor()+"</a><br>"+
+                        " Horario:<br> "+cur.getHora()+ "</h5></center><br>"
                         +"<button href='#popupTres' class='fancyBox' "+presiona+ " onclick= \"solicita('"+cur.getIdcurso()+"','"+alumno+"')\" >Solicitar</button></div> ");
             }
             out.println("</div>");

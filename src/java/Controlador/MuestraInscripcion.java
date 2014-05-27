@@ -92,7 +92,7 @@ public class MuestraInscripcion extends HttpServlet {
     private void muestraInscripcion(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException{
         PrintWriter out = response.getWriter();
-        out.println("<h1>Inscripción</h1>");
+        out.println("<h1>Cursos inscritos:</h1>");
         
          /*Obtener login alumno*/
         HttpSession sesion = request.getSession(true);
@@ -104,15 +104,16 @@ public class MuestraInscripcion extends HttpServlet {
         /*Imprimir lista de cursos en los que esta inscrito el alumno*/
         out.println("<table>");
         
-        out.println("<tr><td>Curso</td><td>Horario</td></tr>");
+        out.println("<tr><td><center><h3>Curso</h3></center></td><td>"
+                + "<center><h3>Horario</h3></center></td></tr>");
         
         for(int i=0; i<lista.size(); i++){
             Curso cur = lista.get(i);
             out.println("<tr>");
-            out.println("<td>Nivel: "+cur.getNivel()
-                        +"Profesor: "+cur.getProfesor()+"</td>"
-                        +"<td>"+cur.getHora()+"</td>");
-            out.println("</tr>");
+            out.println("<td><p>Nivel: "+cur.getNivel()
+                        +"<br>Profesor: "+cur.getProfesor()+"</p></td>"
+                        +"<td><p><center>"+cur.getHora()+"</td>");
+            out.println("</center></p></tr>");
         }
         out.println("</table>");
     }

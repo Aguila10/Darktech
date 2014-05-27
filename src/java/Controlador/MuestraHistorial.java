@@ -104,16 +104,16 @@ public class MuestraHistorial extends HttpServlet {
         
         /*Imprimir lista de cursos en los que esta inscrito el alumno*/
         out.println("<table>");
-        out.println("<tr><td>Curso</td><td>Calificación</td><td>Constancia</td></tr>");
+        out.println("<tr><td><center><h3>Curso</h3></center></td><td><center><h3>Calificacion</h3></center></td><td><center><h3>Constancia<h3></center></td></tr>");
         
         for(int i=0; i<lista.size(); i++){
             Curso cur = lista.get(i);
             out.println("<tr>");
-            out.println("<td>Nivel: "+cur.getNivel()+"<br>Profesor:"+cur.getProfesor()+"</td>"
-                       +"<td>"+cur.getCalifi()+"</td>");
+            out.println("<td><p>Nivel: "+cur.getNivel()+"<br>Profesor:"+cur.getProfesor()+"</p></td>"
+                       +"<td><p><center>"+cur.getCalifi()+"</center></p></td>");
             /*Da una liga de constancia solo si la calificacion es mayor igual a 8*/
             if(cur.getCalifi()>=8){
-                out.println("<td><a onclick='generaConstancia("+cur.getIdcurso()+")'>Constancia</a></td>");
+                out.println("<td><p><center><a onclick='generaConstancia("+cur.getIdcurso()+")'>Constancia</a></center></p></td>");
             }
             out.println("</tr>");
             

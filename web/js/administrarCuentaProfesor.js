@@ -215,17 +215,21 @@ function agregarCursos(){
 }
 
 function nuevoCurso(){
-
- $.post('AgregarCurso',{
+ $.post('AgregarCursos',{
+        nivel: document.getElementById("nivel").value,
+        horario: document.getElementById("horario").value,
 	dia: document.getElementById("dia").value,
         mes: document.getElementById("mes").value
-        
-        }, function(data){         
-           alert(data);
+        }, function(data){   
+            if(data.indexOf("si")!=-1)
+            {
+                document.getElementById("imagenRespuestaCurso").src="img/ok.png";
+                $("#respuestaCurso").html("Curso agregado"); 
+            } else {
+                document.getElementById("imagenRespuestaCurso").src="img/eliminar.png";
+                $("#respuestaCurso").html("Error: <br>Curso no agregado"); 
+            }
     });
-    
-
-
 }
 
 /*Para aceptar solicitudes de cursos*/
@@ -247,8 +251,10 @@ function aceptoCurso(idCurso){
 	id: idCurso,
         acepto: true
         }, function(data){         
-        
+          
       });
+      
+      aceptarCursos();
 }
 
 function rechazoCurso(idCurso){
@@ -258,6 +264,8 @@ function rechazoCurso(idCurso){
         }, function(data){         
         
       });
+      
+      aceptarCursos();
 }
 
 

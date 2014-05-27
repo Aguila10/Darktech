@@ -6,6 +6,7 @@
 
 package Controlador;
 
+import Modelo.ConexionBD;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -73,7 +74,22 @@ public class AceptarCursos extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        //processRequest(request, response);
+        
+        ConexionBD bd = new ConexionBD();
+
+        // curso
+        int idCurso = new Integer(request.getParameter("id")).intValue();
+        // alumno
+        int idAlumno = bd.regresaAlumnoSolicitoCurso(idCurso);
+        
+        // acepto el curso
+        if("true".equals(request.getParameter("acepto"))){
+            bd.asignaCurso(idCurso, idAlumno);
+        // rechazo el curso    
+        } else {
+            bd.rechazaCurso(idCurso, idAlumno);
+        }
     }
 
     /**

@@ -6,6 +6,7 @@
 
 package Controlador;
 
+import Modelo.ConexionBD;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -13,6 +14,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -59,7 +61,7 @@ public class AgregarCursos extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        //processRequest(request, response);
     }
 
     /**
@@ -73,7 +75,25 @@ public class AgregarCursos extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        //processRequest(request, response);
+        PrintWriter out = response.getWriter();
+        ConexionBD bd = new ConexionBD();
+        HttpSession sesion = request.getSession(true);
+        
+         //Datos para consulta: 
+         //String nivel, String horario, String fecha, Integer idprofesor
+        String nivel = request.getParameter("nivel");
+        String horario = request.getParameter("horario");
+        String fecha = "2014-"+request.getParameter("mes")+"-"+request.getParameter("dia");
+        String loginProfesor = (String)sesion.getAttribute("login");
+        Integer idprofesor = new Integer(bd.regresaIdProfesor(loginProfesor));
+         //insertaCurso
+        
+        if(bd.insertaCurso(nivel, horario, fecha, idprofesor)){
+            out.println("si");
+        } else {
+            out.println("no");
+        }
     }
 
     /**

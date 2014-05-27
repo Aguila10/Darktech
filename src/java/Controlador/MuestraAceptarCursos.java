@@ -109,10 +109,10 @@ public class MuestraAceptarCursos extends HttpServlet {
                 for (int j =0; j < 3 ; j++) {
                     Curso cur = (Curso)lista.get(3*i + j);
                     
-                    out.println( "<div class='col-md-4'>"
+                    out.println( "<div class='col-md-4'><center>"
                             +"Nivel:"+cur.getNivel() +"<br>"
-                            +"Horario:"+cur.getHora() +"<br>"
-                            +"Alumno:"+cur.getAlumno() +"<br>"
+                            +"Horario:<br>"+cur.getHora() +"<br>"
+                            +"Alumno:"+cur.getAlumno() +"</center><br><br>"
                             + "<button onclick='aceptoCurso("+cur.getIdcurso()+")'>Aceptar</button>"
                             + "<button onclick='rechazoCurso("+cur.getIdcurso()+")'>Rechazar</button>"
                             + "</div> ");
@@ -126,10 +126,10 @@ public class MuestraAceptarCursos extends HttpServlet {
                 for (int j =0; j < 3 ; j++) {
                     Curso cur = (Curso)lista.get(3*i + j);
                     
-                    out.println( "<div class='col-md-4'>"
+                    out.println( "<div class='col-md-4'><center>"
                             +"Nivel:"+cur.getNivel() +"<br>"
-                            +"Horario:"+cur.getHora() +"<br>"
-                            +"Alumno:"+cur.getAlumno() +"<br>"
+                            +"Horario: <br>"+cur.getHora() +"<br>"
+                            +"Alumno:"+cur.getAlumno() +"</center><br><br>"
                             + "<button onclick='aceptoCurso("+cur.getIdcurso()+")'>Aceptar</button>"
                             + "<button onclick='rechazoCurso("+cur.getIdcurso()+")'>Rechazar</button>"
                             + "</div> ");
@@ -142,10 +142,10 @@ public class MuestraAceptarCursos extends HttpServlet {
             for (int j =0; j < lista.size()%3 ; j++) {
                 Curso cur = (Curso)lista.get(3*(lista.size()/3) + j);
                 
-                out.println( "<div class='col-md-4'>"
+                out.println( "<div class='col-md-4'><center>"
                             +"Nivel:"+cur.getNivel() +"<br>"
-                            +"Horario:"+cur.getHora() +"<br>"
-                            +"Alumno:"+cur.getAlumno() +"<br>"
+                            +"Horario:<br>"+cur.getHora() +"<br>"
+                            +"Alumno:"+cur.getAlumno() +"</center><br><br>"
                             + "<button onclick='aceptoCurso("+cur.getIdcurso()+")'>Aceptar</button>"
                             + "<button onclick='rechazoCurso("+cur.getIdcurso()+")'>Rechazar</button>"
                             + "</div> ");

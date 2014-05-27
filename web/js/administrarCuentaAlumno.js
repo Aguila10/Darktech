@@ -5,7 +5,8 @@ function limpiaPanel(){
 }
 
 function muestraFormulario(){
-    var x = document.getElementById("modificarDatos").style.display ="block";
+    limpiaPanel();
+    x = document.getElementById("modificarDatos").style.display ="block";
 }
 
 function quitaContraseniaCero(){

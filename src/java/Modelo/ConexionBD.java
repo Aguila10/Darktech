@@ -8,6 +8,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /*
 * To change this license header, choose License Headers in Project Properties.
@@ -62,7 +64,7 @@ public class ConexionBD{
      * @return resultado de la funcion
      */
     public boolean insertaCurso(String nivel, String horario, String fecha, Integer idprofesor) {
-        boolean res =false ;
+        boolean res=false;
         Statement statement;
         ResultSet resultSet;
         
@@ -73,6 +75,7 @@ public class ConexionBD{
                     + "'" + horario + "','" + fecha + "'," + idprofesor + ");");
             
             while (resultSet.next()) {
+                System.out.println(res);
                 res = resultSet.getBoolean(1);
             }
             
@@ -319,6 +322,26 @@ public class ConexionBD{
             System.err.println(ex.getMessage());
         }
         return res;
+    }
+    
+    public int regresaAlumnoSolicitoCurso(int idCurso){
+        Statement statement;
+        ResultSet resultSet;
+        int res=0;
+        
+        Connection con;
+        try {
+            con = DriverManager.getConnection(connectString, user, password);
+            statement = con.createStatement();
+            resultSet = statement.executeQuery("SELECT idalumno from historial_curso where idcurso="+idCurso+";");
+            
+            while (resultSet.next()) {
+                res = resultSet.getInt(1);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ConexionBD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+     return res;
     }
     
     /**
