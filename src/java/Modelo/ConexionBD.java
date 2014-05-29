@@ -983,7 +983,7 @@ public class ConexionBD{
                      + "from alumno join registro on registro.idalumno = alumno.idalumno join alumno_inscrito on"
                      + " alumno_inscrito.idalumno = alumno.idalumno join curso on "
                      + "curso.idcurso = alumno_inscrito.idcurso join profesor on profesor.idprofesor = curso.idprofesor " 
-                     + " where registro.loggin = ? ");
+                     + " where registro.loggin = ? and curso.estado!='Finalizado'");
             
             query.setString(1, loggin);
             String cad = "";
