@@ -113,7 +113,7 @@ public class MuestraHistorial extends HttpServlet {
                        +"<td><p><center>"+cur.getCalifi()+"</center></p></td>");
             /*Da una liga de constancia solo si la calificacion es mayor igual a 8*/
             if(cur.getCalifi()>=8){
-                out.println("<td><p><center><a onclick='generaConstancia("+cur.getIdcurso()+")'>Constancia</a></center></p></td>");
+                out.println("<td><p><center><a href=\"GeneraConstancia\" target=\"_blank\">Constancia</a></center></p></td>");
             } else {
                 out.println("<td><p><center>------</center></p></td>");
             }

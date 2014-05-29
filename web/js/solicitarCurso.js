@@ -25,6 +25,7 @@ function showVideo(id){
   $.post('MuestraVideo',{
   idCurso: id
         }, function(data){         
-       document.getElementById("videoProfe").src =data;
+        document.getElementById("videoProfe").src =data;
+        document.getElementById("videoProfe").play();
       });
 }

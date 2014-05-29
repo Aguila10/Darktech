@@ -141,15 +141,15 @@
                         <fieldset class="contact">
                             <legend>Modificar Detalles Usuario</legend>
                             <div>
-                                <label>Nombre</label> <input type="text" id="nombre" onclick="quitaNombre()" value=<%=(String)sesion.getAttribute("nombre")%>>
+                                <label>Nombre</label> <input type="text" id="nombre" onclick="quitaNombre()" value="<%=(String)sesion.getAttribute("nombre")%>">
                                 <div id="respuestaNombre" class="respuesta"></div>
                             </div>
                             <div>
-                                <label>Telefono</label> <input type="text" id="telefono" onclick="quitaTelefono()" value=<%=(String)sesion.getAttribute("telefono")%> >
+                                <label>Telefono</label> <input type="text" id="telefono" onclick="quitaTelefono()" value="<%=(String)sesion.getAttribute("telefono")%>" >
                                 <div id="respuestaTelefono" class="respuesta"></div>
                             </div>
                             <div>
-                                <label>E-mail</label> <input type="text" id="mail" onclick="quitaMail()" value=<%=(String)sesion.getAttribute("mail")%> >
+                                <label>E-mail</label> <input type="text" id="mail" onclick="quitaMail()" value="<%=(String)sesion.getAttribute("mail")%>">
                                 <div id="respuestaMail" class="respuesta"></div>
                             </div>
                             <button type="button" id="aceptarUsuario" onclick="revisaDatos()">Aceptar</button>

@@ -79,20 +79,20 @@ public class EnviaMail {
             return new PasswordAuthentication(miCorreo, miContraseña);
         }
     }
-    
-    public static void main(String[] args) {
-        
-        /*
-        for(int cont = 0; cont < 500; cont++){
-        EnviaMail mail = new EnviaMail("hdez_bastida_353@yahoo.com.mx", "[Estas siendo spameado]", "Estas siendo spameado");
-        }
-        */
-        
-        
-        String basePath = new File("").getAbsolutePath();
-        System.out.println(basePath);
-        String[] parts = basePath.split("/");
-        System.out.println("/"+parts[1]+"/"+parts[2]);
-        
-    }
+//    
+//    public static void main(String[] args) {
+//        
+//        /*
+//        for(int cont = 0; cont < 500; cont++){
+//        EnviaMail mail = new EnviaMail("hdez_bastida_353@yahoo.com.mx", "[Estas siendo spameado]", "Estas siendo spameado");
+//        }
+//        */
+//        
+//        
+//        String basePath = new File("").getAbsolutePath();
+//        System.out.println(basePath);
+//        String[] parts = basePath.split("/");
+//        System.out.println("/"+parts[1]+"/"+parts[2]);
+//        
+//    }
 }

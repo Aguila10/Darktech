@@ -175,9 +175,10 @@
         <!--fin solicitar curso-->
         <!--inicio popUp video-->
         <div id="popupCuatro">
-            <video width="620" height="340" controls>
+            <!--<video width="620" height="340" controls>
                 <source  id="videoProfe" src="" type="video/mp4">
-            </video>
+            </video>-->
+            <video width="620" height="340" controls id="videoProfe" src=""></video>
         </div>
         <!--fin popUp video-->
 </body>

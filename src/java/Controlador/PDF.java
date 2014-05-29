@@ -18,6 +18,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -27,13 +28,23 @@ import java.util.logging.Logger;
  */
 public class PDF {
 
-    public static String escribePDF(String nombre) throws DocumentException {
+   
+    
+    
+    
+    
+    public String escribePDF(String nombre) throws DocumentException {
         FileOutputStream ficheroPdf = null;
+         Random r = new Random(); 
+         String nombre_arch = nombre+ r.nextInt();
         try {
 
             Document documento = new Document();
+            
             String basePath = new File("").getAbsolutePath();
             String[] parts = basePath.split("/");
+           
+           
             final String path = "/"+parts[1]+"/"+parts[2]+"/NetBeansProjects/pag_ingles/web/constancia.pdf";
             ficheroPdf = new FileOutputStream(path);
             try {
@@ -112,7 +123,7 @@ public class PDF {
             }
         }
         
-        return null;
+        return nombre_arch;
     }
 
 

@@ -74,8 +74,10 @@ public class MuestraCursos extends HttpServlet {
         /*El boton de solicitar solo esta disponible si lo solicita un alumno*/
         HttpSession sesion = request.getSession(true);
         String alumno = "";
+        String presiona = "";
         boolean boton = false;
         if(sesion.getAttribute("identidad")==null){
+            presiona = "";
             boton = false;
         } else if(sesion.getAttribute("identidad").equals("alumno")){
             boton = true;
@@ -97,22 +99,20 @@ public class MuestraCursos extends HttpServlet {
                 }
             }
         }
-        
-        
+           
         if (lista.size()%3 == 0 ){
             for (int i = 0 ; i < (lista.size()/3); i++){
                 out.println(" <div class='row'> " );
                 
                 for (int j =0; j < 3 ; j++) {
                     Curso cur = (Curso)lista.get(3*i + j);
-                    if(boton){
-                        out.println( "<div class="+"col-md-4 "+"id ="+cur.getIdcurso()+"><center><h5>Nombre Profesor:<br> <a href=\"#popupCuatro\" class=\"fancyBox\" onclick='showVideo("+cur.getIdcurso()+")'>"+cur.getProfesor()+"</a><br>"+
-                            "Horario:<br> "+cur.getHora()+ "</h5><center><br>"
-                            +"<center><button onclick= \"solicita('"+cur.getIdcurso()+"','"+alumno+"')\" >Solicitar</button></div></center> ");
+                    if(boton){presiona="<center><button onclick= \"solicita('"+cur.getIdcurso()+"','"+alumno+"')\" >Solicitar</button>";
                     }else{
+                        presiona ="";
+                    }
                     out.println( "<div class="+"col-md-4 "+"id ="+cur.getIdcurso()+"><center><h5>Nombre Profesor:<br> <a href=\"#popupCuatro\" class=\"fancyBox\" onclick='showVideo("+cur.getIdcurso()+")'>"+cur.getProfesor()+"</a><br>"+
                             "Horario:<br> "+cur.getHora()+ "</h5><center><br>"
-                            );}
+                            +presiona+"</div></center>");
                 }
                 out.println("</div>");
             }
@@ -123,14 +123,13 @@ public class MuestraCursos extends HttpServlet {
                 for (int j =0; j < 3 ; j++) {
                     Curso cur = (Curso)lista.get(3*i + j);
                     
-                    if(boton){
-                        out.println( "<div class="+"col-md-4 "+"id ="+cur.getIdcurso()+"><center><h5>Nombre Profesor:<br> <a href=\"#popupCuatro\" class=\"fancyBox\" onclick='showVideo("+cur.getIdcurso()+")'>"+cur.getProfesor()+"</a><br>"+
-                            "Horario:<br> "+cur.getHora()+ "</h5><center><br>"
-                            +"<center><button onclick= \"solicita('"+cur.getIdcurso()+"','"+alumno+"')\" >Solicitar</button></div></center> ");
+                    if(boton){presiona="<center><button onclick= \"solicita('"+cur.getIdcurso()+"','"+alumno+"')\" >Solicitar</button>";
                     }else{
+                        presiona ="";
+                    }
                     out.println( "<div class="+"col-md-4 "+"id ="+cur.getIdcurso()+"><center><h5>Nombre Profesor:<br> <a href=\"#popupCuatro\" class=\"fancyBox\" onclick='showVideo("+cur.getIdcurso()+")'>"+cur.getProfesor()+"</a><br>"+
                             "Horario:<br> "+cur.getHora()+ "</h5><center><br>"
-                            );}
+                            +presiona+"</div></center>");
                 }
                 out.println("</div>");
             }
@@ -139,15 +138,13 @@ public class MuestraCursos extends HttpServlet {
             
             for (int j =0; j < lista.size()%3 ; j++) {
                 Curso cur = (Curso)lista.get(3*(lista.size()/3) + j);
-                
-                if(boton){
-                        out.println( "<div class="+"col-md-4 "+"id ="+cur.getIdcurso()+"><center><h5>Nombre Profesor:<br> <a href=\"#popupCuatro\" class=\"fancyBox\" onclick='showVideo("+cur.getIdcurso()+")'>"+cur.getProfesor()+"</a><br>"+
-                            "Horario:<br> "+cur.getHora()+ "</h5><center><br>"
-                            +"<center><button onclick= \"solicita('"+cur.getIdcurso()+"','"+alumno+"')\" >Solicitar</button></div></center> ");
+               if(boton){presiona="<center><button onclick= \"solicita('"+cur.getIdcurso()+"','"+alumno+"')\" >Solicitar</button>";
                     }else{
+                        presiona ="";
+                    }
                     out.println( "<div class="+"col-md-4 "+"id ="+cur.getIdcurso()+"><center><h5>Nombre Profesor:<br> <a href=\"#popupCuatro\" class=\"fancyBox\" onclick='showVideo("+cur.getIdcurso()+")'>"+cur.getProfesor()+"</a><br>"+
                             "Horario:<br> "+cur.getHora()+ "</h5><center><br>"
-                            );}
+                            +presiona+"</div></center>");
             }
             out.println("</div>");
         }

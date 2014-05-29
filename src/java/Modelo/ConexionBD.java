@@ -23,7 +23,7 @@ import java.util.logging.Logger;
 public class ConexionBD{
     
     String driver = "org.postgresql.Driver";
-    String connectString = "jdbc:postgresql://localhost:5433/pag_ingles";
+    String connectString = "jdbc:postgresql://localhost:5433/EscuelaDeIngles";
     String user = "postgres";
     String password = "308264113";
     
@@ -1067,11 +1067,73 @@ public class ConexionBD{
         return lista;
     }
     
-    public static void main(String[] args) {
-        ConexionBD con = new ConexionBD();
-        ArrayList a = con.CursosProfesorCalificar("profesor");
-        System.out.println(a.size());
-        
-        
-    }
+//    public static void main(String[] args) {
+//        ConexionBD con = new ConexionBD();
+//        ArrayList a = con.CursosProfesorCalificar("profesor");
+//        System.out.println(a.size());
+//        String path = "videos/";
+//        String path1 = "pdfs/";
+//        
+//        
+//  con.insertaAlumno("Julián Domínguez", "5511223344", "xjean02_x@hotmail.com", "julian2", "21614399");//1
+//  con.insertaAlumno("Cristina Alvarez Rodríguez", "5511223344", "xjean02_x@hotmail.com", "cristina2", "21614399");
+//  con.insertaAlumno("Mario Oporto", "5511223344", "xjean02_x@hotmail.com", "mario2", "21614399");
+//  con.insertaAlumno("Carlos Gdansky", "5511223344", "xjean02_x@hotmail.com", "carlos2", "21614399");
+//  con.insertaAlumno("Adela Segarra", "5511223344", "xjean02_x@hotmail.com", "adela2", "21614399");
+//  con.insertaAlumno("Eduardo De Pedro", "5511223344", "xjean02_x@hotmail.com", "eduardo2", "21614399");
+//  con.insertaAlumno("José María Diaz Bancalari", "5511223344", "xjean02_x@hotmail.com","jose2", "21614399");
+//  con.insertaAlumno("Gloria Bidegain", "5511223344", "xjean02_x@hotmail.com","gloria2", "21614399");
+//  con.insertaAlumno("Rosalva Cruz Ortega", "5511223344", "xjean02_x@hotmail.com","rosalva2", "21614399");
+//  con.insertaAlumno("Ramiro Chavarria Lopez", "5511223344", "xjean02_x@hotmail.com","ramiro2", "21614399");
+//  con.insertaAlumno("Orlando Campos Rosas", "5511223344", "xjean02_x@hotmail.com","orlando2", "21614399");
+//  
+//  con.insertaProfesor("Manuel Antonio Fernández Ortubey",path+"video1.mp4",
+//            path1 + "cons1.pdf", "xjean02_x@hotmail.com", "manuel1", "21614399");//profe1
+//  con.insertaCurso("Principiante","09:00hrs-10:00hrs", "01/05/2014",1);//curso 1
+//        
+//        
+//  con.insertaProfesor("María Luna Java Ferreira",path+"video2.mp4",
+//            path1+"cons2.pdf", "xjean02_x@hotmail.com", "maria1", "21614399");
+//  con.insertaCurso("Intermedio","09:00hrs-10:00hrs", "02/05/2014",2);
+//            
+//            
+//  con.insertaProfesor("Hugo Leonardo Lopetegui de León",path+"video3.mp4",
+//            path1+"cons3.pdf", "xjean02_x@hotmail.com", "hugo1", "21614399");
+//  con.insertaCurso("Avanzado","09:00hrs-10:00hrs", "03/06/2014",3);
+//        
+//        
+//  con.insertaProfesor("Javier Asdrúbal Ortiz Zárate",path+"video4.mp4",
+//            path1+"cons4.pdf", "xjean02_x@hotmail.com", "javier1", "21614399");
+//  con.insertaCurso("Conversación","12:00hrs-13:00hrs", "04/06/2014",4);
+//        
+//        con.insertaProfesor("Emir Andrés Monegal de la Madrid",path+"video5.mp4",
+//            path1+"cons5.pdf", "xjean02_x@hotmail.com", "emir1", "21614399");
+//        con.insertaCurso("Principiante","10:00hrs-11:00hrs", "10/06/2014",5);
+//        
+//        con.insertaProfesor("Deyanira Susana Soler Gomínez",path+"video6.mp4",
+//            path1+"cons6.pdf", "xjean02_x@hotmail.com", "deyanira1", "21614399");
+//        con.insertaCurso("Intermedio","11:00hrs-12:00hrs", "01/06/2014",6);
+//        
+//        con.insertaProfesor("Alicia Olivia Peláez Jaume",path+"video7.mp4",
+//            path1+"cons7.pdf", "xjean02_x@hotmail.com", "alicia1", "21614399");
+//        con.insertaCurso("Avanzado","8:00hrs-09:00hrs", "01/07/2014",7);
+//        
+//        con.insertaProfesor("Abel Braulio Dorens Viera",path+"video8.mp4",
+//            path1+"cons8.pdf", "xjean02_x@hotmail.com", "abel1", "21614399");
+//        con.insertaCurso("Conversación","14:00hrs-15:00hrs", "16/07/2014",8);
+//        
+//  
+//  con.insertaProfesor("Carmen Urrutia Salas",path+"video9.mp4",
+//            path1+"cons5.pdf", "xjean02_x@hotmail.com", "carmen1", "21614399");
+//  con.insertaProfesor("Diego Palacios Rios",path+"video10.mp4",
+//            path1+"cons5.pdf", "xjean02_x@hotmail.com", "diego1", "21614399");
+//  
+//  con.insertaProfesor("Arturo Lopez Portillo",path+"video2.mp4",
+//            path1+"cons5.pdf", "xjean02_x@hotmail.com", "arturo1", "21614399");
+//  con.insertaProfesor("Damian Palacios Rosas",path+"video2.mp4",
+//            path1+"cons5.pdf", "xjean02_x@hotmail.com", "damian1", "21614399");
+//  
+//        
+//        
+//    }
 }
