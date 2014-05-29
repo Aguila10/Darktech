@@ -27,6 +27,8 @@ import javax.servlet.http.HttpSession;
 @WebServlet(name = "GeneraConstancia", urlPatterns = {"/GeneraConstancia"})
 public class GeneraConstancia extends HttpServlet {
 
+    String nombre_arch;
+    
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -41,7 +43,7 @@ public class GeneraConstancia extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String basePath = new File("").getAbsolutePath();
         String[] parts = basePath.split("/");
-        final String path = "/"+parts[1]+"/"+parts[2]+"/NetBeansProjects/pag_ingles/web/constancia.pdf";
+        final String path = "/"+parts[1]+"/"+parts[2]+"/NetBeansProjects/pag_ingles/constancia.pdf";
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
@@ -49,8 +51,10 @@ public class GeneraConstancia extends HttpServlet {
             out.println("<head>");
             out.println("<title>Constancia</title>");            
             out.println("</head>");
-            out.println("<body>");
-            out.println("<embed width=\"100%\" height=\"100%\" name=\"plugin\" src=\""+path+"\" type=\"application/pdf\">");
+            out.println("<body marginwidth=\"0\" marginheight=\"0\" style=\"background-color: rgb(38,38,38)\" screen_capture_injected=\"true\">");
+            out.println("<embed width=\"1300\" height=\"655\" name=\"plugin\" src=\" constancia.pdf\" type=\"application/pdf\">");
+            out.println("<link type=\"text/css\" rel=\"stylesheet\" href=\"chrome-extension://cpngackimfmofbokmjmljamhdncknpmg/style.css\">");
+            out.println("<script type=\"text/javascript\" charset=\"utf-8\" src=\"chrome-extension://cpngackimfmofbokmjmljamhdncknpmg/js/page_context.js\"></script>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -91,12 +95,12 @@ public class GeneraConstancia extends HttpServlet {
         ConexionBD con = new ConexionBD();
         String[] arr = con.regresaDatosAlumno(alumno);
     String nombre = arr[0];
-    
+        System.out.println(nombre);
     PDF constancia = new PDF(); 
         try {
-            
-            constancia.escribePDF(nombre);
-            
+           String nombre_arch; 
+            nombre_arch = constancia.escribePDF(nombre);
+            this.nombre_arch = nombre_arch;
             
         } catch (DocumentException ex) {
             Logger.getLogger(GeneraConstancia.class.getName()).log(Level.SEVERE, null, ex);
