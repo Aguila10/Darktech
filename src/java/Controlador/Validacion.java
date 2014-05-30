@@ -34,11 +34,14 @@ public class Validacion {
     
     public static boolean valida_contrasenia(String contraseniaUno , String contraseniaDos){
         
+        String contrasenia_pat = "^[^';]+$";
+        
         if(contraseniaUno == null || contraseniaDos == null){
             return false;
         }
         
-        return contraseniaUno.equals(contraseniaDos) && contraseniaUno.length() >= 5 && contraseniaUno.length() <= 15;
+        return contraseniaUno.matches(contrasenia_pat) && contraseniaUno.length() >= 5 && contraseniaUno.length() <= 15 
+               && contraseniaUno.equals(contraseniaDos);
     }
     
     public static boolean valida_nombre(String nombre){
@@ -99,5 +102,5 @@ public class Validacion {
         
         return true;
     }
-    
+     
 }

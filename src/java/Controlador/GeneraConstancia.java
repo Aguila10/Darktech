@@ -1,8 +1,8 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 
 package Controlador;
 
@@ -26,7 +26,7 @@ import javax.servlet.http.HttpSession;
  */
 @WebServlet(name = "GeneraConstancia", urlPatterns = {"/GeneraConstancia"})
 public class GeneraConstancia extends HttpServlet {
-
+    
     String nombre_arch;
     
     /**
@@ -49,17 +49,17 @@ public class GeneraConstancia extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Constancia</title>");            
+            out.println("<title>Constancia</title>");
             out.println("</head>");
             out.println("<body marginwidth=\"0\" marginheight=\"0\" style=\"background-color: rgb(38,38,38)\" screen_capture_injected=\"true\">");
-            out.println("<embed width=\"1300\" height=\"655\" name=\"plugin\" src=\" constancia.pdf\" type=\"application/pdf\">");
+            out.println("<embed width=\"1300\" height=\"655\" name=\"plugin\" src=\"constancia.pdf\" type=\"application/pdf\">");
             out.println("<link type=\"text/css\" rel=\"stylesheet\" href=\"chrome-extension://cpngackimfmofbokmjmljamhdncknpmg/style.css\">");
             out.println("<script type=\"text/javascript\" charset=\"utf-8\" src=\"chrome-extension://cpngackimfmofbokmjmljamhdncknpmg/js/page_context.js\"></script>");
             out.println("</body>");
             out.println("</html>");
         }
     }
-
+    
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -72,9 +72,10 @@ public class GeneraConstancia extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        generaConstancia(request,response);
         processRequest(request, response);
     }
-
+    
     /**
      * Handles the HTTP <code>POST</code> method.
      *
@@ -86,29 +87,10 @@ public class GeneraConstancia extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       
-        HttpSession sesion = request.getSession(true);
-        
-        String alumno = (String)sesion.getAttribute("login");
-        int idCurso = new Integer(request.getParameter("id")).intValue();
-        
-        ConexionBD con = new ConexionBD();
-        String[] arr = con.regresaDatosAlumno(alumno);
-    String nombre = arr[0];
-        System.out.println(nombre);
-    PDF constancia = new PDF(); 
-        try {
-           String nombre_arch; 
-            nombre_arch = constancia.escribePDF(nombre);
-            this.nombre_arch = nombre_arch;
-            
-        } catch (DocumentException ex) {
-            Logger.getLogger(GeneraConstancia.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    
-         processRequest(request, response);
+        generaConstancia(request,response);
+        processRequest(request, response);
     }
-
+    
     /**
      * Returns a short description of the servlet.
      *
@@ -118,5 +100,20 @@ public class GeneraConstancia extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
+    
+    
+    public void generaConstancia(HttpServletRequest request, HttpServletResponse response){
+        HttpSession sesion = request.getSession(true);
+        String alumno = (String)sesion.getAttribute("login");
+        
+        ConexionBD con = new ConexionBD();
+        String[] arr = con.regresaDatosAlumno(alumno);
+        String nombre = arr[0];
+        PDF constancia = new PDF();
+        constancia.escribePDF(nombre);
+        
+    }
+    
+    
+    
 }

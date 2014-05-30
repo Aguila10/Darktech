@@ -1,10 +1,11 @@
 package Controlador;
 
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
+import com.itextpdf.text.BadElementException;
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Chunk;
 import com.itextpdf.text.Document;
@@ -27,104 +28,103 @@ import java.util.logging.Logger;
  * @author caenhiro
  */
 public class PDF {
-
-   
     
-    
-    
-    
-    public String escribePDF(String nombre) throws DocumentException {
+    public String escribePDF(String nombre) {
         FileOutputStream ficheroPdf = null;
-         Random r = new Random(); 
-         String nombre_arch = nombre+ r.nextInt();
-        try {
-
+        
+        try{
+            
             Document documento = new Document();
             
             String basePath = new File("").getAbsolutePath();
             String[] parts = basePath.split("/");
-           
-           
+            
             final String path = "/"+parts[1]+"/"+parts[2]+"/NetBeansProjects/pag_ingles/web/constancia.pdf";
             ficheroPdf = new FileOutputStream(path);
-            try {
-          PdfWriter.getInstance(documento, ficheroPdf).setInitialLeading(20);
-            } catch (DocumentException ex) {
-                Logger.getLogger(PDF.class.getName()).log(Level.SEVERE, null, ex);
-            }
-
+            
+            PdfWriter.getInstance(documento, ficheroPdf).setInitialLeading(20);
+            
+            
             documento.open();
-            try {
-                Image foto = Image.getInstance("/"+parts[1]+"/"+parts[2]+"/NetBeansProjects/pag_ingles/web/img/escuela.png");
-                foto.scaleToFit(200, 200);
-                foto.setAlignment(Chunk.ALIGN_RIGHT);
-                documento.add(foto);
-           documento.add(new Paragraph("           "));
-           documento.add(new Paragraph("           "));
-           documento.add(new Paragraph("           "));
+            
+            Image foto = Image.getInstance("/"+parts[1]+"/"+parts[2]+"/NetBeansProjects/pag_ingles/web/img/escuela.png");
+            foto.scaleToFit(200, 200);
+            foto.setAlignment(Chunk.ALIGN_RIGHT);
+            documento.add(foto);
+            documento.add(new Paragraph("           "));
+            documento.add(new Paragraph("           "));
+            documento.add(new Paragraph("           "));
             
             
-                  documento.add(new Paragraph("Darktech Anglo Institute",
+            documento.add(new Paragraph("Darktech Anglo Institute",
                     FontFactory.getFont("Courier-Bold", 30, Font.UNDERLINE, BaseColor.BLUE)));
-           
-           documento.add(new Paragraph("           "));
-           documento.add(new Paragraph("           "));
-           documento.add(new Paragraph("           "));
-           
-           documento.add(new Paragraph("        OTORGA LA PRESENTE",
-                     
-                    FontFactory.getFont("ARIAL", 30, Font.NORMAL , BaseColor.BLACK)));
-  
-               
-
             
-           documento.add(new Paragraph("           "));
-           documento.add(new Paragraph("           "));
-           documento.add(new Paragraph("           "));
+            documento.add(new Paragraph("           "));
+            documento.add(new Paragraph("           "));
+            documento.add(new Paragraph("           "));
+            
+            documento.add(new Paragraph("        OTORGA LA PRESENTE",
+                    FontFactory.getFont("ARIAL", 30, Font.NORMAL , BaseColor.BLACK)));
+            
+            
+            
+            
+            documento.add(new Paragraph("           "));
+            documento.add(new Paragraph("           "));
+            documento.add(new Paragraph("           "));
             
             documento.add(new Paragraph("            CONSTANCIA",
                     FontFactory.getFont("ARIAL", 30, Font.NORMAL , BaseColor.BLACK)));
-  
             
-           documento.add(new Paragraph("           "));
-           documento.add(new Paragraph("           "));
-           documento.add(new Paragraph("           "));
-           documento.add(new Paragraph("           "));
             
-           
-            documento.add(new Paragraph("  A        " + nombre ,
+            documento.add(new Paragraph("           "));
+            documento.add(new Paragraph("           "));
+            documento.add(new Paragraph("           "));
+            documento.add(new Paragraph("           "));
+            
+            
+            documento.add(new Paragraph("  A :       " + nombre ,
                     FontFactory.getFont("ARIAL", 20, Font.BOLD, BaseColor.BLACK)));
-   
             
             
-           documento.add(new Paragraph("           "));
-           documento.add(new Paragraph("           "));
-           documento.add(new Paragraph("           "));
-           documento.add(new Paragraph("           "));
+            
+            documento.add(new Paragraph("           "));
+            documento.add(new Paragraph("           "));
+            documento.add(new Paragraph("           "));
+            documento.add(new Paragraph("           "));
             
             documento.add(new Paragraph("POR HABER CONCLUIDO CON EXITO EL CURSO DE INGLES.",
                     FontFactory.getFont("ARIAL", 14, Font.NORMAL, BaseColor.BLACK)));
-   
+            
             documento.close();
-           
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            ficheroPdf.close();
             
+        } catch (DocumentException | FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
             
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(PDF.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
+        }finally {
             
             try {
                 ficheroPdf.close();
-            } catch (IOException ex) {
-                Logger.getLogger(PDF.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         }
         
-        return nombre_arch;
+        return null;
     }
-
-
+    
+    
+    public static void main(String[] args){
+        
+        PDF a = new PDF();
+        a.escribePDF("Hola");
+        
+        
+        
+    }
+    
+    
 }

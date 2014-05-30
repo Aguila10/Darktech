@@ -40,33 +40,39 @@ function quitaMail(){
 }
 
 function revisaContrasenia(){
-    
     var contraseniaUno = document.getElementById("contraseniaUno").value;
     var contraseniaDos = document.getElementById("contraseniaDos").value;
+    var contrasenia_pat = /^[^';]+$/;
     
-    if(contraseniaUno === ""){
-        document.getElementById("respuestaContraseniaUno").innerHTML ="El campo no puede quedar vacio";
-        document.getElementById("contraseniaUno").classList.add("incorrecto");
+    if(contraseniaUno.match(contrasenia_pat)){
+        if(contraseniaUno.length < 5 || contraseniaUno.length > 15){
+            document.getElementById("respuestaContraseniaUno").innerHTML ="La contraseña debe tener un mínimo de 5 caracteres y un máximo de 15";
+            document.getElementById("contraseniaUno").classList.add("incorrecto");
+            return false;
+        }    
+    }else{
+        if(contraseniaUno === ""){
+            document.getElementById("respuestaContraseniaUno").innerHTML ="El campo no puede quedar vacio";
+            document.getElementById("contraseniaUno").classList.add("incorrecto");
+        }else{
+            document.getElementById("respuestaContraseniaUno").innerHTML = "La contraseña no puede contener comillas simples (') ni comas (;)";
+            document.getElementById("contraseniaUno").classList.add("incorrecto");
+        }  
         return false;   
-    }   
-    if(contraseniaUno.length < 5 || contraseniaUno.length > 15){
-        document.getElementById("respuestaContraseniaUno").innerHTML ="Contraseña de tamaño inválido";
-        document.getElementById("contraseniaUno").classList.add("incorrecto");
-        return false;
-    } 
+    }
+    
     if(contraseniaUno !== contraseniaDos){
         document.getElementById("respuestaContraseniaDos").innerHTML ="Las contraseñas no coinciden";
         document.getElementById("contraseniaDos").classList.add("incorrecto");
         return false;
-    }
+    } 
     return true;
-    
 }
 
 function revisaNombre(){
     
     var nombre = document.getElementById("nombre").value;
-    var nombre_pat = /^([A-Za-z])+([\s]{1}[A-Za-z]+)?([\s]{1}[A-Za-z]+)?$/;
+    var nombre_pat = /^([A-Za-zñáéíóú])+([\s]{1}[A-Za-zñáéíóú]+)?([\s]{1}[A-Za-zñáéíóú]+)?$/;
     
     if(nombre.match(nombre_pat)){
         if(nombre.length >= 2 && nombre.length <= 70){ //Tamaño [2,70]
@@ -176,7 +182,7 @@ function callbackContraseña(){
             var respuesta = data.valueOf().toString();
             
             if(respuesta.match("error")){ 
-                revisarContrasenia();
+                revisaContrasenia();
             }else{    
                 var docHeight = $(document).height(); //grab the height of the page
                 var scrollTop = $(window).scrollTop(); //grab the px value from the top of the page to where you're scrolling      

@@ -139,8 +139,8 @@ public class RegistrarProfesor extends HttpServlet {
         ConexionBD conexion = new ConexionBD();
         Boolean disponible = conexion.buscaLogin(login).equals("");
         
-        File video = subirVideo(request,response);
-        File pdf = subirPdf(request,response);
+        File video = subirVideo(request,response,login);
+        File pdf = subirPdf(request,response,login);
 
         
         path_video = "videos/" + video.getName();
@@ -148,7 +148,6 @@ public class RegistrarProfesor extends HttpServlet {
         
         this.video = video;
         this.pdf = pdf;
-        
         
         // Validacion del lado del servidor.
         
@@ -162,7 +161,7 @@ public class RegistrarProfesor extends HttpServlet {
         
         if(continua){
             conexion.insertaProfesor(nombre,path_video,path_pdf,mail,login,contraseniaUno);
-            conexion.insertaCurso(nivel,horario,"2004-"+mes+"-"+dia, conexion.regresaIdProfesor(login));
+            conexion.insertaCurso(nivel,horario,"2014-"+mes+"-"+dia, conexion.regresaIdProfesor(login));
             sesion.setAttribute("identidad","profesor");
             sesion.setAttribute("init","Iniciando sesion");
             sesion.setAttribute("resultado", "exito");
@@ -175,14 +174,14 @@ public class RegistrarProfesor extends HttpServlet {
     }
     
     
-    private File subirVideo(HttpServletRequest request,HttpServletResponse response)
+    private File subirVideo(HttpServletRequest request,HttpServletResponse response,String login)
             throws IOException, ServletException{
         
         String basePath = new File("").getAbsolutePath();
         String[] parts = basePath.split("/");
         final String path = "/"+parts[1]+"/"+parts[2]+"/NetBeansProjects/pag_ingles/web/videos";
         final Part filePart = request.getPart("video");
-        final String fileName = getFileName(filePart);
+        final String fileName = login + ".mp4";
         
         OutputStream out = null;
         InputStream filecontent = null;
@@ -218,14 +217,14 @@ public class RegistrarProfesor extends HttpServlet {
         return file;
     }
     
-    private File subirPdf(HttpServletRequest request,HttpServletResponse response)
+    private File subirPdf(HttpServletRequest request,HttpServletResponse response,String login)
             throws IOException, ServletException{
         
         String basePath = new File("").getAbsolutePath();
         String[] parts = basePath.split("/");
         final String path = "/"+parts[1]+"/"+parts[2]+"/NetBeansProjects/pag_ingles/web/pdfs";
         final Part filePart = request.getPart("constancia");
-        final String fileName = getFileName(filePart);
+        final String fileName = login + ".pdf";
         
         OutputStream out = null;
         InputStream filecontent = null;
