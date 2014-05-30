@@ -52,7 +52,7 @@ public class GeneraConstancia extends HttpServlet {
             out.println("<title>Constancia</title>");
             out.println("</head>");
             out.println("<body marginwidth=\"0\" marginheight=\"0\" style=\"background-color: rgb(38,38,38)\" screen_capture_injected=\"true\">");
-            out.println("<embed width=\"1300\" height=\"655\" name=\"plugin\" src=\"constancia.pdf\" type=\"application/pdf\">");
+            out.println("<embed width=\"1300\" height=\"655\" name=\"plugin\" src=\""+ nombre_arch  +"\" type=\"application/pdf\">");
             out.println("<link type=\"text/css\" rel=\"stylesheet\" href=\"chrome-extension://cpngackimfmofbokmjmljamhdncknpmg/style.css\">");
             out.println("<script type=\"text/javascript\" charset=\"utf-8\" src=\"chrome-extension://cpngackimfmofbokmjmljamhdncknpmg/js/page_context.js\"></script>");
             out.println("</body>");
@@ -110,7 +110,7 @@ public class GeneraConstancia extends HttpServlet {
         String[] arr = con.regresaDatosAlumno(alumno);
         String nombre = arr[0];
         PDF constancia = new PDF();
-        constancia.escribePDF(nombre);
+        this.nombre_arch = constancia.escribePDF(nombre);
         
     }
     

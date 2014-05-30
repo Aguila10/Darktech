@@ -31,6 +31,11 @@ public class PDF {
     
     public String escribePDF(String nombre) {
         FileOutputStream ficheroPdf = null;
+
+        Random r = new Random();
+        r.setSeed(System.currentTimeMillis());
+        
+        String f_nombre = "cons" + nombre + r.nextInt(9000) + ".pdf";
         
         try{
             
@@ -39,7 +44,7 @@ public class PDF {
             String basePath = new File("").getAbsolutePath();
             String[] parts = basePath.split("/");
             
-            final String path = "/"+parts[1]+"/"+parts[2]+"/NetBeansProjects/pag_ingles/web/constancia.pdf";
+            final String path = "/"+parts[1]+"/"+parts[2]+"/NetBeansProjects/pag_ingles/web/"+ f_nombre;
             ficheroPdf = new FileOutputStream(path);
             
             PdfWriter.getInstance(documento, ficheroPdf).setInitialLeading(20);
@@ -63,7 +68,7 @@ public class PDF {
             documento.add(new Paragraph("           "));
             documento.add(new Paragraph("           "));
             
-            documento.add(new Paragraph("        OTORGA LA PRESENTE",
+            documento.add(new Paragraph("        OTORGA LA PRESENTEaaa",
                     FontFactory.getFont("ARIAL", 30, Font.NORMAL , BaseColor.BLACK)));
             
             
@@ -99,11 +104,15 @@ public class PDF {
             documento.close();
             ficheroPdf.close();
             
+            Thread.sleep(3000);
+            
         } catch (DocumentException | FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
             
+        } catch (InterruptedException ex) {
+            Logger.getLogger(PDF.class.getName()).log(Level.SEVERE, null, ex);
         }finally {
             
             try {
@@ -113,7 +122,7 @@ public class PDF {
             }
         }
         
-        return null;
+        return f_nombre;
     }
     
     
